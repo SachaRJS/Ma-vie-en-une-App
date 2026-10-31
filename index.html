@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ma Vie en Une Appli</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#0d0d0d;
+color:white;
+}
+
+header{
+background:black;
+padding:20px;
+text-align:center;
+border-bottom:2px solid gold;
+}
+
+h1{
+color:gold;
+}
+
+.container{
+padding:15px;
+}
+
+.card{
+background:#1a1a1a;
+padding:15px;
+margin-bottom:15px;
+border-radius:15px;
+border:1px solid gold;
+}
+
+button{
+background:gold;
+color:black;
+border:none;
+padding:10px 15px;
+border-radius:10px;
+font-weight:bold;
+margin-top:10px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:5px;
+margin-bottom:10px;
+border-radius:8px;
+border:none;
+}
+
+nav{
+display:flex;
+overflow-x:auto;
+gap:10px;
+margin-bottom:20px;
+}
+
+.nav-btn{
+background:#222;
+color:gold;
+border:1px solid gold;
+}
+
+.section{
+display:none;
+}
+
+.active{
+display:block;
+}
+
+.logo{
+font-size:50px;
+}
+
+.progress{
+height:20px;
+background:#333;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress-bar{
+height:100%;
+width:25%;
+background:gold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="login">
+
+<header>
+<div class="logo">🩺</div>
+<h1>Ma Vie en Une Appli</h1>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>Connexion</h2>
+
+<input id="password" type="password" placeholder="Mot de passe">
+
+<button onclick="login()">Se connecter</button>
+
+<p>
+Question secrète :
+<br>
+<b>Quel est ton objectif ?</b>
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="app" style="display:none;">
+
+<header>
+<h1>🩺 Ma Vie en Une Appli</h1>
+</header>
+
+<div class="container">
+
+<nav>
+
+<button class="nav-btn" onclick="showSection('home')">Accueil</button>
+
+<button class="nav-btn" onclick="showSection('bank')">Banque</button>
+
+<button class="nav-btn" onclick="showSection('school')">École</button>
+
+<button class="nav-btn" onclick="showSection('agenda')">Agenda</button>
+
+<button class="nav-btn" onclick="showSection('goals')">Objectifs</button>
+
+<button class="nav-btn" onclick="showSection('medical')">Médecine</button>
+
+<button class="nav-btn" onclick="showSection('life')">Parcours</button>
+
+</nav>
+
+<div id="home" class="section active">
+
+<div class="card">
+<h2>Bienvenue 👋</h2>
+
+<p>Âge : 15 ans</p>
+<p>Niveau : Lycée</p>
+<p>Objectif : Chirurgien 🩺</p>
+
+<div class="progress">
+<div class="progress-bar"></div>
+</div>
+
+<p>Progression : 25%</p>
+
+<p>
+Citation :
+<br>
+<i>"Chaque jour te rapproche de la personne que tu veux devenir."</i>
+</p>
+
+</div>
+
+</div>
+
+<div id="bank" class="section">
+
+<div class="card">
+
+<h2>💰 Banque</h2>
+
+<input id="solde" placeholder="Solde actuel">
+
+<button onclick="saveSolde()">
+Sauvegarder
+</button>
+
+<p id="soldeAffiche"></p>
+
+</div>
+
+</div>
+
+<div id="school" class="section">
+
+<div class="card">
+
+<h2>🎓 Notes</h2>
+
+<ul>
+<li>Maths</li>
+<li>Physique-Chimie</li>
+<li>SVT</li>
+<li>EPS</li>
+<li>Histoire-Géo</li>
+<li>Anglais LV1</li>
+<li>Anglais Section</li>
+<li>SES</li>
+<li>SNT</li>
+<li>Espagnol</li>
+</ul>
+
+</div>
+
+</div>
+
+<div id="agenda" class="section">
+
+<div class="card">
+<h2>📅 Emploi du temps</h2>
+
+<textarea style="width:100%;height:150px;">
+Lundi :
+Maths
+
+Mardi :
+SVT
+</textarea>
+
+</div>
+
+</div>
+
+<div id="goals" class="section">
+
+<div class="card">
+
+<h2>🎯 Objectifs</h2>
+
+<ul>
+<li>🩺 Devenir chirurgien</li>
+<li>💰 Être riche</li>
+<li>🚀 Réussir ma vie</li>
+</ul>
+
+</div>
+
+<div class="card">
+<h2>🏆 Succès</h2>
+
+<ul>
+<li>🥉 Premier 100 €</li>
+<li>🥈 Premier 1000 €</li>
+<li>🥇 Moyenne de 16</li>
+<li>🩺 Admission médecine</li>
+</ul>
+</div>
+
+</div>
+
+<div id="medical" class="section">
+
+<div class="card">
+
+<h2>🩺 Parcours Médecine</h2>
+
+<p>✅ Lycée</p>
+<p>⬜ Bac</p>
+<p>⬜ Études médecine</p>
+<p>⬜ Externat</p>
+<p>⬜ Internat</p>
+<p>⬜ Chirurgie</p>
+<p>⬜ Diplôme</p>
+
+</div>
+
+</div>
+
+<div id="life" class="section">
+
+<div class="card">
+
+<h2>📖 Mon Parcours</h2>
+
+<textarea style="width:100%;height:200px;"
+placeholder="Écris les événements importants de ta vie ici...">
+</textarea>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const vraiMotDePasse = "chirurgien";
+
+function login(){
+
+let mdp =
+document.getElementById("password").value;
+
+if(mdp === vraiMotDePasse){
+
+document.getElementById("login").style.display="none";
+document.getElementById("app").style.display="block";
+
+}else{
+
+alert("Mot de passe incorrect");
+
+}
+
+}
+
+function showSection(id){
+
+document.querySelectorAll(".section")
+.forEach(s => s.classList.remove("active"));
+
+document.getElementById(id)
+.classList.add("active");
+
+}
+
+function saveSolde(){
+
+let valeur =
+document.getElementById("solde").value;
+
+localStorage.setItem("solde", valeur);
+
+document.getElementById("soldeAffiche")
+.innerText = "Solde : " + valeur + " €";
+
+}
+
+window.onload = function(){
+
+let solde =
+localStorage.getItem("solde");
+
+if(solde){
+
+document.getElementById("soldeAffiche")
+.innerText = "Solde : " + solde + " €";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
