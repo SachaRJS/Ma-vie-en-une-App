@@ -182,7 +182,7 @@
             opacity: 0.9;
         }
 
-        /* GRID PREMIUM & OBJECTIFS */
+        /* GRID PREMIUM & BANQUE */
         .grid-premium {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -218,6 +218,37 @@
             gap: 6px;
         }
 
+        /* Cartes spéciales pour la Banque (Solde & Argent dispo) */
+        .bank-card-mega {
+            background: linear-gradient(135deg, #f3f9f5, #fff);
+            border: 2px solid var(--accent);
+        }
+        .bank-card-mega h3 {
+            font-size: 1.4rem;
+            color: var(--accent-red);
+        }
+        .bank-card-mega .field-input {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-align: center;
+        }
+
+        .bank-card-submega {
+            background: linear-gradient(135deg, #fffdf7, #fff);
+            border: 2px solid var(--accent-gold);
+        }
+        .bank-card-submega h3 {
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+        }
+        .bank-card-submega .field-input {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--text-main);
+            text-align: center;
+        }
+
         /* Barre de progression visuelle */
         .progress-bar-container {
             background: #eee;
@@ -243,7 +274,7 @@
             text-align: right;
         }
 
-        /* PARCOURS PAR ANNÉE */
+        /* PARCOURS & ENTRAÎNEMENT */
         .parcours-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -369,13 +400,71 @@
     <!-- BANQUE -->
     <section id="banque" class="section">
         <div class="card">
-            <div class="card-title"><span class="icon">💰</span>Banque</div>
+            <div class="card-title"><span class="icon">💰</span>Banque & Finances</div>
+            <p>Gère tes comptes, tes répartitions d'argent et suis tes objectifs financiers.</p>
 
-            <label for="solde">Solde actuel</label>
-            <input id="solde" class="field-input" type="number">
+            <div class="grid-premium">
 
-            <label for="epargne_obj">Objectif d'épargne</label>
-            <input id="epargne_obj" class="field-input" type="number">
+                <!-- 1. Épargne long terme -->
+                <div class="grid-card">
+                    <h3>🏦 Épargne long terme</h3>
+                    <label for="bank_epargne_actuel">Montant actuel (€)</label>
+                    <input id="bank_epargne_actuel" class="field-input" type="number" step="1">
+
+                    <label for="bank_epargne_obj">Objectif (€)</label>
+                    <input id="bank_epargne_obj" class="field-input" type="number" step="1">
+
+                    <div class="progress-bar-container">
+                        <div id="bar_epargne" class="progress-bar-fill"></div>
+                    </div>
+                    <div id="text_epargne" class="progress-text">0%</div>
+                </div>
+
+                <!-- 2. Plaisir -->
+                <div class="grid-card">
+                    <h3>🎁 Plaisir</h3>
+                    <label for="bank_plaisir_actuel">Montant actuel (€)</label>
+                    <input id="bank_plaisir_actuel" class="field-input" type="number" step="1">
+
+                    <label for="bank_plaisir_obj">Objectif (€)</label>
+                    <input id="bank_plaisir_obj" class="field-input" type="number" step="1">
+
+                    <div class="progress-bar-container">
+                        <div id="bar_plaisir" class="progress-bar-fill"></div>
+                    </div>
+                    <div id="text_plaisir" class="progress-text">0%</div>
+                </div>
+
+                <!-- 3. Projets et Études -->
+                <div class="grid-card">
+                    <h3>🚀 Projets et Études</h3>
+                    <label for="bank_projets_actuel">Montant actuel (€)</label>
+                    <input id="bank_projets_actuel" class="field-input" type="number" step="1">
+
+                    <label for="bank_projets_obj">Objectif (€)</label>
+                    <input id="bank_projets_obj" class="field-input" type="number" step="1">
+
+                    <div class="progress-bar-container">
+                        <div id="bar_projets" class="progress-bar-fill"></div>
+                    </div>
+                    <div id="text_projets" class="progress-text">0%</div>
+                </div>
+
+                <!-- 4. Solde actuel (EN TRÈS GROS) -->
+                <div class="grid-card bank-card-mega">
+                    <h3>💎 Solde Actuel</h3>
+                    <label for="solde_actuel_global">Montant total global (€)</label>
+                    <input id="solde_actuel_global" class="field-input" type="number" step="1" placeholder="0">
+                </div>
+
+                <!-- 5. Argent disponible (EN MOINS GROS MAIS PLUS GROS QUE LES 3 PREMIERS) -->
+                <div class="grid-card bank-card-submega">
+                    <h3>✨ Argent Disponible</h3>
+                    <label for="argent_disponible">Montant libre d'utilisation (€)</label>
+                    <input id="argent_disponible" class="field-input" type="number" step="1" placeholder="0">
+                </div>
+
+            </div>
         </div>
     </section>
 
@@ -657,8 +746,30 @@
         });
     });
 
-    // Mise à jour visuelle des barres de progression
-    function updateProgress(inputId, barId, textId) {
+    // Mise à jour visuelle des barres de progression en pourcentage (pour les objectifs et la banque)
+    function updatePercentProgress(actuelId, objId, barId, textId) {
+        const actuelEl = document.getElementById(actuelId);
+        const objEl = document.getElementById(objId);
+        const bar = document.getElementById(barId);
+        const text = document.getElementById(textId);
+        if(!actuelEl || !objEl || !bar || !text) return;
+
+        const actuel = parseFloat(actuelEl.value) || 0;
+        const obj = parseFloat(objEl.value) || 0;
+
+        let pct = 0;
+        if(obj > 0) {
+            pct = Math.round((actuel / obj) * 100);
+        }
+        if(pct < 0) pct = 0;
+        if(pct > 100) pct = 100;
+
+        bar.style.width = pct + '%';
+        text.textContent = pct + '% (actuel: ' + actuel + ' / obj: ' + obj + ')';
+    }
+
+    // Gestion standard des barres basées sur une valeur 0-100 directe (pour l'école et le chir)
+    function updateDirectProgress(inputId, barId, textId) {
         const input = document.getElementById(inputId);
         const bar = document.getElementById(barId);
         const text = document.getElementById(textId);
@@ -703,7 +814,10 @@
     // Sauvegarde automatique avec localStorage
     const ids = [
         "moyenne","moyenne_obj",
-        "solde","epargne_obj",
+        "bank_epargne_actuel", "bank_epargne_obj",
+        "bank_plaisir_actuel", "bank_plaisir_obj",
+        "bank_projets_actuel", "bank_projets_obj",
+        "solde_actuel_global", "argent_disponible",
         "obj_scolaire_date_debut", "obj_scolaire_date_fin", "obj_scolaire_val",
         "obj_poids_depart", "obj_poids_actuel", "obj_poids_cible", "obj_poids_date",
         "obj_amour_debut", "obj_amour_note",
@@ -729,20 +843,31 @@
         const v = localStorage.getItem("mv_" + id);
         if (v !== null) el.value = v;
 
-        // Écouteurs d'événements
+        // Écouteurs d'événements pour la sauvegarde et l'actualisation dynamique
         el.addEventListener("input", () => {
             localStorage.setItem("mv_" + id, el.value);
-            if(id === "obj_scolaire_val") updateProgress('obj_scolaire_val', 'bar_scolaire', 'text_scolaire');
-            if(id === "obj_chir_val") updateProgress('obj_chir_val', 'bar_chir', 'text_chir');
+
+            // Actualisations automatiques
+            if(id === "bank_epargne_actuel" || id === "bank_epargne_obj") updatePercentProgress('bank_epargne_actuel', 'bank_epargne_obj', 'bar_epargne', 'text_epargne');
+            if(id === "bank_plaisir_actuel" || id === "bank_plaisir_obj") updatePercentProgress('bank_plaisir_actuel', 'bank_plaisir_obj', 'bar_plaisir', 'text_plaisir');
+            if(id === "bank_projets_actuel" || id === "bank_projets_obj") updatePercentProgress('bank_projets_actuel', 'bank_projets_obj', 'bar_projets', 'text_projets');
+            
+            if(id === "obj_scolaire_val") updateDirectProgress('obj_scolaire_val', 'bar_scolaire', 'text_scolaire');
+            if(id === "obj_chir_val") updateDirectProgress('obj_chir_val', 'bar_chir', 'text_chir');
             if(id === "obj_amour_debut") updateAmourCounter();
         });
     }
 
     window.addEventListener("DOMContentLoaded", () => {
         ids.forEach(load);
+
         // Initialisation des barres et compteurs au chargement
-        updateProgress('obj_scolaire_val', 'bar_scolaire', 'text_scolaire');
-        updateProgress('obj_chir_val', 'bar_chir', 'text_chir');
+        updatePercentProgress('bank_epargne_actuel', 'bank_epargne_obj', 'bar_epargne', 'text_epargne');
+        updatePercentProgress('bank_plaisir_actuel', 'bank_plaisir_obj', 'bar_plaisir', 'text_plaisir');
+        updatePercentProgress('bank_projets_actuel', 'bank_projets_obj', 'bar_projets', 'text_projets');
+        
+        updateDirectProgress('obj_scolaire_val', 'bar_scolaire', 'text_scolaire');
+        updateDirectProgress('obj_chir_val', 'bar_chir', 'text_chir');
         updateAmourCounter();
     });
 </script>
