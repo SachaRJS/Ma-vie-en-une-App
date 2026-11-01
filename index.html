@@ -182,7 +182,7 @@
             opacity: 0.9;
         }
 
-        /* GRID PREMIUM & BANQUE */
+        /* GRID PREMIUM */
         .grid-premium {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -218,7 +218,57 @@
             gap: 6px;
         }
 
-        /* Cartes spéciales pour la Banque (Solde & Argent dispo) */
+        /* Styles Emploi du temps */
+        .edt-table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+
+        .edt-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border-soft);
+        }
+
+        .edt-table th, .edt-table td {
+            border: 1px solid var(--border-soft);
+            padding: 10px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .edt-table th {
+            background: var(--accent);
+            color: #fff;
+            font-family: var(--font-main);
+            letter-spacing: 0.05em;
+        }
+
+        .edt-table td.jour-col {
+            font-weight: bold;
+            background: #f7f2eb;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .edt-matiere {
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        .edt-salle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Cartes spéciales pour la Banque */
         .bank-card-mega {
             background: linear-gradient(135deg, #f3f9f5, #fff);
             border: 2px solid var(--accent);
@@ -358,7 +408,7 @@
             <p>Version Sacha — Spéciale Noël 🎄</p>
         </div>
         <div class="user-tag">
-            <span>Sacha</span><br>
+            <span>Sacha (S11)</span><br>
             <span>Life tracker — édition Noël</span>
         </div>
         <div class="xmas-deco-header">🎄✨🎅✨🎄</div>
@@ -385,15 +435,117 @@
     <!-- ÉTUDES -->
     <section id="etudes" class="section">
         <div class="card">
-            <div class="card-title"><span class="icon">📚</span>Études</div>
+            <div class="card-title"><span class="icon">📚</span>Études — Emploi du temps & À faire</div>
 
-            <label for="moyenne">Moyenne actuelle</label>
-            <input id="moyenne" class="field-input" type="number" step="0.1">
-
-            <label for="moyenne_obj">Objectif de moyenne</label>
-            <input id="moyenne_obj" class="field-input" type="number" step="0.1">
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 20px;">
+                <div style="flex: 1; min-width: 250px;">
+                    <label for="moyenne">Moyenne actuelle</label>
+                    <input id="moyenne" class="field-input" type="number" step="0.1">
+                </div>
+                <div style="flex: 1; min-width: 250px;">
+                    <label for="moyenne_obj">Objectif de moyenne</label>
+                    <input id="moyenne_obj" class="field-input" type="number" step="0.1">
+                </div>
+            </div>
 
             <a class="btn-link" href="https://atrium-sud.fr" target="_blank" rel="noopener noreferrer">Accéder à Atrium Sud 🎄</a>
+
+            <h3 style="font-family: var(--font-main); color: var(--accent); margin-top: 30px; margin-bottom: 10px;">📅 Emploi du temps (Sacha - S11)</h3>
+            
+            <div class="edt-table-container">
+                <table class="edt-table">
+                    <thead>
+                        <tr>
+                            <th>Jour</th>
+                            <th>8h05 - 9h00</th>
+                            <th>9h00 - 10h00</th>
+                            <th>10h15 - 11h15</th>
+                            <th>11h30 - 12h10</th>
+                            <th>13h00 - 14h00</th>
+                            <th>14h00 - 15h00</th>
+                            <th>15h05 - 16h05</th>
+                            <th>16h05 - 18h00</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- LUNDI -->
+                        <tr>
+                            <td class="jour-col">Lundi</td>
+                            <td><div class="edt-matiere">SC. NUMERIQ. TECHNOL.</div><div class="edt-salle">FAURE S, A 311 INFO MATHS</div></td>
+                            <td><div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S, B 213</div></td>
+                            <td colspan="2"><div class="edt-matiere">ED. PHYSIQUE & SPORT</div><div class="edt-salle">BAUDRY A</div></td>
+                            <td><div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI-MOINE M</div></td>
+                            <td><div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L</div></td>
+                            <td><div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI-MOINE M</div></td>
+                            <td>-</td>
+                        </tr>
+                        <!-- MARDI -->
+                        <tr>
+                            <td class="jour-col">Mardi</td>
+                            <td><div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L</div><div class="edt-salle">A 309</div></td>
+                            <td><div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S</div><div class="edt-salle">A 107</div></td>
+                            <td><div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L</div></td>
+                            <td><div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S, B 210</div></td>
+                            <td><div class="edt-matiere">SC. ECONO & SOCIALES</div><div class="edt-salle">DELATTRE M, A 320</div></td>
+                            <td colspan="3"><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, B 201</div></td>
+                        </tr>
+                        <!-- MERCREDI -->
+                        <tr>
+                            <td class="jour-col">Mercredi</td>
+                            <td><div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI-MOINE M</div></td>
+                            <td><div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI-MOINE M</div></td>
+                            <td><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N</div><div class="edt-salle">A 305</div></td>
+                            <td><div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L</div></td>
+                            <td colspan="4">-</td>
+                        </tr>
+                        <!-- JEUDI -->
+                        <tr>
+                            <td class="jour-col">Jeudi</td>
+                            <td colspan="2"><div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S</div><div class="edt-salle">A 105 TP PC</div></td>
+                            <td colspan="2"><div class="edt-matiere">SCIENCES VIE & TERRE</div><div class="edt-salle">FERRE-AOUSTIN C</div><div class="edt-salle">A 220 CBPH SVT</div></td>
+                            <td colspan="2"><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, B 204</div></td>
+                            <td colspan="2"><div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI-MOINE M</div></td>
+                        </tr>
+                        <!-- VENDREDI -->
+                        <tr>
+                            <td class="jour-col">Vendredi</td>
+                            <td><div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S, B 210</div></td>
+                            <td><div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L, A 309</div></td>
+                            <td colspan="2"><div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L, B 108</div></td>
+                            <td><div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI-MOINE M</div></td>
+                            <td colspan="3"><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, B 205</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="font-family: var(--font-main); color: var(--accent); margin-top: 30px; margin-bottom: 10px;">✍️ Notes de fin de journée / Ce que je dois faire</h3>
+            <div class="grid-premium">
+                <div class="grid-card">
+                    <h3>🦌 Lundi — À faire</h3>
+                    <textarea id="todo_lundi" class="field-input" rows="4" placeholder="Devoirs, révisions..."></textarea>
+                </div>
+                <div class="grid-card">
+                    <h3>🎄 Mardi — À faire</h3>
+                    <textarea id="todo_mardi" class="field-input" rows="4" placeholder="Devoirs, révisions..."></textarea>
+                </div>
+                <div class="grid-card">
+                    <h3>🎅 Mercredi — À faire</h3>
+                    <textarea id="todo_mercredi" class="field-input" rows="4" placeholder="Devoirs, révisions..."></textarea>
+                </div>
+                <div class="grid-card">
+                    <h3>✨ Jeudi — À faire</h3>
+                    <textarea id="todo_jeudi" class="field-input" rows="4" placeholder="Devoirs, révisions..."></textarea>
+                </div>
+                <div class="grid-card">
+                    <h3>🎁 Vendredi — À faire</h3>
+                    <textarea id="todo_vendredi" class="field-input" rows="4" placeholder="Devoirs, révisions..."></textarea>
+                </div>
+                <div class="grid-card">
+                    <h3>🔔 Week-end — À faire</h3>
+                    <textarea id="todo_weekend" class="field-input" rows="4" placeholder="Devoirs pour la semaine prochaine..."></textarea>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -404,66 +556,47 @@
             <p>Gère tes comptes, tes répartitions d'argent et suis tes objectifs financiers.</p>
 
             <div class="grid-premium">
-
-                <!-- 1. Épargne long terme -->
                 <div class="grid-card">
                     <h3>🏦 Épargne long terme</h3>
                     <label for="bank_epargne_actuel">Montant actuel (€)</label>
                     <input id="bank_epargne_actuel" class="field-input" type="number" step="1">
-
                     <label for="bank_epargne_obj">Objectif (€)</label>
                     <input id="bank_epargne_obj" class="field-input" type="number" step="1">
-
-                    <div class="progress-bar-container">
-                        <div id="bar_epargne" class="progress-bar-fill"></div>
-                    </div>
+                    <div class="progress-bar-container"><div id="bar_epargne" class="progress-bar-fill"></div></div>
                     <div id="text_epargne" class="progress-text">0%</div>
                 </div>
 
-                <!-- 2. Plaisir -->
                 <div class="grid-card">
                     <h3>🎁 Plaisir</h3>
                     <label for="bank_plaisir_actuel">Montant actuel (€)</label>
                     <input id="bank_plaisir_actuel" class="field-input" type="number" step="1">
-
                     <label for="bank_plaisir_obj">Objectif (€)</label>
                     <input id="bank_plaisir_obj" class="field-input" type="number" step="1">
-
-                    <div class="progress-bar-container">
-                        <div id="bar_plaisir" class="progress-bar-fill"></div>
-                    </div>
+                    <div class="progress-bar-container"><div id="bar_plaisir" class="progress-bar-fill"></div></div>
                     <div id="text_plaisir" class="progress-text">0%</div>
                 </div>
 
-                <!-- 3. Projets et Études -->
                 <div class="grid-card">
                     <h3>🚀 Projets et Études</h3>
                     <label for="bank_projets_actuel">Montant actuel (€)</label>
                     <input id="bank_projets_actuel" class="field-input" type="number" step="1">
-
                     <label for="bank_projets_obj">Objectif (€)</label>
                     <input id="bank_projets_obj" class="field-input" type="number" step="1">
-
-                    <div class="progress-bar-container">
-                        <div id="bar_projets" class="progress-bar-fill"></div>
-                    </div>
+                    <div class="progress-bar-container"><div id="bar_projets" class="progress-bar-fill"></div></div>
                     <div id="text_projets" class="progress-text">0%</div>
                 </div>
 
-                <!-- 4. Solde actuel (EN TRÈS GROS) -->
                 <div class="grid-card bank-card-mega">
                     <h3>💎 Solde Actuel</h3>
                     <label for="solde_actuel_global">Montant total global (€)</label>
                     <input id="solde_actuel_global" class="field-input" type="number" step="1" placeholder="0">
                 </div>
 
-                <!-- 5. Argent disponible (EN MOINS GROS MAIS PLUS GROS QUE LES 3 PREMIERS) -->
                 <div class="grid-card bank-card-submega">
                     <h3>✨ Argent Disponible</h3>
                     <label for="argent_disponible">Montant libre d'utilisation (€)</label>
                     <input id="argent_disponible" class="field-input" type="number" step="1" placeholder="0">
                 </div>
-
             </div>
         </div>
     </section>
@@ -475,68 +608,48 @@
             <p>Suis tes grands objectifs de vie. Modifie les dates et les curseurs de progression à ta guise.</p>
 
             <div class="grid-premium">
-
-                <!-- 1. Année scolaire -->
                 <div class="grid-card">
                     <h3>📖 Année scolaire</h3>
                     <label for="obj_scolaire_date_debut">Date de début</label>
                     <input id="obj_scolaire_date_debut" class="field-input" type="date">
-                    
                     <label for="obj_scolaire_date_fin">Date de fin (Objectif)</label>
                     <input id="obj_scolaire_date_fin" class="field-input" type="date">
-
                     <label for="obj_scolaire_val">Progression (%)</label>
                     <input id="obj_scolaire_val" class="field-input" type="number" min="0" max="100" placeholder="Ex: 50">
-                    
-                    <div class="progress-bar-container">
-                        <div id="bar_scolaire" class="progress-bar-fill"></div>
-                    </div>
+                    <div class="progress-bar-container"><div id="bar_scolaire" class="progress-bar-fill"></div></div>
                     <div id="text_scolaire" class="progress-text">0%</div>
                 </div>
 
-                <!-- 2. Poids -->
                 <div class="grid-card">
                     <h3>⚖️ Poids</h3>
                     <label for="obj_poids_depart">Poids de départ (kg)</label>
                     <input id="obj_poids_depart" class="field-input" type="number" step="0.1">
-
                     <label for="obj_poids_actuel">Poids actuel (kg)</label>
                     <input id="obj_poids_actuel" class="field-input" type="number" step="0.1">
-
                     <label for="obj_poids_cible">Poids cible (kg)</label>
                     <input id="obj_poids_cible" class="field-input" type="number" step="0.1">
-
                     <label for="obj_poids_date">Date limite</label>
                     <input id="obj_poids_date" class="field-input" type="date">
                 </div>
 
-                <!-- 3. Temps en amour -->
                 <div class="grid-card">
                     <h3>❤️ Amour avec ma chérie</h3>
                     <label for="obj_amour_debut">Date de début de relation</label>
                     <input id="obj_amour_debut" class="field-input" type="date">
-
                     <label for="obj_amour_note">Jalon / Prochain objectif</label>
                     <input id="obj_amour_note" class="field-input" type="text" placeholder="Ex: 2 ans de relation">
-
                     <div id="text_amour_compteur" class="progress-text" style="text-align: left; margin-top: 15px; font-weight: bold; color: var(--accent-red);"></div>
                 </div>
 
-                <!-- 4. Meilleur chirurgien -->
                 <div class="grid-card">
                     <h3>⚕️ Être le meilleur chirurgien</h3>
                     <label for="obj_chir_date_butoir">Date d'installation / Thèse visée</label>
                     <input id="obj_chir_date_butoir" class="field-input" type="date">
-
                     <label for="obj_chir_val">Niveau d'avancement (%)</label>
                     <input id="obj_chir_val" class="field-input" type="number" min="0" max="100" placeholder="Ex: 15">
-
-                    <div class="progress-bar-container">
-                        <div id="bar_chir" class="progress-bar-fill"></div>
-                    </div>
+                    <div class="progress-bar-container"><div id="bar_chir" class="progress-bar-fill"></div></div>
                     <div id="text_chir" class="progress-text">0%</div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -548,7 +661,6 @@
             <p>Chaque bloc représente une étape de ta vie scolaire, de la maternelle jusqu'à la fin des études de médecine. Tu peux écrire ce qui t’a marqué chaque année.</p>
 
             <div class="parcours-grid">
-                <!-- Maternelle -->
                 <div class="parcours-card">
                     <div class="parcours-title">Maternelle — Petite Section 🧸</div>
                     <div class="parcours-sub">Premiers pas à l'école, découvertes, jeux, premiers amis.</div>
@@ -565,7 +677,6 @@
                     <textarea id="parcours_gs" class="field-input" rows="4"></textarea>
                 </div>
 
-                <!-- Primaire -->
                 <div class="parcours-card">
                     <div class="parcours-title">Primaire — CP ✏️</div>
                     <div class="parcours-sub">Apprentissage de la lecture, de l’écriture, des bases.</div>
@@ -592,7 +703,6 @@
                     <textarea id="parcours_cm2" class="field-input" rows="4"></textarea>
                 </div>
 
-                <!-- Collège -->
                 <div class="parcours-card">
                     <div class="parcours-title">Collège — 6e 🎒</div>
                     <div class="parcours-sub">Entrée au collège, nouvelle ambiance, nouveaux profs.</div>
@@ -614,7 +724,6 @@
                     <textarea id="parcours_3e" class="field-input" rows="4"></textarea>
                 </div>
 
-                <!-- Lycée -->
                 <div class="parcours-card">
                     <div class="parcours-title">Lycée — Seconde 🎓</div>
                     <div class="parcours-sub">Découverte du lycée, nouvelles matières, nouvelles ambitions.</div>
@@ -631,7 +740,6 @@
                     <textarea id="parcours_term" class="field-input" rows="4"></textarea>
                 </div>
 
-                <!-- Médecine -->
                 <div class="parcours-card">
                     <div class="parcours-title">Médecine — Année 1 (PACES / L1 Santé) ⚕️</div>
                     <div class="parcours-sub">Concours, énorme charge de travail, première immersion en médecine.</div>
@@ -746,7 +854,7 @@
         });
     });
 
-    // Mise à jour visuelle des barres de progression en pourcentage (pour les objectifs et la banque)
+    // Mise à jour visuelle des barres de progression en pourcentage
     function updatePercentProgress(actuelId, objId, barId, textId) {
         const actuelEl = document.getElementById(actuelId);
         const objEl = document.getElementById(objId);
@@ -768,7 +876,7 @@
         text.textContent = pct + '% (actuel: ' + actuel + ' / obj: ' + obj + ')';
     }
 
-    // Gestion standard des barres basées sur une valeur 0-100 directe (pour l'école et le chir)
+    // Gestion standard des barres basées sur une valeur 0-100 directe
     function updateDirectProgress(inputId, barId, textId) {
         const input = document.getElementById(inputId);
         const bar = document.getElementById(barId);
@@ -814,6 +922,7 @@
     // Sauvegarde automatique avec localStorage
     const ids = [
         "moyenne","moyenne_obj",
+        "todo_lundi", "todo_mardi", "todo_mercredi", "todo_jeudi", "todo_vendredi", "todo_weekend",
         "bank_epargne_actuel", "bank_epargne_obj",
         "bank_plaisir_actuel", "bank_plaisir_obj",
         "bank_projets_actuel", "bank_projets_obj",
@@ -843,11 +952,9 @@
         const v = localStorage.getItem("mv_" + id);
         if (v !== null) el.value = v;
 
-        // Écouteurs d'événements pour la sauvegarde et l'actualisation dynamique
         el.addEventListener("input", () => {
             localStorage.setItem("mv_" + id, el.value);
 
-            // Actualisations automatiques
             if(id === "bank_epargne_actuel" || id === "bank_epargne_obj") updatePercentProgress('bank_epargne_actuel', 'bank_epargne_obj', 'bar_epargne', 'text_epargne');
             if(id === "bank_plaisir_actuel" || id === "bank_plaisir_obj") updatePercentProgress('bank_plaisir_actuel', 'bank_plaisir_obj', 'bar_plaisir', 'text_plaisir');
             if(id === "bank_projets_actuel" || id === "bank_projets_obj") updatePercentProgress('bank_projets_actuel', 'bank_projets_obj', 'bar_projets', 'text_projets');
@@ -861,7 +968,6 @@
     window.addEventListener("DOMContentLoaded", () => {
         ids.forEach(load);
 
-        // Initialisation des barres et compteurs au chargement
         updatePercentProgress('bank_epargne_actuel', 'bank_epargne_obj', 'bar_epargne', 'text_epargne');
         updatePercentProgress('bank_plaisir_actuel', 'bank_plaisir_obj', 'bar_plaisir', 'text_plaisir');
         updatePercentProgress('bank_projets_actuel', 'bank_projets_obj', 'bar_projets', 'text_projets');
