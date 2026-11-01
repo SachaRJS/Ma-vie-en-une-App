@@ -218,7 +218,40 @@
             gap: 6px;
         }
 
-        /* Emploi du temps - Jours en haut, heures à gauche */
+        /* Emploi du temps - Sélecteur de semaine */
+        .week-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0 10px;
+        }
+
+        .week-nav button {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .week-nav button:hover {
+            background: var(--accent-red);
+        }
+
+        .week-title {
+            font-family: var(--font-main);
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent);
+            min-width: 140px;
+            text-align: center;
+        }
+
         .edt-table-container {
             width: 100%;
             overflow-x: auto;
@@ -269,7 +302,20 @@
             margin-top: 2px;
         }
 
-        /* Cartes spéciales pour la Banque */
+        /* Couleurs pour correspondre à ton emploi du temps d'origine */
+        .mat-snt { background-color: #b2eaf2; }
+        .mat-hg { background-color: #c7d2fe; }
+        .mat-eps { background-color: #a7f3d0; }
+        .mat-maths { background-color: #e0f2fe; }
+        .mat-pc { background-color: #fca5a5; }
+        .mat-esp { background-color: #fef08a; }
+        .mat-ses { background-color: #f0abfc; }
+        .mat-fr { background-color: #fef08a; }
+        .mat-ang { background-color: #fbcfe8; }
+        .mat-svt { background-color: #bbf7d0; }
+        .mat-emc { background-color: #f472b6; }
+
+        /* Cartes Banque */
         .bank-card-mega {
             background: linear-gradient(135deg, #f3f9f5, #fff);
             border: 2px solid var(--accent);
@@ -300,7 +346,7 @@
             text-align: center;
         }
 
-        /* Barre de progression visuelle */
+        /* Progression */
         .progress-bar-container {
             background: #eee;
             border-radius: 999px;
@@ -325,7 +371,7 @@
             text-align: right;
         }
 
-        /* PARCOURS & ENTRAÎNEMENT */
+        /* Parcours */
         .parcours-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -367,7 +413,6 @@
             margin-bottom: 8px;
         }
 
-        /* FOOTER */
         footer {
             margin-top: 40px;
             padding-top: 20px;
@@ -451,7 +496,12 @@
 
             <a class="btn-link" href="https://atrium-sud.fr" target="_blank" rel="noopener noreferrer">Accéder à Atrium Sud 🎄</a>
 
-            <h3 style="font-family: var(--font-main); color: var(--accent); margin-top: 30px; margin-bottom: 10px;">📅 Emploi du temps (Sacha - S11)</h3>
+            <!-- SÉLECTEUR DE SEMAINE AVEC FLÈCHES -->
+            <div class="week-nav">
+                <button id="btn_prev_week">◄</button>
+                <div id="week_title" class="week-title">Semaine A</div>
+                <button id="btn_next_week">►</button>
+            </div>
             
             <div class="edt-table-container">
                 <table class="edt-table">
@@ -465,87 +515,8 @@
                             <th>Vendredi</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td class="heure-col">08h05 - 09h00</td>
-                            <td><div class="edt-matiere">SC. NUMERIQ. TECHNOL.</div><div class="edt-salle">FAURE S, A 311 INFO MATHS</div></td>
-                            <td><div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L, A 309</div></td>
-                            <td><div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI-MOINE M, B 107 ILOTS LV</div></td>
-                            <td><div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S, A 105 TP PC</div></td>
-                            <td><div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S, B 210</div></td>
-                        </tr>
-                        <tr>
-                            <td class="heure-col">09h00 - 10h00</td>
-                            <td><div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S, B 213</div></td>
-                            <td><div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S, A 107</div></td>
-                            <td><div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI-MOINE M, B 107 ILOTS LV</div></td>
-                            <td><div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S, A 105 TP PC</div></td>
-                            <td><div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L, A 309</div></td>
-                        </tr>
-                        <tr>
-                            <td class="heure-col">10h00 - 10h15</td>
-                            <td colspan="5" style="background: #fafafa; color: var(--text-muted); font-style: italic;">Récréation / Pause</td>
-                        </tr>
-                        <tr>
-                            <td class="heure-col">10h15 - 11h15</td>
-                            <td><div class="edt-matiere">ED. PHYSIQUE & SPORT</div><div class="edt-salle">BAUDRY A</div></td>
-                            <td><div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L, B 105 MOBILE LV</div></td>
-                            <td><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, A 305</div></td>
-                            <td><div class="edt-matiere">SCIENCES VIE & TERRE</div><div class="edt-salle">FERRE-AOUSTIN C, A 220 CBPH SVT</div></td>
-                            <td><div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L, B 108</div></td>
-                        </tr>
-                        <tr>
-                            <td class="heure-col">11h15 - 11h30</td>
-                            <td colspan="5" style="background: #fafafa; color: var(--text-muted); font-style: italic;">Pause</td>
-                        </tr>
-                        <tr>
-                            <td class="heure-col">11h30 - 12h10</td>
-                            <td><div class="edt-matiere">ED. PHYSIQUE & SPORT</div><div class="edt-salle">BAUDRY A</div></td>
-                            <td><div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S, B 210</div></td>
-                            <td><div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L, A 102</div></td>
-                            <td><div class="edt-matiere">SCIENCES VIE & TERRE</div><div class="edt-salle">FERRE-AOUSTIN C, A 220 CBPH SVT</div></td>
-                            <td><div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L, B 108</div></td>
-                        </tr>
-                        <tr>
-                            <td class="heure-col">12h10 - 13h00</td>
-                            <td colspan="5" style="background: #fafafa; color: var(--text-muted); font-style: italic;">Pause Méridienne / Repas</td>
-                        </tr>
-                        <tr>
-                            <td class="heure-col">13h00 - 14h00</td>
-                            <td><div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI-MOINE M, B 107 ILOTS LV</div></td>
-                            <td><div class="edt-matiere">SC. ECONO & SOCIALES</div><div class="edt-salle">DELATTRE M, A 320</div></td>
-                            <td>-</td>
-                            <td><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, B 204</div></td>
-                            <td><div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI-MOINE M, B 107 ILOTS LV</div></td>
-                        </tr>
-                        <tr>
-                            <td class="heure-col">14h00 - 15h00</td>
-                            <td><div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L</div></td>
-                            <td><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, B 201</div></td>
-                            <td>-</td>
-                            <td><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, B 204</div></td>
-                            <td><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, B 205</div></td>
-                        </tr>
-                        <tr>
-                            <td class="heure-col">15h00 - 15h05</td>
-                            <td colspan="5" style="background: #fafafa; color: var(--text-muted); font-style: italic;">Pause</td>
-                        </tr>
-                        <tr>
-                            <td class="heure-col">15h05 - 16h05</td>
-                            <td><div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI-MOINE M, B 107 ILOTS LV</div></td>
-                            <td><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, B 201</div></td>
-                            <td>-</td>
-                            <td><div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI-MOINE M</div></td>
-                            <td><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, B 205</div></td>
-                        </tr>
-                        <tr>
-                            <td class="heure-col">16h05 - 18h00</td>
-                            <td><div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI-MOINE M, B 107 ILOTS LV</div></td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td><div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI-MOINE M</div></td>
-                            <td>-</td>
-                        </tr>
+                    <tbody id="edt_body">
+                        <!-- Rempli dynamiquement en JS selon la semaine -->
                     </tbody>
                 </table>
             </div>
@@ -685,7 +656,7 @@
         </div>
     </section>
 
-    <!-- PARCOURS DE VIE PAR ANNÉE / ÉTAPE -->
+    <!-- PARCOURS DE VIE -->
     <section id="parcours" class="section">
         <div class="card">
             <div class="card-title"><span class="icon">🎅</span>Parcours de vie — de la maternelle à la médecine</div>
@@ -868,146 +839,18 @@
 </div>
 
 <script>
-    // Navigation entre les onglets
+    // Navigation onglets principaux
     const navButtons = document.querySelectorAll('nav button');
     const sections = document.querySelectorAll('.section');
 
     navButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const target = btn.dataset.section;
-
             navButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
-            sections.forEach(sec => {
-                sec.classList.toggle('active', sec.id === target);
-            });
+            sections.forEach(sec => sec.classList.toggle('active', sec.id === target));
         });
     });
 
-    // Mise à jour visuelle des barres de progression en pourcentage
-    function updatePercentProgress(actuelId, objId, barId, textId) {
-        const actuelEl = document.getElementById(actuelId);
-        const objEl = document.getElementById(objId);
-        const bar = document.getElementById(barId);
-        const text = document.getElementById(textId);
-        if(!actuelEl || !objEl || !bar || !text) return;
-
-        const actuel = parseFloat(actuelEl.value) || 0;
-        const obj = parseFloat(objEl.value) || 0;
-
-        let pct = 0;
-        if(obj > 0) {
-            pct = Math.round((actuel / obj) * 100);
-        }
-        if(pct < 0) pct = 0;
-        if(pct > 100) pct = 100;
-
-        bar.style.width = pct + '%';
-        text.textContent = pct + '% (actuel: ' + actuel + ' / obj: ' + obj + ')';
-    }
-
-    // Gestion standard des barres basées sur une valeur 0-100 directe
-    function updateDirectProgress(inputId, barId, textId) {
-        const input = document.getElementById(inputId);
-        const bar = document.getElementById(barId);
-        const text = document.getElementById(textId);
-        if(!input || !bar || !text) return;
-
-        let val = parseFloat(input.value) || 0;
-        if(val < 0) val = 0;
-        if(val > 100) val = 100;
-
-        bar.style.width = val + '%';
-        text.textContent = val + '%';
-    }
-
-    // Calculateur de temps en amour
-    function updateAmourCounter() {
-        const debutInput = document.getElementById('obj_amour_debut');
-        const counterText = document.getElementById('text_amour_compteur');
-        if(!debutInput || !counterText) return;
-
-        if(!debutInput.value) {
-            counterText.textContent = "Définis une date de début ❤️";
-            return;
-        }
-
-        const debut = new Date(debutInput.value);
-        const maintenant = new Date();
-        const diffTime = maintenant - debut;
-
-        if(diffTime < 0) {
-            counterText.textContent = "La date est dans le futur !";
-            return;
-        }
-
-        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-        const ans = Math.floor(diffDays / 365);
-        const mois = Math.floor((diffDays % 365) / 30);
-        const jours = (diffDays % 365) % 30;
-
-        counterText.textContent = `Ensemble depuis : ${ans} an(s), ${mois} mois et ${jours} jour(s) (${diffDays} jours au total) 💕`;
-    }
-
-    // Sauvegarde automatique avec localStorage
-    const ids = [
-        "moyenne","moyenne_obj",
-        "todo_lundi", "todo_mardi", "todo_mercredi", "todo_jeudi", "todo_vendredi", "todo_weekend",
-        "bank_epargne_actuel", "bank_epargne_obj",
-        "bank_plaisir_actuel", "bank_plaisir_obj",
-        "bank_projets_actuel", "bank_projets_obj",
-        "solde_actuel_global", "argent_disponible",
-        "obj_scolaire_date_debut", "obj_scolaire_date_fin", "obj_scolaire_val",
-        "obj_poids_depart", "obj_poids_actuel", "obj_poids_cible", "obj_poids_date",
-        "obj_amour_debut", "obj_amour_note",
-        "obj_chir_date_butoir", "obj_chir_val",
-        "parcours_ps","parcours_ms","parcours_gs",
-        "parcours_cp","parcours_ce1","parcours_ce2","parcours_cm1","parcours_cm2",
-        "parcours_6e","parcours_5e","parcours_4e","parcours_3e",
-        "parcours_2nde","parcours_1ere","parcours_term",
-        "parcours_med1","parcours_med2","parcours_med3","parcours_med4","parcours_med5","parcours_med6",
-        "parcours_internat","parcours_these",
-        "train_lundi","note_lundi",
-        "train_mardi","note_mardi",
-        "train_mercredi","note_mercredi",
-        "train_jeudi","note_jeudi",
-        "train_vendredi","note_vendredi",
-        "train_samedi","note_samedi",
-        "train_dimanche","note_dimanche"
-    ];
-
-    function load(id) {
-        const el = document.getElementById(id);
-        if (!el) return;
-        const v = localStorage.getItem("mv_" + id);
-        if (v !== null) el.value = v;
-
-        el.addEventListener("input", () => {
-            localStorage.setItem("mv_" + id, el.value);
-
-            if(id === "bank_epargne_actuel" || id === "bank_epargne_obj") updatePercentProgress('bank_epargne_actuel', 'bank_epargne_obj', 'bar_epargne', 'text_epargne');
-            if(id === "bank_plaisir_actuel" || id === "bank_plaisir_obj") updatePercentProgress('bank_plaisir_actuel', 'bank_plaisir_obj', 'bar_plaisir', 'text_plaisir');
-            if(id === "bank_projets_actuel" || id === "bank_projets_obj") updatePercentProgress('bank_projets_actuel', 'bank_projets_obj', 'bar_projets', 'text_projets');
-            
-            if(id === "obj_scolaire_val") updateDirectProgress('obj_scolaire_val', 'bar_scolaire', 'text_scolaire');
-            if(id === "obj_chir_val") updateDirectProgress('obj_chir_val', 'bar_chir', 'text_chir');
-            if(id === "obj_amour_debut") updateAmourCounter();
-        });
-    }
-
-    window.addEventListener("DOMContentLoaded", () => {
-        ids.forEach(load);
-
-        updatePercentProgress('bank_epargne_actuel', 'bank_epargne_obj', 'bar_epargne', 'text_epargne');
-        updatePercentProgress('bank_plaisir_actuel', 'bank_plaisir_obj', 'bar_plaisir', 'text_plaisir');
-        updatePercentProgress('bank_projets_actuel', 'bank_projets_obj', 'bar_projets', 'text_projets');
-        
-        updateDirectProgress('obj_scolaire_val', 'bar_scolaire', 'text_scolaire');
-        updateDirectProgress('obj_chir_val', 'bar_chir', 'text_chir');
-        updateAmourCounter();
-    });
-</script>
-
-</body>
-</html>
+    // Données des deux semaines basées sur tes captures d'écran
+    const edtData
