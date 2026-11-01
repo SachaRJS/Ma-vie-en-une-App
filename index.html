@@ -51,7 +51,7 @@
             border: 2px solid var(--border-soft);
             border-radius: 20px;
             padding: 40px 30px;
-            max-width: 400px;
+            max-width: 420px;
             width: 90%;
             text-align: center;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
@@ -76,7 +76,7 @@
             border-radius: 10px;
             border: 1px solid var(--border-soft);
             background: #fffaf3;
-            font-size: 1.1rem;
+            font-size: 1rem;
             text-align: center;
             margin-bottom: 15px;
         }
@@ -104,6 +104,7 @@
             font-size: 0.85rem;
             margin-top: 10px;
             display: none;
+            font-weight: bold;
         }
 
         /* APPLICATION PRINCIPALE */
@@ -555,7 +556,7 @@
 
 <body>
 
-<!-- ECRAN DE VERROUILLAGE PAR MOT DE PASSE -->
+<!-- ÉCRAN DE VERROUILLAGE -->
 <div id="auth_screen">
     <div class="auth-card">
         <h2>🎄 Ma Vie En Une Appli</h2>
@@ -1000,8 +1001,8 @@
 </div>
 
 <script>
-    // MOT DE PASSE : "Success"
-    const correctPassword = "Success";
+    // MOT DE PASSE CONFIGURÉ SUR : "SuccessIsGaranted4Soon"
+    const correctPassword = "SuccessIsGaranted4Soon";
 
     const authScreen = document.getElementById("auth_screen");
     const mainApp = document.getElementById("main_app");
