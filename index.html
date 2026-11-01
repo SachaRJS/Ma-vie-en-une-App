@@ -218,7 +218,7 @@
             gap: 6px;
         }
 
-        /* Styles Emploi du temps */
+        /* Emploi du temps - Vrai format tableau lignes/colonnes horaires exacts */
         .edt-table-container {
             width: 100%;
             overflow-x: auto;
@@ -229,7 +229,7 @@
         .edt-table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 700px;
+            min-width: 900px;
             background: #fff;
             border-radius: 10px;
             overflow: hidden;
@@ -240,7 +240,8 @@
             border: 1px solid var(--border-soft);
             padding: 10px;
             text-align: center;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
+            vertical-align: middle;
         }
 
         .edt-table th {
@@ -250,11 +251,11 @@
             letter-spacing: 0.05em;
         }
 
-        .edt-table td.jour-col {
+        .edt-table td.heure-col {
             font-weight: bold;
             background: #f7f2eb;
             color: var(--accent);
-            text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .edt-matiere {
@@ -456,64 +457,94 @@
                 <table class="edt-table">
                     <thead>
                         <tr>
-                            <th>Jour</th>
-                            <th>8h05 - 9h00</th>
-                            <th>9h00 - 10h00</th>
-                            <th>10h15 - 11h15</th>
-                            <th>11h30 - 12h10</th>
-                            <th>13h00 - 14h00</th>
-                            <th>14h00 - 15h00</th>
-                            <th>15h05 - 16h05</th>
-                            <th>16h05 - 18h00</th>
+                            <th>Horaires</th>
+                            <th>Lundi</th>
+                            <th>Mardi</th>
+                            <th>Mercredi</th>
+                            <th>Jeudi</th>
+                            <th>Vendredi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- LUNDI -->
                         <tr>
-                            <td class="jour-col">Lundi</td>
+                            <td class="heure-col">08h05 - 09h00</td>
                             <td><div class="edt-matiere">SC. NUMERIQ. TECHNOL.</div><div class="edt-salle">FAURE S, A 311 INFO MATHS</div></td>
+                            <td><div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L, A 309</div></td>
+                            <td><div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI-MOINE M, B 107 ILOTS LV</div></td>
+                            <td><div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S, A 105 TP PC</div></td>
+                            <td><div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S, B 210</div></td>
+                        </tr>
+                        <tr>
+                            <td class="heure-col">09h00 - 10h00</td>
                             <td><div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S, B 213</div></td>
-                            <td colspan="2"><div class="edt-matiere">ED. PHYSIQUE & SPORT</div><div class="edt-salle">BAUDRY A</div></td>
-                            <td><div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI-MOINE M</div></td>
+                            <td><div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S, A 107</div></td>
+                            <td><div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI-MOINE M, B 107 ILOTS LV</div></td>
+                            <td><div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S, A 105 TP PC</div></td>
+                            <td><div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L, A 309</div></td>
+                        </tr>
+                        <tr>
+                            <td class="heure-col">10h00 - 10h15</td>
+                            <td colspan="5" style="background: #fafafa; color: var(--text-muted); font-style: italic;">Récréation / Pause</td>
+                        </tr>
+                        <tr>
+                            <td class="heure-col">10h15 - 11h15</td>
+                            <td><div class="edt-matiere">ED. PHYSIQUE & SPORT</div><div class="edt-salle">BAUDRY A</div></td>
+                            <td><div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L, B 105 MOBILE LV</div></td>
+                            <td><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, A 305</div></td>
+                            <td><div class="edt-matiere">SCIENCES VIE & TERRE</div><div class="edt-salle">FERRE-AOUSTIN C, A 220 CBPH SVT</div></td>
+                            <td><div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L, B 108</div></td>
+                        </tr>
+                        <tr>
+                            <td class="heure-col">11h15 - 11h30</td>
+                            <td colspan="5" style="background: #fafafa; color: var(--text-muted); font-style: italic;">Pause</td>
+                        </tr>
+                        <tr>
+                            <td class="heure-col">11h30 - 12h10</td>
+                            <td><div class="edt-matiere">ED. PHYSIQUE & SPORT</div><div class="edt-salle">BAUDRY A</div></td>
+                            <td><div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S, B 210</div></td>
+                            <td><div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L, A 102</div></td>
+                            <td><div class="edt-matiere">SCIENCES VIE & TERRE</div><div class="edt-salle">FERRE-AOUSTIN C, A 220 CBPH SVT</div></td>
+                            <td><div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L, B 108</div></td>
+                        </tr>
+                        <tr>
+                            <td class="heure-col">12h10 - 13h00</td>
+                            <td colspan="5" style="background: #fafafa; color: var(--text-muted); font-style: italic;">Pause Méridienne / Repas</td>
+                        </tr>
+                        <tr>
+                            <td class="heure-col">13h00 - 14h00</td>
+                            <td><div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI-MOINE M, B 107 ILOTS LV</div></td>
+                            <td><div class="edt-matiere">SC. ECONO & SOCIALES</div><div class="edt-salle">DELATTRE M, A 320</div></td>
+                            <td>-</td>
+                            <td><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, B 204</div></td>
+                            <td><div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI-MOINE M, B 107 ILOTS LV</div></td>
+                        </tr>
+                        <tr>
+                            <td class="heure-col">14h00 - 15h00</td>
                             <td><div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L</div></td>
+                            <td><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, B 201</div></td>
+                            <td>-</td>
+                            <td><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, B 204</div></td>
+                            <td><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, B 205</div></td>
+                        </tr>
+                        <tr>
+                            <td class="heure-col">15h00 - 15h05</td>
+                            <td colspan="5" style="background: #fafafa; color: var(--text-muted); font-style: italic;">Pause</td>
+                        </tr>
+                        <tr>
+                            <td class="heure-col">15h05 - 16h05</td>
+                            <td><div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI-MOINE M, B 107 ILOTS LV</div></td>
+                            <td><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, B 201</div></td>
+                            <td>-</td>
+                            <td><div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI-MOINE M</div></td>
+                            <td><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, B 205</div></td>
+                        </tr>
+                        <tr>
+                            <td class="heure-col">16h05 - 18h00</td>
+                            <td><div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI-MOINE M, B 107 ILOTS LV</div></td>
+                            <td>-</td>
+                            <td>-</td>
                             <td><div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI-MOINE M</div></td>
                             <td>-</td>
-                        </tr>
-                        <!-- MARDI -->
-                        <tr>
-                            <td class="jour-col">Mardi</td>
-                            <td><div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L</div><div class="edt-salle">A 309</div></td>
-                            <td><div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S</div><div class="edt-salle">A 107</div></td>
-                            <td><div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L</div></td>
-                            <td><div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S, B 210</div></td>
-                            <td><div class="edt-matiere">SC. ECONO & SOCIALES</div><div class="edt-salle">DELATTRE M, A 320</div></td>
-                            <td colspan="3"><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, B 201</div></td>
-                        </tr>
-                        <!-- MERCREDI -->
-                        <tr>
-                            <td class="jour-col">Mercredi</td>
-                            <td><div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI-MOINE M</div></td>
-                            <td><div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI-MOINE M</div></td>
-                            <td><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N</div><div class="edt-salle">A 305</div></td>
-                            <td><div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L</div></td>
-                            <td colspan="4">-</td>
-                        </tr>
-                        <!-- JEUDI -->
-                        <tr>
-                            <td class="jour-col">Jeudi</td>
-                            <td colspan="2"><div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S</div><div class="edt-salle">A 105 TP PC</div></td>
-                            <td colspan="2"><div class="edt-matiere">SCIENCES VIE & TERRE</div><div class="edt-salle">FERRE-AOUSTIN C</div><div class="edt-salle">A 220 CBPH SVT</div></td>
-                            <td colspan="2"><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, B 204</div></td>
-                            <td colspan="2"><div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI-MOINE M</div></td>
-                        </tr>
-                        <!-- VENDREDI -->
-                        <tr>
-                            <td class="jour-col">Vendredi</td>
-                            <td><div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S, B 210</div></td>
-                            <td><div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L, A 309</div></td>
-                            <td colspan="2"><div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L, B 108</div></td>
-                            <td><div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI-MOINE M</div></td>
-                            <td colspan="3"><div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N, B 205</div></td>
                         </tr>
                     </tbody>
                 </table>
