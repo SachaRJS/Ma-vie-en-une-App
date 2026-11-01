@@ -19,7 +19,11 @@
             --font-alt: "Inter", "Helvetica Neue", Arial, sans-serif;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
 
         body {
             background: radial-gradient(circle at top, #ffe9e0 0, #fdf7f2 40%, #fdf7f2 100%);
@@ -178,10 +182,10 @@
             opacity: 0.9;
         }
 
-        /* GRID PREMIUM */
+        /* GRID PREMIUM & OBJECTIFS */
         .grid-premium {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 22px;
             margin-top: 20px;
         }
@@ -214,9 +218,29 @@
             gap: 6px;
         }
 
-        .grid-card h3 span.year-label {
-            font-size: 0.85rem;
-            color: var(--accent-red);
+        /* Barre de progression visuelle */
+        .progress-bar-container {
+            background: #eee;
+            border-radius: 999px;
+            height: 12px;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 12px;
+            border: 1px solid var(--border-soft);
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(135deg, var(--accent), var(--accent-red));
+            height: 100%;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .progress-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            text-align: right;
         }
 
         /* PARCOURS PAR ANNÉE */
@@ -273,7 +297,6 @@
             flex-wrap: wrap;
         }
 
-        /* PETITES DÉCOS FOND */
         .xmas-bg-top {
             position: fixed;
             top: 10px;
@@ -304,7 +327,7 @@
             <p>Version Sacha — Spéciale Noël 🎄</p>
         </div>
         <div class="user-tag">
-            <span>Sacha</span>
+            <span>Sacha</span><br>
             <span>Life tracker — édition Noël</span>
         </div>
         <div class="xmas-deco-header">🎄✨🎅✨🎄</div>
@@ -333,13 +356,13 @@
         <div class="card">
             <div class="card-title"><span class="icon">📚</span>Études</div>
 
-            <label>Moyenne actuelle</label>
+            <label for="moyenne">Moyenne actuelle</label>
             <input id="moyenne" class="field-input" type="number" step="0.1">
 
-            <label>Objectif de moyenne</label>
+            <label for="moyenne_obj">Objectif de moyenne</label>
             <input id="moyenne_obj" class="field-input" type="number" step="0.1">
 
-            <a class="btn-link" href="https://atrium-sud.fr" target="_blank">Accéder à Atrium Sud 🎄</a>
+            <a class="btn-link" href="https://atrium-sud.fr" target="_blank" rel="noopener noreferrer">Accéder à Atrium Sud 🎄</a>
         </div>
     </section>
 
@@ -348,10 +371,10 @@
         <div class="card">
             <div class="card-title"><span class="icon">💰</span>Banque</div>
 
-            <label>Solde actuel</label>
+            <label for="solde">Solde actuel</label>
             <input id="solde" class="field-input" type="number">
 
-            <label>Objectif d'épargne</label>
+            <label for="epargne_obj">Objectif d'épargne</label>
             <input id="epargne_obj" class="field-input" type="number">
         </div>
     </section>
@@ -359,13 +382,73 @@
     <!-- OBJECTIFS -->
     <section id="objectifs" class="section">
         <div class="card">
-            <div class="card-title"><span class="icon">⭐</span>Objectifs de vie</div>
+            <div class="card-title"><span class="icon">⭐</span>Objectifs de vie & Courbes de progression</div>
+            <p>Suis tes grands objectifs de vie. Modifie les dates et les curseurs de progression à ta guise.</p>
 
-            <label>Niveau</label>
-            <input id="niveau" class="field-input" type="number">
+            <div class="grid-premium">
 
-            <label>XP</label>
-            <input id="xp" class="field-input" type="number">
+                <!-- 1. Année scolaire -->
+                <div class="grid-card">
+                    <h3>📖 Année scolaire</h3>
+                    <label for="obj_scolaire_date_debut">Date de début</label>
+                    <input id="obj_scolaire_date_debut" class="field-input" type="date">
+                    
+                    <label for="obj_scolaire_date_fin">Date de fin (Objectif)</label>
+                    <input id="obj_scolaire_date_fin" class="field-input" type="date">
+
+                    <label for="obj_scolaire_val">Progression (%)</label>
+                    <input id="obj_scolaire_val" class="field-input" type="number" min="0" max="100" placeholder="Ex: 50">
+                    
+                    <div class="progress-bar-container">
+                        <div id="bar_scolaire" class="progress-bar-fill"></div>
+                    </div>
+                    <div id="text_scolaire" class="progress-text">0%</div>
+                </div>
+
+                <!-- 2. Poids -->
+                <div class="grid-card">
+                    <h3>⚖️ Poids</h3>
+                    <label for="obj_poids_depart">Poids de départ (kg)</label>
+                    <input id="obj_poids_depart" class="field-input" type="number" step="0.1">
+
+                    <label for="obj_poids_actuel">Poids actuel (kg)</label>
+                    <input id="obj_poids_actuel" class="field-input" type="number" step="0.1">
+
+                    <label for="obj_poids_cible">Poids cible (kg)</label>
+                    <input id="obj_poids_cible" class="field-input" type="number" step="0.1">
+
+                    <label for="obj_poids_date">Date limite</label>
+                    <input id="obj_poids_date" class="field-input" type="date">
+                </div>
+
+                <!-- 3. Temps en amour -->
+                <div class="grid-card">
+                    <h3>❤️ Amour avec ma chérie</h3>
+                    <label for="obj_amour_debut">Date de début de relation</label>
+                    <input id="obj_amour_debut" class="field-input" type="date">
+
+                    <label for="obj_amour_note">Jalon / Prochain objectif</label>
+                    <input id="obj_amour_note" class="field-input" type="text" placeholder="Ex: 2 ans de relation">
+
+                    <div id="text_amour_compteur" class="progress-text" style="text-align: left; margin-top: 15px; font-weight: bold; color: var(--accent-red);"></div>
+                </div>
+
+                <!-- 4. Meilleur chirurgien -->
+                <div class="grid-card">
+                    <h3>⚕️ Être le meilleur chirurgien</h3>
+                    <label for="obj_chir_date_butoir">Date d'installation / Thèse visée</label>
+                    <input id="obj_chir_date_butoir" class="field-input" type="date">
+
+                    <label for="obj_chir_val">Niveau d'avancement (%)</label>
+                    <input id="obj_chir_val" class="field-input" type="number" min="0" max="100" placeholder="Ex: 15">
+
+                    <div class="progress-bar-container">
+                        <div id="bar_chir" class="progress-bar-fill"></div>
+                    </div>
+                    <div id="text_chir" class="progress-text">0%</div>
+                </div>
+
+            </div>
         </div>
     </section>
 
@@ -376,20 +459,17 @@
             <p>Chaque bloc représente une étape de ta vie scolaire, de la maternelle jusqu'à la fin des études de médecine. Tu peux écrire ce qui t’a marqué chaque année.</p>
 
             <div class="parcours-grid">
-
                 <!-- Maternelle -->
                 <div class="parcours-card">
                     <div class="parcours-title">Maternelle — Petite Section 🧸</div>
                     <div class="parcours-sub">Premiers pas à l'école, découvertes, jeux, premiers amis.</div>
                     <textarea id="parcours_ps" class="field-input" rows="4"></textarea>
                 </div>
-
                 <div class="parcours-card">
                     <div class="parcours-title">Maternelle — Moyenne Section 🧸</div>
                     <div class="parcours-sub">Début des activités un peu plus structurées, dessins, comptines.</div>
                     <textarea id="parcours_ms" class="field-input" rows="4"></textarea>
                 </div>
-
                 <div class="parcours-card">
                     <div class="parcours-title">Maternelle — Grande Section 🧸</div>
                     <div class="parcours-sub">Préparation au primaire, premiers souvenirs marquants.</div>
@@ -402,25 +482,21 @@
                     <div class="parcours-sub">Apprentissage de la lecture, de l’écriture, des bases.</div>
                     <textarea id="parcours_cp" class="field-input" rows="4"></textarea>
                 </div>
-
                 <div class="parcours-card">
                     <div class="parcours-title">Primaire — CE1 ✏️</div>
                     <div class="parcours-sub">Progression en lecture, premières petites responsabilités.</div>
                     <textarea id="parcours_ce1" class="field-input" rows="4"></textarea>
                 </div>
-
                 <div class="parcours-card">
                     <div class="parcours-title">Primaire — CE2 ✏️</div>
                     <div class="parcours-sub">Plus de confiance, plus de connaissances.</div>
                     <textarea id="parcours_ce2" class="field-input" rows="4"></textarea>
                 </div>
-
                 <div class="parcours-card">
                     <div class="parcours-title">Primaire — CM1 ✏️</div>
                     <div class="parcours-sub">Début de la maturité scolaire, projets, exposés.</div>
                     <textarea id="parcours_cm1" class="field-input" rows="4"></textarea>
                 </div>
-
                 <div class="parcours-card">
                     <div class="parcours-title">Primaire — CM2 ✏️</div>
                     <div class="parcours-sub">Dernière année de primaire, préparation au collège.</div>
@@ -433,19 +509,16 @@
                     <div class="parcours-sub">Entrée au collège, nouvelle ambiance, nouveaux profs.</div>
                     <textarea id="parcours_6e" class="field-input" rows="4"></textarea>
                 </div>
-
                 <div class="parcours-card">
                     <div class="parcours-title">Collège — 5e 🎒</div>
                     <div class="parcours-sub">Tu prends tes repères, tu te construis.</div>
                     <textarea id="parcours_5e" class="field-input" rows="4"></textarea>
                 </div>
-
                 <div class="parcours-card">
                     <div class="parcours-title">Collège — 4e 🎒</div>
                     <div class="parcours-sub">Année charnière, plus de travail, plus de réflexion.</div>
                     <textarea id="parcours_4e" class="field-input" rows="4"></textarea>
                 </div>
-
                 <div class="parcours-card">
                     <div class="parcours-title">Collège — 3e 🎒</div>
                     <div class="parcours-sub">Brevet, orientation, premières décisions importantes.</div>
@@ -458,13 +531,11 @@
                     <div class="parcours-sub">Découverte du lycée, nouvelles matières, nouvelles ambitions.</div>
                     <textarea id="parcours_2nde" class="field-input" rows="4"></textarea>
                 </div>
-
                 <div class="parcours-card">
                     <div class="parcours-title">Lycée — Première 🎓</div>
                     <div class="parcours-sub">Spécialités, orientation plus précise.</div>
                     <textarea id="parcours_1ere" class="field-input" rows="4"></textarea>
                 </div>
-
                 <div class="parcours-card">
                     <div class="parcours-title">Lycée — Terminale 🎓</div>
                     <div class="parcours-sub">Bac, choix des études supérieures, tournant majeur.</div>
@@ -477,49 +548,41 @@
                     <div class="parcours-sub">Concours, énorme charge de travail, première immersion en médecine.</div>
                     <textarea id="parcours_med1" class="field-input" rows="4"></textarea>
                 </div>
-
                 <div class="parcours-card">
                     <div class="parcours-title">Médecine — Année 2 ⚕️</div>
                     <div class="parcours-sub">Tu consolides les bases, tu commences à te projeter.</div>
                     <textarea id="parcours_med2" class="field-input" rows="4"></textarea>
                 </div>
-
                 <div class="parcours-card">
                     <div class="parcours-title">Médecine — Année 3 ⚕️</div>
                     <div class="parcours-sub">Plus de clinique, plus de concret.</div>
                     <textarea id="parcours_med3" class="field-input" rows="4"></textarea>
                 </div>
-
                 <div class="parcours-card">
                     <div class="parcours-title">Médecine — Année 4 ⚕️</div>
                     <div class="parcours-sub">Tu te rapproches du cœur du métier.</div>
                     <textarea id="parcours_med4" class="field-input" rows="4"></textarea>
                 </div>
-
                 <div class="parcours-card">
                     <div class="parcours-title">Médecine — Année 5 ⚕️</div>
                     <div class="parcours-sub">Stages, responsabilités, vraie immersion.</div>
                     <textarea id="parcours_med5" class="field-input" rows="4"></textarea>
                 </div>
-
                 <div class="parcours-card">
                     <div class="parcours-title">Médecine — Année 6 ⚕️</div>
                     <div class="parcours-sub">Dernière ligne droite avant l’internat.</div>
                     <textarea id="parcours_med6" class="field-input" rows="4"></textarea>
                 </div>
-
                 <div class="parcours-card">
                     <div class="parcours-title">Internat ⚕️</div>
                     <div class="parcours-sub">Spécialisation, garde, vraie vie de médecin en formation.</div>
                     <textarea id="parcours_internat" class="field-input" rows="4"></textarea>
                 </div>
-
                 <div class="parcours-card">
                     <div class="parcours-title">Thèse & Installation ⚕️</div>
                     <div class="parcours-sub">Tu deviens officiellement médecin, tu t’installes, tu construis ta carrière.</div>
                     <textarea id="parcours_these" class="field-input" rows="4"></textarea>
                 </div>
-
             </div>
         </div>
     </section>
@@ -530,49 +593,41 @@
             <div class="card-title"><span class="icon">🏋️‍♂️</span>Programme d'entraînement — Semaine de Noël</div>
 
             <div class="grid-premium">
-
                 <div class="grid-card">
                     <h3>🦌 Lundi <span class="year-label">Push</span></h3>
                     <input id="train_lundi" class="field-input" placeholder="Pecs / Triceps">
                     <textarea id="note_lundi" class="field-input" rows="3" placeholder="Notes / ressenti"></textarea>
                 </div>
-
                 <div class="grid-card">
                     <h3>🎄 Mardi <span class="year-label">Pull</span></h3>
                     <input id="train_mardi" class="field-input" placeholder="Dos / Biceps">
                     <textarea id="note_mardi" class="field-input" rows="3" placeholder="Notes"></textarea>
                 </div>
-
                 <div class="grid-card">
                     <h3>🎅 Mercredi <span class="year-label">Legs</span></h3>
                     <input id="train_mercredi" class="field-input" placeholder="Jambes">
                     <textarea id="note_mercredi" class="field-input" rows="3" placeholder="Notes"></textarea>
                 </div>
-
                 <div class="grid-card">
                     <h3>✨ Jeudi <span class="year-label">Cardio</span></h3>
                     <input id="train_jeudi" class="field-input" placeholder="Cardio / HIIT">
                     <textarea id="note_jeudi" class="field-input" rows="3" placeholder="Notes"></textarea>
                 </div>
-
                 <div class="grid-card">
                     <h3>🎁 Vendredi <span class="year-label">Full Body</span></h3>
                     <input id="train_vendredi" class="field-input" placeholder="Full Body léger">
                     <textarea id="note_vendredi" class="field-input" rows="3" placeholder="Notes"></textarea>
                 </div>
-
                 <div class="grid-card">
                     <h3>🔔 Samedi <span class="year-label">Libre</span></h3>
                     <input id="train_samedi" class="field-input" placeholder="Sport libre (Foot, Boxe...)">
                     <textarea id="note_samedi" class="field-input" rows="3" placeholder="Notes"></textarea>
                 </div>
-
                 <div class="grid-card">
                     <h3>❄️ Dimanche <span class="year-label">Repos</span></h3>
                     <input id="train_dimanche" class="field-input" placeholder="Repos / Stretching">
                     <textarea id="note_dimanche" class="field-input" rows="3" placeholder="Notes"></textarea>
                 </div>
-
             </div>
         </div>
     </section>
@@ -585,7 +640,7 @@
 </div>
 
 <script>
-    // Navigation
+    // Navigation entre les onglets
     const navButtons = document.querySelectorAll('nav button');
     const sections = document.querySelectorAll('.section');
 
@@ -602,11 +657,57 @@
         });
     });
 
-    // Sauvegarde locale
+    // Mise à jour visuelle des barres de progression
+    function updateProgress(inputId, barId, textId) {
+        const input = document.getElementById(inputId);
+        const bar = document.getElementById(barId);
+        const text = document.getElementById(textId);
+        if(!input || !bar || !text) return;
+
+        let val = parseFloat(input.value) || 0;
+        if(val < 0) val = 0;
+        if(val > 100) val = 100;
+
+        bar.style.width = val + '%';
+        text.textContent = val + '%';
+    }
+
+    // Calculateur de temps en amour
+    function updateAmourCounter() {
+        const debutInput = document.getElementById('obj_amour_debut');
+        const counterText = document.getElementById('text_amour_compteur');
+        if(!debutInput || !counterText) return;
+
+        if(!debutInput.value) {
+            counterText.textContent = "Définis une date de début ❤️";
+            return;
+        }
+
+        const debut = new Date(debutInput.value);
+        const maintenant = new Date();
+        const diffTime = maintenant - debut;
+
+        if(diffTime < 0) {
+            counterText.textContent = "La date est dans le futur !";
+            return;
+        }
+
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const ans = Math.floor(diffDays / 365);
+        const mois = Math.floor((diffDays % 365) / 30);
+        const jours = (diffDays % 365) % 30;
+
+        counterText.textContent = `Ensemble depuis : ${ans} an(s), ${mois} mois et ${jours} jour(s) (${diffDays} jours au total) 💕`;
+    }
+
+    // Sauvegarde automatique avec localStorage
     const ids = [
         "moyenne","moyenne_obj",
         "solde","epargne_obj",
-        "niveau","xp",
+        "obj_scolaire_date_debut", "obj_scolaire_date_fin", "obj_scolaire_val",
+        "obj_poids_depart", "obj_poids_actuel", "obj_poids_cible", "obj_poids_date",
+        "obj_amour_debut", "obj_amour_note",
+        "obj_chir_date_butoir", "obj_chir_val",
         "parcours_ps","parcours_ms","parcours_gs",
         "parcours_cp","parcours_ce1","parcours_ce2","parcours_cm1","parcours_cm2",
         "parcours_6e","parcours_5e","parcours_4e","parcours_3e",
@@ -627,13 +728,22 @@
         if (!el) return;
         const v = localStorage.getItem("mv_" + id);
         if (v !== null) el.value = v;
+
+        // Écouteurs d'événements
         el.addEventListener("input", () => {
             localStorage.setItem("mv_" + id, el.value);
+            if(id === "obj_scolaire_val") updateProgress('obj_scolaire_val', 'bar_scolaire', 'text_scolaire');
+            if(id === "obj_chir_val") updateProgress('obj_chir_val', 'bar_chir', 'text_chir');
+            if(id === "obj_amour_debut") updateAmourCounter();
         });
     }
 
     window.addEventListener("DOMContentLoaded", () => {
         ids.forEach(load);
+        // Initialisation des barres et compteurs au chargement
+        updateProgress('obj_scolaire_val', 'bar_scolaire', 'text_scolaire');
+        updateProgress('obj_chir_val', 'bar_chir', 'text_chir');
+        updateAmourCounter();
     });
 </script>
 
