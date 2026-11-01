@@ -166,42 +166,6 @@
             width: 0%;
         }
 
-        .side-section { margin-bottom: 18px; }
-        .side-section:last-child { margin-bottom: 0; }
-
-        .side-title {
-            font-family: var(--font-main);
-            font-size: 1rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 8px;
-        }
-
-        .side-text { font-size: 0.9rem; color: var(--text-muted); }
-
-        .training-list { list-style: none; margin-top: 6px; }
-        .training-item {
-            padding: 6px 0;
-            border-bottom: 1px dashed #eee3d3;
-            font-size: 0.9rem;
-        }
-        .training-item:last-child { border-bottom: none; }
-        .training-meta { font-size: 0.8rem; color: var(--text-muted); }
-
-        footer {
-            margin-top: 40px;
-            padding-top: 18px;
-            border-top: 1px solid var(--border-soft);
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        footer span { display: block; }
-
         .btn-row {
             display: flex;
             flex-wrap: wrap;
@@ -251,11 +215,22 @@
             background: #fbf7ef;
         }
 
-        .small-note {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-top: 6px;
+        textarea.field-input {
+            resize: vertical;
         }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 18px;
+            border-top: 1px solid var(--border-soft);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        footer span { display: block; }
     </style>
 </head>
 <body>
@@ -323,13 +298,9 @@
                 </div>
 
                 <div class="btn-row">
-                    <a class="btn-link secondary" href="https://www.index-education.com/fr/logiciel-pronote.php" target="_blank">
-                        Accéder à Pronote
+                    <a class="btn-link secondary" href="https://atrium-sud.fr" target="_blank">
+                        Accéder à Atrium Sud
                     </a>
-                </div>
-
-                <div class="small-note">
-                    Les données que tu entres sont sauvegardées dans ton navigateur (localStorage).
                 </div>
             </div>
 
@@ -436,9 +407,6 @@
                     <div class="card-title">Parcours de vie</div>
                     <span class="pill">Timeline</span>
                 </div>
-                <p class="side-text">
-                    Ici, tu peux raconter ton histoire, les grandes étapes, les tournants, les moments clés.
-                </p>
                 <textarea id="parcours-input" class="field-input" rows="6"
                           placeholder="Écris ton parcours, tes moments clés, tes tournants..."></textarea>
             </div>
@@ -496,7 +464,6 @@
 </div>
 
 <script>
-    // Clés de stockage
     const keys = {
         moyenne: 'mv_moyenne',
         moyenneObj: 'mv_moyenne_obj',
@@ -533,56 +500,4 @@
 
         let etudesPct = 0;
         if (moyenneObj > 0) {
-            etudesPct = Math.min(100, Math.max(0, (moyenne / moyenneObj) * 100));
-        }
-        document.getElementById('etudes-progress').style.width = etudesPct + '%';
-
-        document.getElementById('solde-display').textContent = solde ? solde.toFixed(0) : '—';
-        document.getElementById('epargne-objectif-display').textContent = epargneObj ? epargneObj.toFixed(0) : '—';
-
-        let banquePct = 0;
-        if (epargneObj > 0) {
-            banquePct = Math.min(100, Math.max(0, (solde / epargneObj) * 100));
-        }
-        document.getElementById('banque-progress').style.width = banquePct + '%';
-
-        document.getElementById('niveau-display').textContent = niveau;
-        document.getElementById('xp-display').textContent = xp;
-
-        let xpPct = Math.min(100, Math.max(0, xp / 1000 * 100));
-        document.getElementById('xp-progress').style.width = xpPct + '%';
-
-        document.getElementById('parcours-input').value = loadValue(keys.parcours);
-        document.getElementById('training1-display').textContent = loadValue(keys.training1) || 'À définir';
-        document.getElementById('training2-display').textContent = loadValue(keys.training2) || 'À définir';
-        document.getElementById('training1-input').value = loadValue(keys.training1);
-        document.getElementById('training2-input').value = loadValue(keys.training2);
-        document.getElementById('zone-libre-input').value = loadValue(keys.zoneLibre);
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-        // Inputs
-        document.getElementById('moyenne-input').value = loadValue(keys.moyenne);
-        document.getElementById('moyenne-objectif-input').value = loadValue(keys.moyenneObj);
-        document.getElementById('solde-input').value = loadValue(keys.solde);
-        document.getElementById('epargne-objectif-input').value = loadValue(keys.epargneObj);
-        document.getElementById('niveau-input').value = loadValue(keys.niveau);
-        document.getElementById('xp-input').value = loadValue(keys.xp);
-
-        updateUI();
-
-        document.getElementById('moyenne-input').addEventListener('input', e => saveValue(keys.moyenne, e.target.value));
-        document.getElementById('moyenne-objectif-input').addEventListener('input', e => saveValue(keys.moyenneObj, e.target.value));
-        document.getElementById('solde-input').addEventListener('input', e => saveValue(keys.solde, e.target.value));
-        document.getElementById('epargne-objectif-input').addEventListener('input', e => saveValue(keys.epargneObj, e.target.value));
-        document.getElementById('niveau-input').addEventListener('input', e => saveValue(keys.niveau, e.target.value));
-        document.getElementById('xp-input').addEventListener('input', e => saveValue(keys.xp, e.target.value));
-
-        document.getElementById('parcours-input').addEventListener('input', e => saveValue(keys.parcours, e.target.value));
-        document.getElementById('training1-input').addEventListener('input', e => saveValue(keys.training1, e.target.value));
-        document.getElementById('training2-input').addEventListener('input', e => saveValue(keys.training2, e.target.value));
-        document.getElementById('zone-libre-input').addEventListener('input', e => saveValue(keys.zoneLibre, e.target.value));
-    });
-</script>
-</body>
-</html>
+            etudesPct = Math.min(100,
