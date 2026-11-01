@@ -1,433 +1,588 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Ma Vie En Une Appli - Sacha</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --bg-main: #f5f2eb;
+            --bg-card: #ffffff;
+            --accent: #1f3b4d;
+            --accent-soft: #8c6b4f;
+            --text-main: #222222;
+            --text-muted: #666666;
+            --border-soft: #ddd4c4;
+            --font-main: "Georgia", "Times New Roman", serif;
+            --font-alt: "Helvetica Neue", Arial, sans-serif;
+        }
 
-<title>Ma Vie en Une Appli</title>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-<style>
+        body {
+            background: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-alt);
+            line-height: 1.6;
+        }
 
-body{
-    margin:0;
-    background:white;
-    color:black;
-    font-family:"Times New Roman", serif;
-}
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px 60px;
+        }
 
-header{
-    text-align:center;
-    padding:40px 20px;
-    border-bottom:2px solid black;
-}
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 1px solid var(--border-soft);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
 
-header h1{
-    margin:0;
-    font-size:36px;
-}
+        .brand { font-family: var(--font-main); }
+        .brand h1 {
+            font-size: 2.4rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+        .brand p { font-size: 0.95rem; color: var(--text-muted); }
 
-header p{
-    margin-top:10px;
-    font-style:italic;
-}
+        .user-tag {
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .user-tag span { display: block; }
 
-nav{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:10px;
-    padding:20px;
-    border-bottom:1px solid black;
-}
+        nav {
+            margin: 25px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
 
-nav button{
-    background:white;
-    color:black;
-    border:1px solid black;
-    padding:10px 20px;
-    cursor:pointer;
-    font-family:"Times New Roman", serif;
-}
+        nav a {
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--border-soft);
+            color: var(--accent);
+            background: #faf7f0;
+            transition: all 0.2s ease;
+        }
 
-nav button:hover{
-    background:black;
-    color:white;
-}
+        nav a:hover { background: var(--accent); color: #fff; }
 
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:30px;
-}
+        .grid {
+            display: grid;
+            grid-template-columns: 2fr 1.3fr;
+            gap: 24px;
+        }
+        @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
 
-.section{
-    display:none;
-}
+        .card {
+            background: var(--bg-card);
+            border-radius: 14px;
+            border: 1px solid var(--border-soft);
+            padding: 18px 20px 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+        }
 
-.active{
-    display:block;
-}
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+        }
 
-.card{
-    border:1px solid black;
-    padding:20px;
-    margin-bottom:20px;
-}
+        .card-title {
+            font-family: var(--font-main);
+            font-size: 1.1rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
 
-input,
-textarea{
-    width:100%;
-    padding:10px;
-    margin-top:8px;
-    margin-bottom:15px;
-    font-family:"Times New Roman", serif;
-    border:1px solid black;
-    box-sizing:border-box;
-}
+        .card-subtitle { font-size: 0.8rem; color: var(--text-muted); }
 
-button{
-    font-family:"Times New Roman", serif;
-}
+        .pill {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--border-soft);
+            color: var(--accent-soft);
+            background: #f8f3ea;
+        }
 
-h2{
-    border-bottom:1px solid black;
-    padding-bottom:10px;
-}
+        .tracker-list { list-style: none; margin-top: 8px; }
 
-ul{
-    padding-left:20px;
-}
+        .tracker-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee3d3;
+        }
+        .tracker-item:last-child { border-bottom: none; }
 
-li{
-    margin-bottom:10px;
-}
+        .tracker-label { font-size: 0.9rem; }
+        .tracker-meta { text-align: right; font-size: 0.8rem; color: var(--text-muted); }
 
-.progress{
-    width:100%;
-    height:20px;
-    border:1px solid black;
-}
+        .badge {
+            display: inline-block;
+            margin-left: 6px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            background: var(--accent);
+            color: #fff;
+        }
 
-.progress-bar{
-    height:100%;
-    background:black;
-    width:25%;
-}
+        .progress-wrapper { margin-top: 6px; }
+        .progress-label { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px; }
 
-footer{
-    text-align:center;
-    padding:30px;
-    border-top:1px solid black;
-    margin-top:50px;
-}
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            border-radius: 999px;
+            background: #e3d7c5;
+            overflow: hidden;
+        }
 
-</style>
+        .progress-fill {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--accent-soft), var(--accent));
+            width: 0%;
+        }
+
+        .side-section { margin-bottom: 18px; }
+        .side-section:last-child { margin-bottom: 0; }
+
+        .side-title {
+            font-family: var(--font-main);
+            font-size: 1rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .side-text { font-size: 0.9rem; color: var(--text-muted); }
+
+        .training-list { list-style: none; margin-top: 6px; }
+        .training-item {
+            padding: 6px 0;
+            border-bottom: 1px dashed #eee3d3;
+            font-size: 0.9rem;
+        }
+        .training-item:last-child { border-bottom: none; }
+        .training-meta { font-size: 0.8rem; color: var(--text-muted); }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 18px;
+            border-top: 1px solid var(--border-soft);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        footer span { display: block; }
+
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-link {
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--accent);
+            color: #fff;
+            background: var(--accent);
+            transition: all 0.2s ease;
+        }
+        .btn-link.secondary {
+            background: #faf7f0;
+            color: var(--accent);
+        }
+        .btn-link:hover { opacity: 0.85; }
+
+        .field-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+        .field-group {
+            flex: 1;
+            min-width: 140px;
+        }
+        .field-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+        .field-input {
+            width: 100%;
+            padding: 6px 8px;
+            border-radius: 8px;
+            border: 1px solid var(--border-soft);
+            font-size: 0.85rem;
+            background: #fbf7ef;
+        }
+
+        .small-note {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+    </style>
 </head>
-
 <body>
+<div class="page">
+    <header>
+        <div class="brand">
+            <h1>Ma Vie En Une Appli</h1>
+            <p>Tableau de bord personnel • Version Sacha</p>
+        </div>
+        <div class="user-tag">
+            <span>Sacha</span>
+            <span>Life tracker — édition privée</span>
+        </div>
+    </header>
 
-<header>
-<h1>Ma Vie en Une Appli</h1>
-<p>Organisation personnelle - Objectif : Devenir chirurgien</p>
-</header>
+    <nav>
+        <a href="#etudes">Études</a>
+        <a href="#banque">Banque</a>
+        <a href="#objectifs">Objectifs de vie</a>
+        <a href="#parcours">Parcours de vie</a>
+        <a href="#entrainement">Programme d'entraînement</a>
+    </nav>
 
-<nav>
-<button onclick="afficher('accueil')">Accueil</button>
-<button onclick="afficher('banque')">Banque</button>
-<button onclick="afficher('ecole')">École</button>
-<button onclick="afficher('objectifs')">Objectifs</button>
-<button onclick="afficher('medecine')">Parcours Médecine</button>
-<button onclick="afficher('journal')">Parcours de Vie</button>
-</nav>
+    <main class="grid">
+        <section>
+            <!-- Études -->
+            <div class="card" id="etudes">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Études</div>
+                        <div class="card-subtitle">Suivi de ton parcours académique</div>
+                    </div>
+                    <span class="pill">Priorité long terme</span>
+                </div>
 
-<div class="container">
+                <ul class="tracker-list">
+                    <li class="tracker-item">
+                        <div class="tracker-label">
+                            Année en cours
+                            <span class="badge">En cours</span>
+                        </div>
+                        <div class="tracker-meta">
+                            Moyenne actuelle : <span id="moyenne-display">—</span><br>
+                            Objectif : <span id="moyenne-objectif-display">—</span>
+                        </div>
+                    </li>
+                </ul>
 
-<section id="accueil" class="section active">
+                <div class="field-row">
+                    <div class="field-group">
+                        <div class="field-label">Moyenne actuelle</div>
+                        <input id="moyenne-input" class="field-input" type="number" step="0.1" placeholder="Ex : 14.5">
+                    </div>
+                    <div class="field-group">
+                        <div class="field-label">Objectif de moyenne</div>
+                        <input id="moyenne-objectif-input" class="field-input" type="number" step="0.1" placeholder="Ex : 16">
+                    </div>
+                </div>
 
-<div class="card">
-<h2>Présentation</h2>
+                <div class="progress-wrapper">
+                    <div class="progress-label">Progression vers ton objectif d'études</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="etudes-progress"></div>
+                    </div>
+                </div>
 
-<p><strong>Âge :</strong> 15 ans</p>
-<p><strong>Niveau :</strong> Lycée</p>
-<p><strong>Projet professionnel :</strong> Chirurgien</p>
+                <div class="btn-row">
+                    <a class="btn-link secondary" href="https://www.index-education.com/fr/logiciel-pronote.php" target="_blank">
+                        Accéder à Pronote
+                    </a>
+                </div>
 
+                <div class="small-note">
+                    Les données que tu entres sont sauvegardées dans ton navigateur (localStorage).
+                </div>
+            </div>
+
+            <!-- Banque -->
+            <div class="card" id="banque" style="margin-top: 18px;">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Banque</div>
+                        <div class="card-subtitle">Vision claire de ta situation financière</div>
+                    </div>
+                    <span class="pill">Stabilité</span>
+                </div>
+
+                <ul class="tracker-list">
+                    <li class="tracker-item">
+                        <div class="tracker-label">
+                            Solde actuel
+                        </div>
+                        <div class="tracker-meta">
+                            <span id="solde-display">—</span> €
+                        </div>
+                    </li>
+                    <li class="tracker-item">
+                        <div class="tracker-label">
+                            Épargne objectif
+                        </div>
+                        <div class="tracker-meta">
+                            <span id="epargne-objectif-display">—</span> €
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="field-row">
+                    <div class="field-group">
+                        <div class="field-label">Solde actuel</div>
+                        <input id="solde-input" class="field-input" type="number" step="10" placeholder="Ex : 1200">
+                    </div>
+                    <div class="field-group">
+                        <div class="field-label">Objectif d'épargne</div>
+                        <input id="epargne-objectif-input" class="field-input" type="number" step="100" placeholder="Ex : 5000">
+                    </div>
+                </div>
+
+                <div class="progress-wrapper">
+                    <div class="progress-label">Progression vers ton objectif d'épargne</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="banque-progress"></div>
+                    </div>
+                </div>
+
+                <div class="btn-row">
+                    <a class="btn-link" href="https://mouv.lcl.fr" target="_blank">
+                        Accéder à Mouv by LCL
+                    </a>
+                </div>
+            </div>
+
+            <!-- Objectifs de vie -->
+            <div class="card" id="objectifs" style="margin-top: 18px;">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Objectifs de vie</div>
+                        <div class="card-subtitle">Ce que tu veux construire sur le long terme</div>
+                    </div>
+                    <span class="pill">Vision</span>
+                </div>
+
+                <ul class="tracker-list">
+                    <li class="tracker-item">
+                        <div class="tracker-label">
+                            Niveau global
+                        </div>
+                        <div class="tracker-meta">
+                            Niveau : <span id="niveau-display">1</span><br>
+                            XP : <span id="xp-display">0</span>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="field-row">
+                    <div class="field-group">
+                        <div class="field-label">Niveau</div>
+                        <input id="niveau-input" class="field-input" type="number" min="1" placeholder="Ex : 3">
+                    </div>
+                    <div class="field-group">
+                        <div class="field-label">XP</div>
+                        <input id="xp-input" class="field-input" type="number" min="0" placeholder="Ex : 1200">
+                    </div>
+                </div>
+
+                <div class="progress-wrapper">
+                    <div class="progress-label">Barre de progression symbolique (XP / 1000)</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="xp-progress"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <!-- Parcours de vie -->
+            <div class="side-section card" id="parcours">
+                <div class="card-header">
+                    <div class="card-title">Parcours de vie</div>
+                    <span class="pill">Timeline</span>
+                </div>
+                <p class="side-text">
+                    Ici, tu peux raconter ton histoire, les grandes étapes, les tournants, les moments clés.
+                </p>
+                <textarea id="parcours-input" class="field-input" rows="6"
+                          placeholder="Écris ton parcours, tes moments clés, tes tournants..."></textarea>
+            </div>
+
+            <!-- Programme d'entraînement -->
+            <div class="side-section card" id="entrainement" style="margin-top: 18px;">
+                <div class="card-header">
+                    <div class="card-title">Programme d'entraînement</div>
+                    <span class="pill">Discipline</span>
+                </div>
+
+                <ul class="training-list">
+                    <li class="training-item">
+                        Séance 1
+                        <div class="training-meta">
+                            <span id="training1-display">À définir</span>
+                        </div>
+                    </li>
+                    <li class="training-item">
+                        Séance 2
+                        <div class="training-meta">
+                            <span id="training2-display">À définir</span>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="field-row">
+                    <div class="field-group">
+                        <div class="field-label">Séance 1</div>
+                        <input id="training1-input" class="field-input" type="text" placeholder="Ex : Push / Pull / Legs">
+                    </div>
+                    <div class="field-group">
+                        <div class="field-label">Séance 2</div>
+                        <input id="training2-input" class="field-input" type="text" placeholder="Ex : Cardio / HIIT / Technique">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zone libre -->
+            <div class="side-section card" style="margin-top: 18px;">
+                <div class="card-header">
+                    <div class="card-title">Zone libre</div>
+                    <span class="pill">Personnalisable</span>
+                </div>
+                <textarea id="zone-libre-input" class="field-input" rows="5"
+                          placeholder="Idées, projets, business, relations, santé mentale, habitudes, rêves..."></textarea>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span>Ma Vie En Une Appli — Sacha</span>
+        <span>Tout est modifiable : texte, structure, style, objectifs, critères.</span>
+    </footer>
 </div>
-
-<div class="card">
-<h2>Progression</h2>
-
-<div class="progress">
-<div class="progress-bar"></div>
-</div>
-
-<p>Progression estimée : 25 %</p>
-
-</div>
-
-</section>
-
-<section id="banque" class="section">
-
-<div class="card">
-
-<h2>Situation financière</h2>
-
-<label>Solde actuel</label>
-<input id="solde">
-
-<button onclick="sauverSolde()">Sauvegarder</button>
-
-<p id="soldeAffichage"></p>
-
-</div>
-
-</section>
-
-<section id="ecole" class="section">
-
-<div class="card">
-
-<h2>Moyenne générale</h2>
-
-<input id="moyenne">
-
-<button onclick="sauverMoyenne()">
-Sauvegarder
-</button>
-
-<p id="moyenneAffichage"></p>
-
-</div>
-
-<div class="card">
-
-<h2>Matières</h2>
-
-<ul>
-<li>Mathématiques</li>
-<li>Physique-Chimie</li>
-<li>SVT</li>
-<li>SES</li>
-<li>SNT</li>
-<li>Anglais LV1</li>
-<li>Anglais Section</li>
-<li>Espagnol</li>
-<li>Histoire-Géographie</li>
-<li>EPS</li>
-</ul>
-
-</div>
-
-</section>
-
-<section id="objectifs" class="section">
-
-<div class="card">
-
-<h2>Mes Objectifs</h2>
-
-<input
-id="nouvelObjectif"
-placeholder="Nouvel objectif">
-
-<button onclick="ajouterObjectif()">
-Ajouter
-</button>
-
-<ul id="listeObjectifs"></ul>
-
-</div>
-
-</section>
-
-<section id="medecine" class="section">
-
-<div class="card">
-
-<h2>Parcours Médecine</h2>
-
-<ul>
-<li>✅ Lycée</li>
-<li>⬜ Baccalauréat</li>
-<li>⬜ Études de médecine</li>
-<li>⬜ Externat</li>
-<li>⬜ Internat</li>
-<li>⬜ Chirurgie</li>
-<li>⬜ Diplôme</li>
-</ul>
-
-</div>
-
-</section>
-
-<section id="journal" class="section">
-
-<div class="card">
-
-<h2>Parcours de Vie</h2>
-
-<textarea
-id="journalTexte"
-rows="10"
-placeholder="Écris ici les événements importants de ton parcours...">
-</textarea>
-
-<button onclick="sauverJournal()">
-Sauvegarder
-</button>
-
-</div>
-
-</section>
-
-</div>
-
-<footer>
-Ma Vie en Une Appli
-</footer>
 
 <script>
+    // Clés de stockage
+    const keys = {
+        moyenne: 'mv_moyenne',
+        moyenneObj: 'mv_moyenne_obj',
+        solde: 'mv_solde',
+        epargneObj: 'mv_epargne_obj',
+        niveau: 'mv_niveau',
+        xp: 'mv_xp',
+        parcours: 'mv_parcours',
+        training1: 'mv_training1',
+        training2: 'mv_training2',
+        zoneLibre: 'mv_zoneLibre'
+    };
 
-function afficher(id){
+    function saveValue(key, value) {
+        localStorage.setItem(key, value);
+        updateUI();
+    }
 
-document.querySelectorAll(".section")
-.forEach(section=>{
-section.classList.remove("active");
-});
+    function loadValue(key, defaultValue = '') {
+        const v = localStorage.getItem(key);
+        return v !== null ? v : defaultValue;
+    }
 
-document.getElementById(id)
-.classList.add("active");
+    function updateUI() {
+        const moyenne = parseFloat(loadValue(keys.moyenne)) || 0;
+        const moyenneObj = parseFloat(loadValue(keys.moyenneObj)) || 0;
+        const solde = parseFloat(loadValue(keys.solde)) || 0;
+        const epargneObj = parseFloat(loadValue(keys.epargneObj)) || 0;
+        const niveau = parseInt(loadValue(keys.niveau)) || 1;
+        const xp = parseInt(loadValue(keys.xp)) || 0;
 
-}
+        document.getElementById('moyenne-display').textContent = moyenne ? moyenne.toFixed(1) : '—';
+        document.getElementById('moyenne-objectif-display').textContent = moyenneObj ? moyenneObj.toFixed(1) : '—';
 
-function sauverSolde(){
+        let etudesPct = 0;
+        if (moyenneObj > 0) {
+            etudesPct = Math.min(100, Math.max(0, (moyenne / moyenneObj) * 100));
+        }
+        document.getElementById('etudes-progress').style.width = etudesPct + '%';
 
-let valeur =
-document.getElementById("solde").value;
+        document.getElementById('solde-display').textContent = solde ? solde.toFixed(0) : '—';
+        document.getElementById('epargne-objectif-display').textContent = epargneObj ? epargneObj.toFixed(0) : '—';
 
-localStorage.setItem("solde",valeur);
+        let banquePct = 0;
+        if (epargneObj > 0) {
+            banquePct = Math.min(100, Math.max(0, (solde / epargneObj) * 100));
+        }
+        document.getElementById('banque-progress').style.width = banquePct + '%';
 
-document.getElementById("soldeAffichage")
-.innerText =
-"Solde enregistré : " + valeur + " €";
+        document.getElementById('niveau-display').textContent = niveau;
+        document.getElementById('xp-display').textContent = xp;
 
-}
+        let xpPct = Math.min(100, Math.max(0, xp / 1000 * 100));
+        document.getElementById('xp-progress').style.width = xpPct + '%';
 
-function sauverMoyenne(){
+        document.getElementById('parcours-input').value = loadValue(keys.parcours);
+        document.getElementById('training1-display').textContent = loadValue(keys.training1) || 'À définir';
+        document.getElementById('training2-display').textContent = loadValue(keys.training2) || 'À définir';
+        document.getElementById('training1-input').value = loadValue(keys.training1);
+        document.getElementById('training2-input').value = loadValue(keys.training2);
+        document.getElementById('zone-libre-input').value = loadValue(keys.zoneLibre);
+    }
 
-let moyenne =
-document.getElementById("moyenne").value;
+    window.addEventListener('DOMContentLoaded', () => {
+        // Inputs
+        document.getElementById('moyenne-input').value = loadValue(keys.moyenne);
+        document.getElementById('moyenne-objectif-input').value = loadValue(keys.moyenneObj);
+        document.getElementById('solde-input').value = loadValue(keys.solde);
+        document.getElementById('epargne-objectif-input').value = loadValue(keys.epargneObj);
+        document.getElementById('niveau-input').value = loadValue(keys.niveau);
+        document.getElementById('xp-input').value = loadValue(keys.xp);
 
-localStorage.setItem("moyenne",moyenne);
+        updateUI();
 
-document.getElementById("moyenneAffichage")
-.innerText =
-"Moyenne enregistrée : " + moyenne;
+        document.getElementById('moyenne-input').addEventListener('input', e => saveValue(keys.moyenne, e.target.value));
+        document.getElementById('moyenne-objectif-input').addEventListener('input', e => saveValue(keys.moyenneObj, e.target.value));
+        document.getElementById('solde-input').addEventListener('input', e => saveValue(keys.solde, e.target.value));
+        document.getElementById('epargne-objectif-input').addEventListener('input', e => saveValue(keys.epargneObj, e.target.value));
+        document.getElementById('niveau-input').addEventListener('input', e => saveValue(keys.niveau, e.target.value));
+        document.getElementById('xp-input').addEventListener('input', e => saveValue(keys.xp, e.target.value));
 
-}
-
-let objectifs =
-JSON.parse(localStorage.getItem("objectifs"))
-|| [];
-
-function afficherObjectifs(){
-
-let liste =
-document.getElementById("listeObjectifs");
-
-liste.innerHTML="";
-
-objectifs.forEach((obj,index)=>{
-
-liste.innerHTML +=
-`<li>
-${obj}
-<button onclick="supprimerObjectif(${index})">
-Supprimer
-</button>
-</li>`;
-
-});
-
-}
-
-function ajouterObjectif(){
-
-let champ =
-document.getElementById("nouvelObjectif");
-
-if(champ.value.trim()!=""){
-
-objectifs.push(champ.value);
-
-localStorage.setItem(
-"objectifs",
-JSON.stringify(objectifs)
-);
-
-champ.value="";
-
-afficherObjectifs();
-
-}
-
-}
-
-function supprimerObjectif(index){
-
-objectifs.splice(index,1);
-
-localStorage.setItem(
-"objectifs",
-JSON.stringify(objectifs)
-);
-
-afficherObjectifs();
-
-}
-
-function sauverJournal(){
-
-localStorage.setItem(
-"journal",
-document.getElementById("journalTexte").value
-);
-
-}
-
-window.onload=function(){
-
-if(localStorage.getItem("solde")){
-
-document.getElementById("solde").value =
-localStorage.getItem("solde");
-
-document.getElementById("soldeAffichage").innerText =
-"Solde enregistré : "
-+ localStorage.getItem("solde")
-+ " €";
-
-}
-
-if(localStorage.getItem("moyenne")){
-
-document.getElementById("moyenne").value =
-localStorage.getItem("moyenne");
-
-}
-
-if(localStorage.getItem("journal")){
-
-document.getElementById("journalTexte").value =
-localStorage.getItem("journal");
-
-}
-
-afficherObjectifs();
-
-};
-
+        document.getElementById('parcours-input').addEventListener('input', e => saveValue(keys.parcours, e.target.value));
+        document.getElementById('training1-input').addEventListener('input', e => saveValue(keys.training1, e.target.value));
+        document.getElementById('training2-input').addEventListener('input', e => saveValue(keys.training2, e.target.value));
+        document.getElementById('zone-libre-input').addEventListener('input', e => saveValue(keys.zoneLibre, e.target.value));
+    });
 </script>
-
 </body>
 </html>
