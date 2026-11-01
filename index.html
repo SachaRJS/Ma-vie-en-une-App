@@ -218,6 +218,42 @@
             gap: 6px;
         }
 
+        /* STYLES ACCUEIL SPECIAUX */
+        .quote-box {
+            background: linear-gradient(135deg, #fffaf3, #fff3e6);
+            border-left: 4px solid var(--accent-red);
+            padding: 16px;
+            border-radius: 12px;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        .summary-widget {
+            background: #fff;
+            border: 1px solid var(--border-soft);
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .summary-val {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin-top: 4px;
+        }
+
+        .countdown-box {
+            background: linear-gradient(135deg, var(--accent), var(--accent-red));
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 14px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
         /* SÉLECTEUR DE SEMAINE */
         .week-nav {
             display: flex;
@@ -470,11 +506,55 @@
         <button data-section="entrainement">Entraînement</button>
     </nav>
 
-    <!-- ACCUEIL -->
+    <!-- ACCUEIL COMPLET -->
     <section id="accueil" class="section active">
         <div class="card">
             <div class="card-title"><span class="icon">🎄</span>Tableau de bord de Noël</div>
-            <p>Bienvenue Sacha. Tu as ici ta vie entière, version Noël : études, finances, objectifs, parcours, sport — le tout décoré avec des rennes, des sapins, des guirlandes et le Papa Noël.</p>
+            <p>Bienvenue Sacha ! Voici ton quartier général : tes finances, tes études, tes objectifs de vie et tes entraînements en un coup d'œil.</p>
+        </div>
+
+        <!-- Citation du jour -->
+        <div class="quote-box">
+            💬 <strong>Pensée du jour :</strong> <span id="daily_quote">"Le succès est la somme de petits efforts, répétés jour après jour."</span>
+        </div>
+
+        <!-- Compte à rebours Noël -->
+        <div class="countdown-box" style="margin-bottom: 25px;">
+            🎁 Plus que <span id="xmas_countdown">--</span> jours avant Noël ! 🎅
+        </div>
+
+        <!-- Widgets de synthèse rapide -->
+        <h3 style="font-family: var(--font-main); color: var(--accent); margin-bottom: 12px;">📊 En un coup d'œil</h3>
+        <div class="grid-premium" style="margin-top: 0; margin-bottom: 28px;">
+            <div class="summary-widget">
+                <div style="font-size: 0.85rem; color: var(--text-muted);">💎 Solde Actuel</div>
+                <div id="home_solde" class="summary-val">0 €</div>
+            </div>
+            <div class="summary-widget">
+                <div style="font-size: 0.85rem; color: var(--text-muted);">✨ Argent Disponible</div>
+                <div id="home_dispo" class="summary-val" style="color: var(--accent-gold);">0 €</div>
+            </div>
+            <div class="summary-widget">
+                <div style="font-size: 0.85rem; color: var(--text-muted);">📚 Moyenne Actuelle</div>
+                <div id="home_moyenne" class="summary-val" style="color: var(--accent-red);">-- / 20</div>
+            </div>
+            <div class="summary-widget">
+                <div style="font-size: 0.85rem; color: var(--text-muted);">❤️ Amour avec ta chérie</div>
+                <div id="home_amour" class="summary-val" style="font-size: 1rem; color: var(--accent-red); font-weight: normal; margin-top: 8px;">Non défini</div>
+            </div>
+        </div>
+
+        <!-- Priorités / To-Do rapides du jour -->
+        <div class="card">
+            <div class="card-title"><span class="icon">🎯</span>Objectifs & Priorités d'Aujourd'hui</div>
+            <label for="priorite_1">1. Priorité N°1</label>
+            <input id="priorite_1" class="field-input" type="text" placeholder="Ex: Réviser le contrôle de Maths">
+
+            <label for="priorite_2">2. Priorité N°2</label>
+            <input id="priorite_2" class="field-input" type="text" placeholder="Ex: Séance de sport Push">
+
+            <label for="priorite_3">3. Priorité N°3</label>
+            <input id="priorite_3" class="field-input" type="text" placeholder="Ex: Préparer les cadeaux de Noël">
         </div>
     </section>
 
@@ -907,6 +987,26 @@
         renderEdt();
     });
 
+    // Citations
+    const quotes = [
+        '"Le succès est la somme de petits efforts, répétés jour après jour."',
+        '"Sois le meilleur dans tout ce que tu entreprends."',
+        '"La discipline bat le talent quand le talent ne travaille pas."',
+        '"Chaque grande réussite a commencé par la décision d\'essayer."'
+    ];
+    document.getElementById('daily_quote').textContent = quotes[Math.floor(Math.random() * quotes.length)];
+
+    // Compte à rebours Noël
+    function updateCountdown() {
+        const now = new Date();
+        const year = now.getFullYear();
+        let xmas = new Date(year, 11, 25);
+        if (now > xmas) xmas = new Date(year + 1, 11, 25);
+        const diff = Math.ceil((xmas - now) / (1000 * 60 * 60 * 24));
+        document.getElementById('xmas_countdown').textContent = diff;
+    }
+    updateCountdown();
+
     // Progression Banque & Objectifs
     function updatePercentProgress(actuelId, objId, barId, textId) {
         const actuelEl = document.getElementById(actuelId);
@@ -944,10 +1044,12 @@
     function updateAmourCounter() {
         const debutInput = document.getElementById('obj_amour_debut');
         const counterText = document.getElementById('text_amour_compteur');
+        const homeAmourText = document.getElementById('home_amour');
         if(!debutInput || !counterText) return;
 
         if(!debutInput.value) {
             counterText.textContent = "Définis une date de début ❤️";
+            if(homeAmourText) homeAmourText.textContent = "Non défini";
             return;
         }
 
@@ -957,6 +1059,7 @@
 
         if(diffTime < 0) {
             counterText.textContent = "La date est dans le futur !";
+            if(homeAmourText) homeAmourText.textContent = "Futur";
             return;
         }
 
@@ -965,11 +1068,25 @@
         const mois = Math.floor((diffDays % 365) / 30);
         const jours = (diffDays % 365) % 30;
 
-        counterText.textContent = `Ensemble depuis : ${ans} an(s), ${mois} mois et ${jours} jour(s) (${diffDays} jours au total) 💕`;
+        const resStr = `${ans} an(s), ${mois} m, ${jours} j`;
+        counterText.textContent = `Ensemble depuis : ${resStr} (${diffDays} jours) 💕`;
+        if(homeAmourText) homeAmourText.textContent = resStr;
+    }
+
+    // Synchronisation de la vue d'accueil
+    function updateHomeSummary() {
+        const solde = document.getElementById('solde_actuel_global').value;
+        const dispo = document.getElementById('argent_disponible').value;
+        const moy = document.getElementById('moyenne').value;
+
+        document.getElementById('home_solde').textContent = (solde !== "" ? solde : "0") + " €";
+        document.getElementById('home_dispo').textContent = (dispo !== "" ? dispo : "0") + " €";
+        document.getElementById('home_moyenne').textContent = (moy !== "" ? moy : "--") + " / 20";
     }
 
     const ids = [
         "moyenne","moyenne_obj",
+        "priorite_1", "priorite_2", "priorite_3",
         "todo_lundi", "todo_mardi", "todo_mercredi", "todo_jeudi", "todo_vendredi", "todo_weekend",
         "bank_epargne_actuel", "bank_epargne_obj",
         "bank_plaisir_actuel", "bank_plaisir_obj",
@@ -1010,6 +1127,8 @@
             if(id === "obj_scolaire_val") updateDirectProgress('obj_scolaire_val', 'bar_scolaire', 'text_scolaire');
             if(id === "obj_chir_val") updateDirectProgress('obj_chir_val', 'bar_chir', 'text_chir');
             if(id === "obj_amour_debut") updateAmourCounter();
+
+            updateHomeSummary();
         });
     }
 
@@ -1024,6 +1143,7 @@
         updateDirectProgress('obj_scolaire_val', 'bar_scolaire', 'text_scolaire');
         updateDirectProgress('obj_chir_val', 'bar_chir', 'text_chir');
         updateAmourCounter();
+        updateHomeSummary();
     });
 </script>
 
