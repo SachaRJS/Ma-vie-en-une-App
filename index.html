@@ -32,10 +32,86 @@
             line-height: 1.6;
         }
 
+        /* PAGE MOT DE PASSE (VERROUILLAGE) */
+        #auth_screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at top, #ffe9e0 0, #fdf7f2 40%, #fdf7f2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .auth-card {
+            background: #ffffff;
+            border: 2px solid var(--border-soft);
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .auth-card h2 {
+            font-family: var(--font-main);
+            color: var(--accent);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .auth-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .auth-card input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border-soft);
+            background: #fffaf3;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .auth-card button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-red));
+            color: #fff;
+            border: none;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .auth-card button:hover {
+            opacity: 0.9;
+        }
+
+        .auth-error {
+            color: var(--accent-red);
+            font-size: 0.85rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* APPLICATION PRINCIPALE */
         .page {
             max-width: 1300px;
             margin: 0 auto;
             padding: 40px 20px 80px;
+            display: none;
         }
 
         /* HEADER NOËL */
@@ -218,7 +294,7 @@
             gap: 6px;
         }
 
-        /* STYLES ACCUEIL SPECIAUX */
+        /* ACCUEIL SPECIAUX */
         .quote-box {
             background: linear-gradient(135deg, #fffaf3, #fff3e6);
             border-left: 4px solid var(--accent-red);
@@ -351,7 +427,7 @@
         .mat-svt { background-color: #bbf7d0; }
         .mat-emc { background-color: #f472b6; }
 
-        /* Styles Banque */
+        /* Banque */
         .bank-card-mega {
             background: linear-gradient(135deg, #f3f9f5, #fff);
             border: 2px solid var(--accent);
@@ -478,10 +554,22 @@
 </head>
 
 <body>
+
+<!-- ECRAN DE VERROUILLAGE PAR MOT DE PASSE -->
+<div id="auth_screen">
+    <div class="auth-card">
+        <h2>🎄 Ma Vie En Une Appli</h2>
+        <p>Entrez le mot de passe pour accéder à votre espace personnalisé.</p>
+        <input type="password" id="password_input" placeholder="Mot de passe">
+        <button id="btn_login">Déverrouiller</button>
+        <div id="auth_error" class="auth-error">Mot de passe incorrect. Réessayez !</div>
+    </div>
+</div>
+
 <div class="xmas-bg-top">🦌🎄</div>
 <div class="xmas-bg-bottom">🎅✨</div>
 
-<div class="page">
+<div class="page" id="main_app">
 
     <!-- HEADER -->
     <header>
@@ -506,24 +594,21 @@
         <button data-section="entrainement">Entraînement</button>
     </nav>
 
-    <!-- ACCUEIL COMPLET -->
+    <!-- ACCUEIL -->
     <section id="accueil" class="section active">
         <div class="card">
             <div class="card-title"><span class="icon">🎄</span>Tableau de bord de Noël</div>
             <p>Bienvenue Sacha ! Voici ton quartier général : tes finances, tes études, tes objectifs de vie et tes entraînements en un coup d'œil.</p>
         </div>
 
-        <!-- Citation du jour -->
         <div class="quote-box">
             💬 <strong>Pensée du jour :</strong> <span id="daily_quote">"Le succès est la somme de petits efforts, répétés jour après jour."</span>
         </div>
 
-        <!-- Compte à rebours Noël -->
         <div class="countdown-box" style="margin-bottom: 25px;">
             🎁 Plus que <span id="xmas_countdown">--</span> jours avant Noël ! 🎅
         </div>
 
-        <!-- Widgets de synthèse rapide -->
         <h3 style="font-family: var(--font-main); color: var(--accent); margin-bottom: 12px;">📊 En un coup d'œil</h3>
         <div class="grid-premium" style="margin-top: 0; margin-bottom: 28px;">
             <div class="summary-widget">
@@ -544,7 +629,6 @@
             </div>
         </div>
 
-        <!-- Priorités / To-Do rapides du jour -->
         <div class="card">
             <div class="card-title"><span class="icon">🎯</span>Objectifs & Priorités d'Aujourd'hui</div>
             <label for="priorite_1">1. Priorité N°1</label>
@@ -576,7 +660,6 @@
 
             <a class="btn-link" href="https://atrium-sud.fr" target="_blank" rel="noopener noreferrer">Accéder à Atrium Sud 🎄</a>
 
-            <!-- SÉLECTEUR DE SEMAINE -->
             <div class="week-nav">
                 <button id="btn_prev_week">◄</button>
                 <div id="week_title" class="week-title">Semaine A</div>
@@ -917,6 +1000,35 @@
 </div>
 
 <script>
+    // MOT DE PASSE : "Success"
+    const correctPassword = "Success";
+
+    const authScreen = document.getElementById("auth_screen");
+    const mainApp = document.getElementById("main_app");
+    const passInput = document.getElementById("password_input");
+    const btnLogin = document.getElementById("btn_login");
+    const authError = document.getElementById("auth_error");
+
+    function checkAuth() {
+        if (passInput.value === correctPassword) {
+            authScreen.style.display = "none";
+            mainApp.style.display = "block";
+            localStorage.setItem("authenticated", "true");
+        } else {
+            authError.style.display = "block";
+        }
+    }
+
+    btnLogin.addEventListener("click", checkAuth);
+    passInput.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") checkAuth();
+    });
+
+    if (localStorage.getItem("authenticated") === "true") {
+        authScreen.style.display = "none";
+        mainApp.style.display = "block";
+    }
+
     // Navigation onglets
     const navButtons = document.querySelectorAll('nav button');
     const sections = document.querySelectorAll('.section');
@@ -930,7 +1042,7 @@
         });
     });
 
-    // Données des semaines A et B
+    // Emplois du temps
     const edtData = {
         A: [
             { time: "08h05 - 09h00", lun: '<div class="edt-matiere">SC. NUMERIQ. TECHNOL.</div><div class="edt-salle">FAURE S.</div>', mar: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L., A 309</div>', mer: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '-', ven: '<div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S., B 210</div>', lunC: 'mat-snt', marC: 'mat-maths', merC: 'mat-ang', jeuC: '', venC: 'mat-hg' },
@@ -1073,7 +1185,7 @@
         if(homeAmourText) homeAmourText.textContent = resStr;
     }
 
-    // Synchronisation de la vue d'accueil
+    // Synchronisation Accueil
     function updateHomeSummary() {
         const solde = document.getElementById('solde_actuel_global').value;
         const dispo = document.getElementById('argent_disponible').value;
