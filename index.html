@@ -218,7 +218,7 @@
             gap: 6px;
         }
 
-        /* Emploi du temps - Sélecteur de semaine */
+        /* SÉLECTEUR DE SEMAINE */
         .week-nav {
             display: flex;
             align-items: center;
@@ -302,7 +302,7 @@
             margin-top: 2px;
         }
 
-        /* Couleurs pour correspondre à ton emploi du temps d'origine */
+        /* Couleurs matières */
         .mat-snt { background-color: #b2eaf2; }
         .mat-hg { background-color: #c7d2fe; }
         .mat-eps { background-color: #a7f3d0; }
@@ -315,7 +315,7 @@
         .mat-svt { background-color: #bbf7d0; }
         .mat-emc { background-color: #f472b6; }
 
-        /* Cartes Banque */
+        /* Styles Banque */
         .bank-card-mega {
             background: linear-gradient(135deg, #f3f9f5, #fff);
             border: 2px solid var(--accent);
@@ -346,7 +346,7 @@
             text-align: center;
         }
 
-        /* Progression */
+        /* Barres de progression */
         .progress-bar-container {
             background: #eee;
             border-radius: 999px;
@@ -496,7 +496,7 @@
 
             <a class="btn-link" href="https://atrium-sud.fr" target="_blank" rel="noopener noreferrer">Accéder à Atrium Sud 🎄</a>
 
-            <!-- SÉLECTEUR DE SEMAINE AVEC FLÈCHES -->
+            <!-- SÉLECTEUR DE SEMAINE -->
             <div class="week-nav">
                 <button id="btn_prev_week">◄</button>
                 <div id="week_title" class="week-title">Semaine A</div>
@@ -515,9 +515,7 @@
                             <th>Vendredi</th>
                         </tr>
                     </thead>
-                    <tbody id="edt_body">
-                        <!-- Rempli dynamiquement en JS selon la semaine -->
-                    </tbody>
+                    <tbody id="edt_body"></tbody>
                 </table>
             </div>
 
@@ -839,7 +837,7 @@
 </div>
 
 <script>
-    // Navigation onglets principaux
+    // Navigation onglets
     const navButtons = document.querySelectorAll('nav button');
     const sections = document.querySelectorAll('.section');
 
@@ -852,5 +850,182 @@
         });
     });
 
-    // Données des deux semaines basées sur tes captures d'écran
-    const edtData
+    // Données des semaines A et B
+    const edtData = {
+        A: [
+            { time: "08h05 - 09h00", lun: '<div class="edt-matiere">SC. NUMERIQ. TECHNOL.</div><div class="edt-salle">FAURE S.</div>', mar: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L., A 309</div>', mer: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '-', ven: '<div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S., B 210</div>', lunC: 'mat-snt', marC: 'mat-maths', merC: 'mat-ang', jeuC: '', venC: 'mat-hg' },
+            { time: "09h00 - 10h15", lun: '<div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S.</div>', mar: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L.</div>', mer: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S., A 105 TP PC</div>', ven: '<div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S.</div>', lunC: 'mat-hg', marC: 'mat-maths', merC: 'mat-ang', jeuC: 'mat-pc', venC: 'mat-hg' },
+            { time: "10h15 - 11h15", lun: '<div class="edt-matiere">ED. PHYSIQUE & SPORT</div><div class="edt-salle">BAUDRY A.</div>', mar: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S.</div>', mer: '<div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N.</div>', jeu: '<div class="edt-matiere">SCIENCES VIE & TERRE</div><div class="edt-salle">FERRE-AOUSTIN C.</div>', ven: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L.</div>', lunC: 'mat-eps', marC: 'mat-pc', merC: 'mat-fr', jeuC: 'mat-svt', venC: 'mat-maths' },
+            { time: "11h30 - 12h10", lun: '<div class="edt-matiere">ED. PHYSIQUE & SPORT</div><div class="edt-salle">BAUDRY A.</div>', mar: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', mer: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L.</div>', jeu: '<div class="edt-matiere">SCIENCES VIE & TERRE</div><div class="edt-salle">FERRE-AOUSTIN C.</div>', ven: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', lunC: 'mat-eps', marC: 'mat-esp', merC: 'mat-maths', jeuC: 'mat-svt', venC: 'mat-esp' },
+            { time: "13h00 - 14h00", lun: '-', mar: '<div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S.</div>', mer: '-', jeu: '-', ven: '-', lunC: '', marC: 'mat-hg', merC: '', jeuC: '', venC: '' },
+            { time: "14h00 - 15h00", lun: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', mar: '<div class="edt-matiere">SC. ECONO & SOCIALES</div><div class="edt-salle">DELATTRE M.</div>', mer: '-', jeu: '<div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N.</div>', ven: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', lunC: 'mat-ang', marC: 'mat-ses', merC: '', jeuC: 'mat-fr', venC: 'mat-ang' },
+            { time: "15h05 - 16h05", lun: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', mar: '<div class="edt-matiere">SC. ECONO & SOCIALES</div><div class="edt-salle">DELATTRE M.</div>', mer: '-', jeu: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L.</div>', ven: '<div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N., B 205</div>', lunC: 'mat-esp', marC: 'mat-ses', merC: '', jeuC: 'mat-maths', venC: 'mat-fr' },
+            { time: "16h05 - 17h05", lun: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', mar: '<div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N.</div>', mer: '-', jeu: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', ven: '<div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N., B 205</div>', lunC: 'mat-ang', marC: 'mat-fr', merC: '', jeuC: 'mat-ang', venC: 'mat-fr' }
+        ],
+        B: [
+            { time: "08h05 - 09h00", lun: '<div class="edt-matiere">SC. NUMERIQ. TECHNOL.</div><div class="edt-salle">FAURE S.</div>', mar: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L., A 309</div>', mer: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '-', ven: '<div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S., B 210</div>', lunC: 'mat-snt', marC: 'mat-maths', merC: 'mat-ang', jeuC: '', venC: 'mat-hg' },
+            { time: "09h00 - 10h15", lun: '<div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S.</div>', mar: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L.</div>', mer: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S., A 105 TP PC</div>', ven: '<div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S.</div>', lunC: 'mat-hg', marC: 'mat-maths', merC: 'mat-ang', jeuC: 'mat-pc', venC: 'mat-hg' },
+            { time: "10h15 - 11h15", lun: '<div class="edt-matiere">ED. PHYSIQUE & SPORT</div><div class="edt-salle">BAUDRY A.</div>', mar: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S.</div>', mer: '-', jeu: '<div class="edt-matiere">SCIENCES VIE & TERRE</div><div class="edt-salle">FERRE-AOUSTIN C.</div>', ven: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L.</div>', lunC: 'mat-eps', marC: 'mat-pc', merC: '', jeuC: 'mat-svt', venC: 'mat-maths' },
+            { time: "11h30 - 12h10", lun: '<div class="edt-matiere">ED. PHYSIQUE & SPORT</div><div class="edt-salle">BAUDRY A.</div>', mar: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', mer: '<div class="edt-matiere">SC. NUMERIQ. TECHNOL.</div><div class="edt-salle">FAURE S.</div>', jeu: '<div class="edt-matiere">SCIENCES VIE & TERRE</div><div class="edt-salle">FERRE-AOUSTIN C.</div>', ven: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', lunC: 'mat-eps', marC: 'mat-esp', merC: 'mat-snt', jeuC: 'mat-svt', venC: 'mat-esp' },
+            { time: "12h10 - 13h00", lun: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S.</div>', mar: '-', mer: '-', jeu: '-', ven: '-', lunC: 'mat-pc', marC: '', merC: '', jeuC: '', venC: '' },
+            { time: "13h00 - 14h00", lun: '-', mar: '<div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S.</div>', mer: '-', jeu: '-', ven: '-', lunC: '', marC: 'mat-hg', merC: '', jeuC: '', venC: '' },
+            { time: "14h00 - 15h00", lun: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', mar: '<div class="edt-matiere">SC. ECONO & SOCIALES</div><div class="edt-salle">DELATTRE M.</div>', mer: '-', jeu: '<div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N.</div>', ven: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', lunC: 'mat-ang', marC: 'mat-ses', merC: '', jeuC: 'mat-fr', venC: 'mat-ang' },
+            { time: "15h05 - 16h05", lun: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', mar: '<div class="edt-matiere">ENS. MORAL & CIVIQUE</div><div class="edt-salle">DELATTRE M.</div>', mer: '-', jeu: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L.</div>', ven: '<div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N., B 205</div>', lunC: 'mat-ang', marC: 'mat-emc', merC: '', jeuC: 'mat-maths', venC: 'mat-fr' },
+            { time: "16h05 - 17h05", lun: '-', mar: '<div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N.</div>', mer: '-', jeu: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', ven: '<div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N., B 205</div>', lunC: '', marC: 'mat-fr', merC: '', jeuC: 'mat-ang', venC: 'mat-fr' }
+        ]
+    };
+
+    let currentWeek = "A";
+
+    function renderEdt() {
+        const body = document.getElementById("edt_body");
+        const title = document.getElementById("week_title");
+        title.textContent = "Semaine " + currentWeek;
+        body.innerHTML = "";
+
+        edtData[currentWeek].forEach(row => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td class="heure-col">${row.time}</td>
+                <td class="${row.lunC}">${row.lun}</td>
+                <td class="${row.marC}">${row.mar}</td>
+                <td class="${row.merC}">${row.mer}</td>
+                <td class="${row.jeuC}">${row.jeu}</td>
+                <td class="${row.venC}">${row.ven}</td>
+            `;
+            body.appendChild(tr);
+        });
+    }
+
+    document.getElementById("btn_prev_week").addEventListener("click", () => {
+        currentWeek = currentWeek === "A" ? "B" : "A";
+        renderEdt();
+    });
+
+    document.getElementById("btn_next_week").addEventListener("click", () => {
+        currentWeek = currentWeek === "A" ? "B" : "A";
+        renderEdt();
+    });
+
+    // Progression Banque & Objectifs
+    function updatePercentProgress(actuelId, objId, barId, textId) {
+        const actuelEl = document.getElementById(actuelId);
+        const objEl = document.getElementById(objId);
+        const bar = document.getElementById(barId);
+        const text = document.getElementById(textId);
+        if(!actuelEl || !objEl || !bar || !text) return;
+
+        const actuel = parseFloat(actuelEl.value) || 0;
+        const obj = parseFloat(objEl.value) || 0;
+
+        let pct = 0;
+        if(obj > 0) pct = Math.round((actuel / obj) * 100);
+        if(pct < 0) pct = 0;
+        if(pct > 100) pct = 100;
+
+        bar.style.width = pct + '%';
+        text.textContent = pct + '% (actuel: ' + actuel + ' / obj: ' + obj + ')';
+    }
+
+    function updateDirectProgress(inputId, barId, textId) {
+        const input = document.getElementById(inputId);
+        const bar = document.getElementById(barId);
+        const text = document.getElementById(textId);
+        if(!input || !bar || !text) return;
+
+        let val = parseFloat(input.value) || 0;
+        if(val < 0) val = 0;
+        if(val > 100) val = 100;
+
+        bar.style.width = val + '%';
+        text.textContent = val + '%';
+    }
+
+    function updateAmourCounter() {
+        const debutInput = document.getElementById('obj_amour_debut');
+        const counterText = document.getElementById('text_amour_compteur');
+        if(!debutInput || !counterText) return;
+
+        if(!debutInput.value) {
+            counterText.textContent = "Définis une date de début ❤️";
+            return;
+        }
+
+        const debut = new Date(debutInput.value);
+        const maintenant = new Date();
+        const diffTime = maintenant - debut;
+
+        if(diffTime < 0) {
+            counterText.textContent = "La date est dans le futur !";
+            return;
+        }
+
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const ans = Math.floor(diffDays / 365);
+        const mois = Math.floor((diffDays % 365) / 30);
+        const jours = (diffDays % 365) % 30;
+
+        counterText.textContent = `Ensemble depuis : ${ans} an(s), ${mois} mois et ${jours} jour(s) (${diffDays} jours au total) 💕`;
+    }
+
+    const ids = [
+        "moyenne","moyenne_obj",
+        "todo_lundi", "todo_mardi", "todo_mercredi", "todo_jeudi", "todo_vendredi", "todo_weekend",
+        "bank_epargne_actuel", "bank_epargne_obj",
+        "bank_plaisir_actuel", "bank_plaisir_obj",
+        "bank_projets_actuel", "bank_projets_obj",
+        "solde_actuel_global", "argent_disponible",
+        "obj_scolaire_date_debut", "obj_scolaire_date_fin", "obj_scolaire_val",
+        "obj_poids_depart", "obj_poids_actuel", "obj_poids_cible", "obj_poids_date",
+        "obj_amour_debut", "obj_amour_note",
+        "obj_chir_date_butoir", "obj_chir_val",
+        "parcours_ps","parcours_ms","parcours_gs",
+        "parcours_cp","parcours_ce1","parcours_ce2","parcours_cm1","parcours_cm2",
+        "parcours_6e","parcours_5e","parcours_4e","parcours_3e",
+        "parcours_2nde","parcours_1ere","parcours_term",
+        "parcours_med1","parcours_med2","parcours_med3","parcours_med4","parcours_med5","parcours_med6",
+        "parcours_internat","parcours_these",
+        "train_lundi","note_lundi",
+        "train_mardi","note_mardi",
+        "train_mercredi","note_mercredi",
+        "train_jeudi","note_jeudi",
+        "train_vendredi","note_vendredi",
+        "train_samedi","note_samedi",
+        "train_dimanche","note_dimanche"
+    ];
+
+    function load(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const v = localStorage.getItem("mv_" + id);
+        if (v !== null) el.value = v;
+
+        el.addEventListener("input", () => {
+            localStorage.setItem("mv_" + id, el.value);
+
+            if(id === "bank_epargne_actuel" || id === "bank_epargne_obj") updatePercentProgress('bank_epargne_actuel', 'bank_epargne_obj', 'bar_epargne', 'text_epargne');
+            if(id === "bank_plaisir_actuel" || id === "bank_plaisir_obj") updatePercentProgress('bank_plaisir_actuel', 'bank_plaisir_obj', 'bar_plaisir', 'text_plaisir');
+            if(id === "bank_projets_actuel" || id === "bank_projets_obj") updatePercentProgress('bank_projets_actuel', 'bank_projets_obj', 'bar_projets', 'text_projets');
+            
+            if(id === "obj_scolaire_val") updateDirectProgress('obj_scolaire_val', 'bar_scolaire', 'text_scolaire');
+            if(id === "obj_chir_val") updateDirectProgress('obj_chir_val', 'bar_chir', 'text_chir');
+            if(id === "obj_amour_debut") updateAmourCounter();
+        });
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+        renderEdt();
+        ids.forEach(load);
+
+        updatePercentProgress('bank_epargne_actuel', 'bank_epargne_obj', 'bar_epargne', 'text_epargne');
+        updatePercentProgress('bank_plaisir_actuel', 'bank_plaisir_obj', 'bar_plaisir', 'text_plaisir');
+        updatePercentProgress('bank_projets_actuel', 'bank_projets_obj', 'bar_projets', 'text_projets');
+        
+        updateDirectProgress('obj_scolaire_val', 'bar_scolaire', 'text_scolaire');
+        updateDirectProgress('obj_chir_val', 'bar_chir', 'text_chir');
+        updateAmourCounter();
+    });
+</script>
+
+</body>
+</html>
