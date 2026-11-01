@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <title>Ma Vie En Une Appli - Sacha</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- STYLE PREMIUM -->
     <style>
         :root {
-            --bg-main: #f5f2eb;
+            --bg-main: #f4f2ee;
             --bg-card: #ffffff;
             --accent: #1f3b4d;
             --accent-soft: #8c6b4f;
             --text-main: #222;
             --text-muted: #666;
-            --border-soft: #ddd4c4;
+            --border-soft: #e2dcd2;
             --font-main: "Georgia", serif;
-            --font-alt: "Helvetica Neue", Arial, sans-serif;
+            --font-alt: "Inter", "Helvetica Neue", Arial, sans-serif;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -26,27 +28,34 @@
             line-height: 1.6;
         }
 
+        /* PAGE WRAPPER */
         .page {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 30px 20px 60px;
+            padding: 40px 20px 80px;
         }
 
+        /* HEADER */
         header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
+            align-items: center;
+            padding-bottom: 25px;
             border-bottom: 1px solid var(--border-soft);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
         }
 
         .brand h1 {
             font-family: var(--font-main);
-            font-size: 2.4rem;
-            letter-spacing: 0.08em;
+            font-size: 2.8rem;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
             color: var(--accent);
+        }
+
+        .brand p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-top: 4px;
         }
 
         .user-tag {
@@ -55,113 +64,138 @@
             color: var(--text-muted);
         }
 
+        /* NAVIGATION */
         nav {
-            margin: 25px 0;
+            margin: 35px 0;
             display: flex;
+            gap: 12px;
             flex-wrap: wrap;
-            gap: 10px;
         }
 
         nav button {
+            padding: 10px 18px;
+            border-radius: 999px;
             border: 1px solid var(--border-soft);
             background: #faf7f0;
             color: var(--accent);
-            padding: 8px 14px;
-            border-radius: 999px;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.12em;
-            font-size: 0.9rem;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.25s;
         }
 
-        nav button.active,
-        nav button:hover {
+        nav button:hover,
+        nav button.active {
             background: var(--accent);
             color: #fff;
         }
 
-        .section {
-            display: none;
-        }
+        /* SECTIONS */
+        .section { display: none; }
+        .section.active { display: block; }
 
-        .section.active {
-            display: block;
-        }
-
+        /* CARD */
         .card {
             background: var(--bg-card);
-            border-radius: 14px;
+            border-radius: 18px;
             border: 1px solid var(--border-soft);
-            padding: 18px 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
-            margin-bottom: 20px;
+            padding: 28px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
         }
 
         .card-title {
             font-family: var(--font-main);
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--accent);
-            margin-bottom: 10px;
+            margin-bottom: 18px;
         }
 
+        /* INPUTS */
         label {
             font-size: 0.85rem;
             color: var(--text-muted);
+            margin-top: 12px;
             display: block;
-            margin-top: 10px;
         }
 
         .field-input {
             width: 100%;
-            padding: 8px;
-            border-radius: 8px;
+            padding: 10px;
+            border-radius: 10px;
             border: 1px solid var(--border-soft);
             background: #fbf7ef;
-            margin-top: 4px;
-            font-size: 0.9rem;
+            margin-top: 6px;
+            font-size: 0.95rem;
         }
 
         textarea.field-input {
             resize: vertical;
         }
 
+        /* BUTTON LINK */
         .btn-link {
             display: inline-block;
-            text-decoration: none;
-            padding: 10px 16px;
+            padding: 12px 20px;
             border-radius: 999px;
             background: var(--accent);
             color: #fff;
+            text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.12em;
-            margin-top: 12px;
+            margin-top: 18px;
             font-size: 0.85rem;
+            transition: 0.25s;
         }
 
         .btn-link:hover {
             opacity: 0.85;
         }
 
+        /* GRID PREMIUM */
+        .grid-premium {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .grid-card {
+            background: #fff;
+            border: 1px solid var(--border-soft);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+        }
+
+        .grid-card h3 {
+            font-family: var(--font-main);
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        /* FOOTER */
         footer {
-            margin-top: 40px;
-            padding-top: 18px;
+            margin-top: 50px;
+            padding-top: 20px;
             border-top: 1px solid var(--border-soft);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 10px;
         }
-
-        footer span { display: block; }
     </style>
 </head>
+
 <body>
 <div class="page">
+
+    <!-- HEADER -->
     <header>
         <div class="brand">
             <h1>Ma Vie En Une Appli</h1>
@@ -173,6 +207,7 @@
         </div>
     </header>
 
+    <!-- NAVIGATION -->
     <nav>
         <button data-section="accueil" class="active">Accueil</button>
         <button data-section="etudes">Études</button>
@@ -182,56 +217,56 @@
         <button data-section="entrainement">Entraînement</button>
     </nav>
 
-    <!-- Accueil -->
+    <!-- ACCUEIL -->
     <section id="accueil" class="section active">
         <div class="card">
             <div class="card-title">Bienvenue Sacha</div>
-            <p>Choisis un menu pour gérer ta vie comme un tableau de bord de jeu vidéo.</p>
+            <p>Gère ta vie comme un tableau de bord premium, inspiré des plus grands sites.</p>
         </div>
     </section>
 
-    <!-- Études -->
+    <!-- ÉTUDES -->
     <section id="etudes" class="section">
         <div class="card">
             <div class="card-title">Études</div>
 
             <label>Moyenne actuelle</label>
-            <input id="moyenne" class="field-input" type="number" step="0.1">
+            <input id="moyenne" class="field-input" type="number">
 
             <label>Objectif de moyenne</label>
-            <input id="moyenne_obj" class="field-input" type="number" step="0.1">
+            <input id="moyenne_obj" class="field-input" type="number">
 
             <a class="btn-link" href="https://atrium-sud.fr" target="_blank">Accéder à Atrium Sud</a>
         </div>
     </section>
 
-    <!-- Banque -->
+    <!-- BANQUE -->
     <section id="banque" class="section">
         <div class="card">
             <div class="card-title">Banque</div>
 
             <label>Solde actuel</label>
-            <input id="solde" class="field-input" type="number" step="10">
+            <input id="solde" class="field-input" type="number">
 
             <label>Objectif d'épargne</label>
-            <input id="epargne_obj" class="field-input" type="number" step="100">
+            <input id="epargne_obj" class="field-input" type="number">
         </div>
     </section>
 
-    <!-- Objectifs -->
+    <!-- OBJECTIFS -->
     <section id="objectifs" class="section">
         <div class="card">
             <div class="card-title">Objectifs de vie</div>
 
             <label>Niveau</label>
-            <input id="niveau" class="field-input" type="number" min="1">
+            <input id="niveau" class="field-input" type="number">
 
             <label>XP</label>
-            <input id="xp" class="field-input" type="number" min="0">
+            <input id="xp" class="field-input" type="number">
         </div>
     </section>
 
-    <!-- Parcours -->
+    <!-- PARCOURS -->
     <section id="parcours" class="section">
         <div class="card">
             <div class="card-title">Parcours de vie</div>
@@ -241,27 +276,69 @@
         </div>
     </section>
 
-    <!-- Entraînement -->
+    <!-- ENTRAÎNEMENT -->
     <section id="entrainement" class="section">
         <div class="card">
-            <div class="card-title">Programme d'entraînement</div>
+            <div class="card-title">Programme d'entraînement — Semaine Premium</div>
 
-            <label>Séance 1</label>
-            <input id="training1" class="field-input" type="text">
+            <div class="grid-premium">
 
-            <label>Séance 2</label>
-            <input id="training2" class="field-input" type="text">
+                <div class="grid-card">
+                    <h3>Lundi</h3>
+                    <input id="train_lundi" class="field-input" placeholder="Push (Pecs / Triceps)">
+                    <textarea id="note_lundi" class="field-input" rows="3" placeholder="Notes"></textarea>
+                </div>
+
+                <div class="grid-card">
+                    <h3>Mardi</h3>
+                    <input id="train_mardi" class="field-input" placeholder="Pull (Dos / Biceps)">
+                    <textarea id="note_mardi" class="field-input" rows="3" placeholder="Notes"></textarea>
+                </div>
+
+                <div class="grid-card">
+                    <h3>Mercredi</h3>
+                    <input id="train_mercredi" class="field-input" placeholder="Legs (Jambes)">
+                    <textarea id="note_mercredi" class="field-input" rows="3" placeholder="Notes"></textarea>
+                </div>
+
+                <div class="grid-card">
+                    <h3>Jeudi</h3>
+                    <input id="train_jeudi" class="field-input" placeholder="Cardio / HIIT">
+                    <textarea id="note_jeudi" class="field-input" rows="3" placeholder="Notes"></textarea>
+                </div>
+
+                <div class="grid-card">
+                    <h3>Vendredi</h3>
+                    <input id="train_vendredi" class="field-input" placeholder="Full Body léger">
+                    <textarea id="note_vendredi" class="field-input" rows="3" placeholder="Notes"></textarea>
+                </div>
+
+                <div class="grid-card">
+                    <h3>Samedi</h3>
+                    <input id="train_samedi" class="field-input" placeholder="Sport libre">
+                    <textarea id="note_samedi" class="field-input" rows="3" placeholder="Notes"></textarea>
+                </div>
+
+                <div class="grid-card">
+                    <h3>Dimanche</h3>
+                    <input id="train_dimanche" class="field-input" placeholder="Repos / Stretching">
+                    <textarea id="note_dimanche" class="field-input" rows="3" placeholder="Notes"></textarea>
+                </div>
+
+            </div>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         <span>Ma Vie En Une Appli — Sacha</span>
-        <span>Tout est modifiable : texte, structure, style, objectifs, critères.</span>
+        <span>Design premium inspiré des plus grands sites.</span>
     </footer>
 </div>
 
+<!-- JAVASCRIPT -->
 <script>
-    // Navigation entre sections
+    // Navigation
     const navButtons = document.querySelectorAll('nav button');
     const sections = document.querySelectorAll('.section');
 
@@ -284,7 +361,13 @@
         "solde","epargne_obj",
         "niveau","xp",
         "parcours_txt",
-        "training1","training2"
+        "train_lundi","note_lundi",
+        "train_mardi","note_mardi",
+        "train_mercredi","note_mercredi",
+        "train_jeudi","note_jeudi",
+        "train_vendredi","note_vendredi",
+        "train_samedi","note_samedi",
+        "train_dimanche","note_dimanche"
     ];
 
     function load(id) {
@@ -301,5 +384,6 @@
         ids.forEach(load);
     });
 </script>
+
 </body>
 </html>
