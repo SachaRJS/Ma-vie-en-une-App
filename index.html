@@ -32,7 +32,7 @@
             line-height: 1.6;
         }
 
-        /* PAGE MOT DE PASSE (VERROUILLAGE) */
+        /* PAGE MOT DE PASSE GENERAL */
         #auth_screen {
             position: fixed;
             top: 0;
@@ -44,6 +44,21 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
+        }
+
+        /* MODAL VERROUILLAGE BANQUE */
+        #bank_auth_modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 8888;
         }
 
         .auth-card {
@@ -255,8 +270,21 @@
             transition: 0.25s;
         }
 
-        .btn-link:hover {
-            opacity: 0.9;
+        .btn-add-money {
+            margin-top: 10px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-add-money:hover {
+            background: var(--accent-red);
         }
 
         /* GRID PREMIUM */
@@ -293,6 +321,37 @@
             display: flex;
             align-items: center;
             gap: 6px;
+        }
+
+        /* HABITUDES DU MATIN */
+        .habit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px;
+            border: 1px solid var(--border-soft);
+            border-radius: 12px;
+            background: #fffaf3;
+            margin-bottom: 12px;
+        }
+
+        .habit-item input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            accent-color: var(--accent);
+            cursor: pointer;
+            margin-top: 3px;
+        }
+
+        .habit-details h4 {
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+
+        .habit-details p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
         }
 
         /* ACCUEIL SPECIAUX */
@@ -556,7 +615,7 @@
 
 <body>
 
-<!-- ÉCRAN DE VERROUILLAGE -->
+<!-- ÉCRAN DE VERROUILLAGE GÉNÉRAL -->
 <div id="auth_screen">
     <div class="auth-card">
         <h2>🎄 Ma Vie En Une Appli</h2>
@@ -564,6 +623,17 @@
         <input type="password" id="password_input" placeholder="Mot de passe">
         <button id="btn_login">Déverrouiller</button>
         <div id="auth_error" class="auth-error">Mot de passe incorrect. Réessayez !</div>
+    </div>
+</div>
+
+<!-- MODAL VERROUILLAGE SPÉCIFIQUE BANQUE -->
+<div id="bank_auth_modal">
+    <div class="auth-card">
+        <h2>🔒 Sécurité Banque</h2>
+        <p>Entrez le code secret pour déverrouiller la partie Banque.</p>
+        <input type="password" id="bank_password_input" placeholder="Code Banque">
+        <button id="btn_bank_login">Accéder aux Finances</button>
+        <div id="bank_auth_error" class="auth-error">Code incorrect. Réessayez !</div>
     </div>
 </div>
 
@@ -588,8 +658,9 @@
     <!-- NAVIGATION -->
     <nav>
         <button data-section="accueil" class="active">Accueil</button>
+        <button data-section="habitudes">Habitudes du matin</button>
         <button data-section="etudes">Études</button>
-        <button data-section="banque">Banque</button>
+        <button data-section="banque">Banque 🔒</button>
         <button data-section="objectifs">Objectifs</button>
         <button data-section="parcours">Parcours</button>
         <button data-section="entrainement">Entraînement</button>
@@ -640,6 +711,62 @@
 
             <label for="priorite_3">3. Priorité N°3</label>
             <input id="priorite_3" class="field-input" type="text" placeholder="Ex: Préparer les cadeaux de Noël">
+        </div>
+    </section>
+
+    <!-- HABITUDES DU MATIN -->
+    <section id="habitudes" class="section">
+        <div class="card">
+            <div class="card-title"><span class="icon">☀️</span>Habitudes du matin — Validées par la Science</div>
+            <p style="margin-bottom: 20px;">Coche chaque habitude au fur et à mesure que tu la réalises le matin pour optimiser ton énergie et tes capacités cognitives.</p>
+
+            <div class="habit-item">
+                <input type="checkbox" id="habit_1">
+                <div class="habit-details">
+                    <h4>☀️ Exposition à la lumière naturelle (10-15 min)</h4>
+                    <p>Déclenche un pic naturel de cortisol bon pour l'énergie et stoppe la mélatonine.</p>
+                </div>
+            </div>
+
+            <div class="habit-item">
+                <input type="checkbox" id="habit_2">
+                <div class="habit-details">
+                    <h4>💧 Réhydratation immédiate (Grand verre d'eau)</h4>
+                    <p>Relance le métabolisme et la circulation sanguine après la nuit.</p>
+                </div>
+            </div>
+
+            <div class="habit-item">
+                <input type="checkbox" id="habit_3">
+                <div class="habit-details">
+                    <h4>☕ Retarder la caféine (60-90 min après réveil)</h4>
+                    <p>Évite le coup de fatigue violent en début d'après-midi.</p>
+                </div>
+            </div>
+
+            <div class="habit-item">
+                <input type="checkbox" id="habit_4">
+                <div class="habit-details">
+                    <h4>🧘 Mouvement ou Étirements (5-10 min)</h4>
+                    <p>Active le système nerveux, libère des endorphines et réveille les muscles.</p>
+                </div>
+            </div>
+
+            <div class="habit-item">
+                <input type="checkbox" id="habit_5">
+                <div class="habit-details">
+                    <h4>🚿 Douche fraîche ou variation de température</h4>
+                    <p>Stimule le système nerveux sympathique pour une vigilance maximale.</p>
+                </div>
+            </div>
+
+            <div class="habit-item">
+                <input type="checkbox" id="habit_6">
+                <div class="habit-details">
+                    <h4>🚫 0 écran pendant les 30 premières minutes</h4>
+                    <p>Préserve la clarté mentale et évite le stress précoce lié aux notifications.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -724,6 +851,7 @@
                     <h3>🏦 Épargne long terme</h3>
                     <label for="bank_epargne_actuel">Montant actuel (€)</label>
                     <input id="bank_epargne_actuel" class="field-input" type="number" step="1">
+                    <button class="btn-add-money" onclick="addMoney('bank_epargne_actuel', 25)">+ 25 €</button>
                     <label for="bank_epargne_obj">Objectif (€)</label>
                     <input id="bank_epargne_obj" class="field-input" type="number" step="1">
                     <div class="progress-bar-container"><div id="bar_epargne" class="progress-bar-fill"></div></div>
@@ -734,6 +862,7 @@
                     <h3>🎁 Plaisir</h3>
                     <label for="bank_plaisir_actuel">Montant actuel (€)</label>
                     <input id="bank_plaisir_actuel" class="field-input" type="number" step="1">
+                    <button class="btn-add-money" onclick="addMoney('bank_plaisir_actuel', 10)">+ 10 €</button>
                     <label for="bank_plaisir_obj">Objectif (€)</label>
                     <input id="bank_plaisir_obj" class="field-input" type="number" step="1">
                     <div class="progress-bar-container"><div id="bar_plaisir" class="progress-bar-fill"></div></div>
@@ -744,6 +873,7 @@
                     <h3>🚀 Projets et Études</h3>
                     <label for="bank_projets_actuel">Montant actuel (€)</label>
                     <input id="bank_projets_actuel" class="field-input" type="number" step="1">
+                    <button class="btn-add-money" onclick="addMoney('bank_projets_actuel', 10)">+ 10 €</button>
                     <label for="bank_projets_obj">Objectif (€)</label>
                     <input id="bank_projets_obj" class="field-input" type="number" step="1">
                     <div class="progress-bar-container"><div id="bar_projets" class="progress-bar-fill"></div></div>
@@ -754,12 +884,14 @@
                     <h3>💎 Solde Actuel</h3>
                     <label for="solde_actuel_global">Montant total global (€)</label>
                     <input id="solde_actuel_global" class="field-input" type="number" step="1" placeholder="0">
+                    <button class="btn-add-money" onclick="addMoney('solde_actuel_global', 50)">+ 50 €</button>
                 </div>
 
                 <div class="grid-card bank-card-submega">
                     <h3>✨ Argent Disponible</h3>
                     <label for="argent_disponible">Montant libre d'utilisation (€)</label>
                     <input id="argent_disponible" class="field-input" type="number" step="1" placeholder="0">
+                    <button class="btn-add-money" onclick="addMoney('argent_disponible', 5)">+ 5 €</button>
                 </div>
             </div>
         </div>
@@ -1001,49 +1133,94 @@
 </div>
 
 <script>
-    // MOT DE PASSE CONFIGURÉ SUR : "SuccessIsGaranted4Soon"
-    const correctPassword = "SuccessIsGaranted4Soon";
+    // MOTS DE PASSE
+    const correctPasswordGeneral = "SuccessIsGaranted4Soon";
+    const correctPasswordBank = "1234";
 
+    let bankUnlocked = false;
+    let pendingSection = null;
+
+    // AUTHENTIFICATION GÉNÉRALE
     const authScreen = document.getElementById("auth_screen");
     const mainApp = document.getElementById("main_app");
     const passInput = document.getElementById("password_input");
     const btnLogin = document.getElementById("btn_login");
     const authError = document.getElementById("auth_error");
 
-    function checkAuth() {
-        if (passInput.value === correctPassword) {
+    function checkAuthGeneral() {
+        if (passInput.value === correctPasswordGeneral) {
             authScreen.style.display = "none";
             mainApp.style.display = "block";
-            localStorage.setItem("authenticated", "true");
         } else {
             authError.style.display = "block";
         }
     }
 
-    btnLogin.addEventListener("click", checkAuth);
+    btnLogin.addEventListener("click", checkAuthGeneral);
     passInput.addEventListener("keyup", (e) => {
-        if (e.key === "Enter") checkAuth();
+        if (e.key === "Enter") checkAuthGeneral();
     });
 
-    if (localStorage.getItem("authenticated") === "true") {
-        authScreen.style.display = "none";
-        mainApp.style.display = "block";
+    // AUTHENTIFICATION BANQUE
+    const bankModal = document.getElementById("bank_auth_modal");
+    const bankPassInput = document.getElementById("bank_password_input");
+    const btnBankLogin = document.getElementById("btn_bank_login");
+    const bankAuthError = document.getElementById("bank_auth_error");
+
+    function checkAuthBank() {
+        if (bankPassInput.value === correctPasswordBank) {
+            bankUnlocked = true;
+            bankModal.style.display = "none";
+            switchTab(pendingSection);
+        } else {
+            bankAuthError.style.display = "block";
+        }
     }
 
-    // Navigation onglets
+    btnBankLogin.addEventListener("click", checkAuthBank);
+    bankPassInput.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") checkAuthBank();
+    });
+
+    // NAVIGATION ONGLETS
     const navButtons = document.querySelectorAll('nav button');
     const sections = document.querySelectorAll('.section');
+
+    function switchTab(target) {
+        navButtons.forEach(b => b.classList.remove('active'));
+        const targetBtn = document.querySelector(`nav button[data-section="${target}"]`);
+        if(targetBtn) targetBtn.classList.add('active');
+
+        sections.forEach(sec => sec.classList.toggle('active', sec.id === target));
+    }
 
     navButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const target = btn.dataset.section;
-            navButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            sections.forEach(sec => sec.classList.toggle('active', sec.id === target));
+
+            if (target === "banque" && !bankUnlocked) {
+                pendingSection = target;
+                bankModal.style.display = "flex";
+                bankPassInput.focus();
+                return;
+            }
+
+            switchTab(target);
         });
     });
 
-    // Emplois du temps
+    // FONCTION D'AJOUT RAPIDE D'ARGENT
+    function addMoney(inputId, amount) {
+        const input = document.getElementById(inputId);
+        if(!input) return;
+        let current = parseFloat(input.value) || 0;
+        input.value = current + amount;
+        
+        // Déclencher la sauvegarde
+        input.dispatchEvent(new Event('input'));
+    }
+
+    // Données des semaines A et B
     const edtData = {
         A: [
             { time: "08h05 - 09h00", lun: '<div class="edt-matiere">SC. NUMERIQ. TECHNOL.</div><div class="edt-salle">FAURE S.</div>', mar: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L., A 309</div>', mer: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '-', ven: '<div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S., B 210</div>', lunC: 'mat-snt', marC: 'mat-maths', merC: 'mat-ang', jeuC: '', venC: 'mat-hg' },
@@ -1224,6 +1401,8 @@
         "train_dimanche","note_dimanche"
     ];
 
+    const habitIds = ["habit_1", "habit_2", "habit_3", "habit_4", "habit_5", "habit_6"];
+
     function load(id) {
         const el = document.getElementById(id);
         if (!el) return;
@@ -1245,9 +1424,21 @@
         });
     }
 
+    function loadHabit(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const v = localStorage.getItem("mv_" + id);
+        if (v !== null) el.checked = (v === "true");
+
+        el.addEventListener("change", () => {
+            localStorage.setItem("mv_" + id, el.checked);
+        });
+    }
+
     window.addEventListener("DOMContentLoaded", () => {
         renderEdt();
         ids.forEach(load);
+        habitIds.forEach(loadHabit);
 
         updatePercentProgress('bank_epargne_actuel', 'bank_epargne_obj', 'bar_epargne', 'text_epargne');
         updatePercentProgress('bank_plaisir_actuel', 'bank_plaisir_obj', 'bar_plaisir', 'text_plaisir');
