@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Ma Vie En Une Appli - Sacha (Noël)</title>
+    <title>Ma Vie En Une Appli - Monsieur Rojas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -142,7 +142,7 @@
 
         .brand h1 {
             font-family: var(--font-main);
-            font-size: 2.6rem;
+            font-size: 2.4rem;
             letter-spacing: 0.08em;
             text-transform: uppercase;
             color: var(--accent);
@@ -324,15 +324,28 @@
         }
 
         /* HABITUDES DU MATIN */
+        #habitudes_container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
         .habit-item {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
+            justify-content: space-between;
             gap: 14px;
-            padding: 14px;
+            padding: 14px 18px;
             border: 1px solid var(--border-soft);
             border-radius: 12px;
             background: #fffaf3;
-            margin-bottom: 12px;
+        }
+
+        .habit-left {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
         }
 
         .habit-item input[type="checkbox"] {
@@ -352,6 +365,18 @@
         .habit-details p {
             font-size: 0.85rem;
             color: var(--text-muted);
+        }
+
+        .habit-time-input {
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-soft);
+            background: #fff;
+            font-size: 0.95rem;
+            font-family: var(--font-alt);
+            color: var(--accent);
+            font-weight: bold;
+            cursor: pointer;
         }
 
         /* ACCUEIL */
@@ -618,7 +643,7 @@
 <!-- AUTH GÉNÉRALE -->
 <div id="auth_screen">
     <div class="auth-card">
-        <h2>🎄 Ma Vie En Une Appli</h2>
+        <h2>🎄 Bon retour Monsieur Rojas</h2>
         <p>Entrez le mot de passe pour accéder à votre espace personnalisé.</p>
         <input type="password" id="password_input" placeholder="Mot de passe">
         <button id="btn_login">Déverrouiller</button>
@@ -646,10 +671,10 @@
     <header>
         <div class="brand">
             <h1>Ma Vie En Une Appli</h1>
-            <p>Version Sacha — Spéciale Noël 🎄</p>
+            <p>Bon retour Monsieur Rojas 🎄</p>
         </div>
         <div class="user-tag">
-            <span>Sacha (S11)</span><br>
+            <span>Monsieur Rojas (S11)</span><br>
             <span>Life tracker — édition Noël</span>
         </div>
         <div class="xmas-deco-header">🎄✨🎅✨🎄</div>
@@ -670,7 +695,7 @@
     <section id="accueil" class="section active">
         <div class="card">
             <div class="card-title"><span class="icon">🎄</span>Tableau de bord de Noël</div>
-            <p>Bienvenue Sacha ! Voici ton quartier général : tes finances, tes études, tes objectifs de vie et tes entraînements en un coup d'œil.</p>
+            <p>Bon retour Monsieur Rojas ! Voici votre quartier général : vos finances, vos études, vos objectifs de vie et vos entraînements en un coup d'œil.</p>
         </div>
 
         <div class="quote-box">
@@ -718,54 +743,10 @@
     <section id="habitudes" class="section">
         <div class="card">
             <div class="card-title"><span class="icon">☀️</span>Habitudes du matin — Validées par la Science</div>
-            <p style="margin-bottom: 20px;">Coche chaque habitude au fur et à mesure que tu la réalises le matin pour optimiser ton énergie et tes capacités cognitives.</p>
+            <p style="margin-bottom: 20px;">Sélectionne l'heure de chaque habitude. La liste se réorganise automatiquement de la plus matinale à la plus tardive !</p>
 
-            <div class="habit-item">
-                <input type="checkbox" id="habit_1">
-                <div class="habit-details">
-                    <h4>☀️ Exposition à la lumière naturelle (10-15 min)</h4>
-                    <p>Déclenche un pic naturel de cortisol bon pour l'énergie et stoppe la mélatonine.</p>
-                </div>
-            </div>
-
-            <div class="habit-item">
-                <input type="checkbox" id="habit_2">
-                <div class="habit-details">
-                    <h4>💧 Réhydratation immédiate (Grand verre d'eau)</h4>
-                    <p>Relance le métabolisme et la circulation sanguine après la nuit.</p>
-                </div>
-            </div>
-
-            <div class="habit-item">
-                <input type="checkbox" id="habit_3">
-                <div class="habit-details">
-                    <h4>☕ Retarder la caféine (60-90 min après réveil)</h4>
-                    <p>Évite le coup de fatigue violent en début d'après-midi.</p>
-                </div>
-            </div>
-
-            <div class="habit-item">
-                <input type="checkbox" id="habit_4">
-                <div class="habit-details">
-                    <h4>🧘 Mouvement ou Étirements (5-10 min)</h4>
-                    <p>Active le système nerveux, libère des endorphines et réveille les muscles.</p>
-                </div>
-            </div>
-
-            <div class="habit-item">
-                <input type="checkbox" id="habit_5">
-                <div class="habit-details">
-                    <h4>🚿 Douche fraîche ou variation de température</h4>
-                    <p>Stimule le système nerveux sympathique pour une vigilance maximale.</p>
-                </div>
-            </div>
-
-            <div class="habit-item">
-                <input type="checkbox" id="habit_6">
-                <div class="habit-details">
-                    <h4>🚫 0 écran pendant les 30 premières minutes</h4>
-                    <p>Préserve la clarté mentale et évite le stress précoce lié aux notifications.</p>
-                </div>
+            <div id="habitudes_container">
+                <!-- Les éléments seront injectés et triés dynamiquement ici -->
             </div>
         </div>
     </section>
@@ -1127,13 +1108,12 @@
 
     <!-- FOOTER -->
     <footer>
-        <span>Ma Vie En Une Appli — Sacha — Édition Noël 🎄</span>
+        <span>Ma Vie En Une Appli — Monsieur Rojas — Édition Noël 🎄</span>
         <span>Rennes, sapins, guirlandes, Papa Noël — et ta vie entière structurée.</span>
     </footer>
 </div>
 
 <script>
-    // MOT DE PASSE UNIQUE
     const correctPassword = "SuccessIsGaranted4Soon";
 
     let bankUnlocked = false;
@@ -1215,6 +1195,66 @@
         let current = parseFloat(input.value) || 0;
         input.value = current + amount;
         input.dispatchEvent(new Event('input'));
+    }
+
+    // HABITUDES DU MATIN (AVEC TRI AUTOMATIQUE PAR HEURE)
+    const habitsData = [
+        { id: "habit_1", title: "☀️ Exposition à la lumière naturelle (10-15 min)", desc: "Déclenche un pic naturel de cortisol bon pour l'énergie et stoppe la mélatonine." },
+        { id: "habit_2", title: "💧 Réhydratation immédiate (Grand verre d'eau)", desc: "Relance le métabolisme et la circulation sanguine après la nuit." },
+        { id: "habit_3", title: "☕ Retarder la caféine (60-90 min après réveil)", desc: "Évite le coup de fatigue violent en début d'après-midi." },
+        { id: "habit_4", title: "🧘 Mouvement ou Étirements (5-10 min)", desc: "Active le système nerveux, libère des endorphines et réveille les muscles." },
+        { id: "habit_5", title: "🚿 Douche fraîche ou variation de température", desc: "Stimule le système nerveux sympathique pour une vigilance maximale." },
+        { id: "habit_6", title: "🚫 0 écran pendant les 30 premières minutes", desc: "Préserve la clarté mentale et évite le stress précoce lié aux notifications." },
+        { id: "habit_7", title: "🥐 Déjeuner", desc: "Prendre un bon repas pour alimenter le corps et l'esprit." },
+        { id: "habit_8", title: "👔 S'habiller", desc: "Mettre sa tenue pour être prêt et engagé dans la journée." },
+        { id: "habit_9", title: "🚀 Partir", desc: "Quitter la maison pour attaquer la journée de pied ferme." }
+    ];
+
+    function renderHabits() {
+        const container = document.getElementById("habitudes_container");
+        if(!container) return;
+
+        // Récupérer les valeurs enregistrées et associer les heures
+        const habitsWithTime = habitsData.map(h => {
+            const timeVal = localStorage.getItem("mv_time_" + h.id) || "23:59"; // par défaut en fin de liste si non défini
+            const checkedVal = localStorage.getItem("mv_" + h.id) === "true";
+            return { ...h, timeVal, checkedVal };
+        });
+
+        // Trier du plus tôt au plus tard
+        habitsWithTime.sort((a, b) => a.timeVal.localeCompare(b.timeVal));
+
+        container.innerHTML = "";
+        habitsWithTime.forEach(h => {
+            const item = document.createElement("div");
+            item.className = "habit-item";
+            item.innerHTML = `
+                <div class="habit-left">
+                    <input type="checkbox" id="${h.id}" ${h.checkedVal ? "checked" : ""}>
+                    <div class="habit-details">
+                        <h4>${h.title}</h4>
+                        <p>${h.desc}</p>
+                    </div>
+                </div>
+                <input type="time" class="habit-time-input" id="time_${h.id}" value="${h.timeVal === "23:59" ? "" : h.timeVal}">
+            `;
+            container.appendChild(item);
+        });
+
+        // Ré-attacher les écouteurs d'événements
+        habitsWithTime.forEach(h => {
+            const chk = document.getElementById(h.id);
+            const timeIn = document.getElementById("time_" + h.id);
+
+            chk.addEventListener("change", () => {
+                localStorage.setItem("mv_" + h.id, chk.checked);
+            });
+
+            timeIn.addEventListener("input", () => {
+                localStorage.setItem("mv_time_" + h.id, timeIn.value || "23:59");
+                renderHabits(); // Re-trie et ré-affiche instantanément
+            });
+        });
     }
 
     // EMPLOIS DU TEMPS
@@ -1397,8 +1437,6 @@
         "train_dimanche","note_dimanche"
     ];
 
-    const habitIds = ["habit_1", "habit_2", "habit_3", "habit_4", "habit_5", "habit_6"];
-
     function load(id) {
         const el = document.getElementById(id);
         if (!el) return;
@@ -1420,21 +1458,10 @@
         });
     }
 
-    function loadHabit(id) {
-        const el = document.getElementById(id);
-        if (!el) return;
-        const v = localStorage.getItem("mv_" + id);
-        if (v !== null) el.checked = (v === "true");
-
-        el.addEventListener("change", () => {
-            localStorage.setItem("mv_" + id, el.checked);
-        });
-    }
-
     window.addEventListener("DOMContentLoaded", () => {
         renderEdt();
+        renderHabits();
         ids.forEach(load);
-        habitIds.forEach(loadHabit);
 
         updatePercentProgress('bank_epargne_actuel', 'bank_epargne_obj', 'bar_epargne', 'text_epargne');
         updatePercentProgress('bank_plaisir_actuel', 'bank_plaisir_obj', 'bar_plaisir', 'text_plaisir');
