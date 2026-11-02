@@ -1133,9 +1133,8 @@
 </div>
 
 <script>
-    // MOTS DE PASSE
-    const correctPasswordGeneral = "SuccessIsGaranted4Soon";
-    const correctPasswordBank = "1234";
+    // MOT DE PASSE UNIQUE
+    const correctPassword = "SuccessIsGaranted4Soon";
 
     let bankUnlocked = false;
 
@@ -1147,7 +1146,7 @@
     const authError = document.getElementById("auth_error");
 
     function checkAuthGeneral() {
-        if (passInput.value === correctPasswordGeneral) {
+        if (passInput.value === correctPassword) {
             authScreen.style.display = "none";
             mainApp.style.display = "block";
         } else {
@@ -1167,7 +1166,7 @@
     const bankAuthError = document.getElementById("bank_auth_error");
 
     function checkAuthBank() {
-        if (bankPassInput.value === correctPasswordBank) {
+        if (bankPassInput.value === correctPassword) {
             bankUnlocked = true;
             bankModal.style.display = "none";
             bankPassInput.value = "";
