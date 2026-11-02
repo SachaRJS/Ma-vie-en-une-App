@@ -1096,7 +1096,7 @@
         input.dispatchEvent(new Event('input'));
     }
 
-    // LISTE DES HABITUDES ET TÂCHES DU MATIN AVEC TES HEURES PRÉ-REMPLIES
+    // LISTE DES HABITUDES DU MATIN (AVEC TES HEURES EXACTES)
     const habitsData = [
         { id: "habit_reveil", title: "⏰ Réveil", desc: "Début de la journée.", defaultTime: "06:00" },
         { id: "habit_douche", title: "🚿 Douche", desc: "Douche fraîche ou tiède.", defaultTime: "06:05" },
@@ -1155,27 +1155,45 @@
         });
     }
 
-    // EMPLOI DU TEMPS
+    // EMPLOIS DU TEMPS (MIS À JOUR D'APRÈS TES CAPTURES D'ÉCRAN)
+    // 1 = Semaine B | 2 = Semaine A
     const edtData = {
-        A: [
-            { time: "08h05 - 09h00", lun: '<div class="edt-matiere">SNT</div>', mar: '<div class="edt-matiere">MATHS</div>', mer: '<div class="edt-matiere">ANGLAIS</div>', jeu: '-', ven: '<div class="edt-matiere">HG</div>', lunC: 'mat-snt', marC: 'mat-maths', merC: 'mat-ang', jeuC: '', venC: 'mat-hg' },
-            { time: "09h00 - 10h15", lun: '<div class="edt-matiere">HG</div>', mar: '<div class="edt-matiere">MATHS</div>', mer: '<div class="edt-matiere">ANGLAIS</div>', jeu: '<div class="edt-matiere">PC</div>', ven: '<div class="edt-matiere">HG</div>', lunC: 'mat-hg', marC: 'mat-maths', merC: 'mat-ang', jeuC: 'mat-pc', venC: 'mat-hg' }
+        "A (Semaine 2)": [
+            { time: "08h05 - 09h00", lun: '<div class="edt-matiere">SNT</div><div class="edt-salle">FAURE S.</div>', mar: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', mer: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '-', ven: '<div class="edt-matiere">HISTOIRE-GÉOGRAPHIE</div><div class="edt-salle">CLAVÉ S.</div>', lunC: 'mat-snt', marC: 'mat-maths', merC: 'mat-ang', jeuC: '', venC: 'mat-hg' },
+            { time: "09h00 - 10h15", lun: '<div class="edt-matiere">HISTOIRE-GÉOGRAPHIE</div><div class="edt-salle">CLAVÉ S.</div>', mar: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', mer: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S.</div>', ven: '<div class="edt-matiere">HISTOIRE-GÉOGRAPHIE</div><div class="edt-salle">CLAVÉ S.</div>', lunC: 'mat-hg', marC: 'mat-maths', merC: 'mat-ang', jeuC: 'mat-pc', venC: 'mat-hg' },
+            { time: "10h15 - 11h15", lun: '<div class="edt-matiere">EPS</div><div class="edt-salle">BAUDRY A.</div>', mar: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S.</div>', mer: '<div class="edt-matiere">FRANÇAIS</div><div class="edt-salle">POYOL N.</div>', jeu: '<div class="edt-matiere">SVT</div><div class="edt-salle">FERRE-AOUSTIN C.</div>', ven: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', lunC: 'mat-eps', marC: 'mat-pc', merC: 'mat-fr', jeuC: 'mat-svt', venC: 'mat-maths' },
+            { time: "11h30 - 12h10", lun: '<div class="edt-matiere">EPS</div><div class="edt-salle">BAUDRY A.</div>', mar: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', mer: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', jeu: '<div class="edt-matiere">SVT</div><div class="edt-salle">FERRE-AOUSTIN C.</div>', ven: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', lunC: 'mat-eps', marC: 'mat-esp', merC: 'mat-maths', jeuC: 'mat-svt', venC: 'mat-esp' },
+            { time: "13h00 - 14h00", lun: '-', mar: '<div class="edt-matiere">HISTOIRE-GÉOGRAPHIE</div><div class="edt-salle">CLAVÉ S.</div>', mer: '-', jeu: '-', ven: '-', lunC: '', marC: 'mat-hg', merC: '', jeuC: '', venC: '' },
+            { time: "14h00 - 15h00", lun: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', mar: '<div class="edt-matiere">SES</div><div class="edt-salle">DELATTRE M.</div>', mer: '-', jeu: '<div class="edt-matiere">FRANÇAIS</div><div class="edt-salle">POYOL N.</div>', ven: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', lunC: 'mat-ang', marC: 'mat-ses', merC: '', jeuC: 'mat-fr', venC: 'mat-ang' },
+            { time: "15h05 - 16h05", lun: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', mar: '<div class="edt-matiere">SES</div><div class="edt-salle">DELATTRE M.</div>', mer: '-', jeu: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', ven: '<div class="edt-matiere">FRANÇAIS</div><div class="edt-salle">POYOL N.</div>', lunC: 'mat-esp', marC: 'mat-ses', merC: '', jeuC: 'mat-maths', venC: 'mat-fr' },
+            { time: "16h05 - 17h05", lun: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', mar: '<div class="edt-matiere">FRANÇAIS</div><div class="edt-salle">POYOL N.</div>', mer: '-', jeu: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', ven: '<div class="edt-matiere">FRANÇAIS</div><div class="edt-salle">POYOL N.</div>', lunC: 'mat-ang', marC: 'mat-fr', merC: '', jeuC: 'mat-ang', venC: 'mat-fr' }
         ],
-        B: [
-            { time: "08h05 - 09h00", lun: '<div class="edt-matiere">SNT</div>', mar: '<div class="edt-matiere">MATHS</div>', mer: '<div class="edt-matiere">ANGLAIS</div>', jeu: '-', ven: '<div class="edt-matiere">HG</div>', lunC: 'mat-snt', marC: 'mat-maths', merC: 'mat-ang', jeuC: '', venC: 'mat-hg' }
+        "B (Semaine 1)": [
+            { time: "08h05 - 09h00", lun: '<div class="edt-matiere">SNT</div><div class="edt-salle">FAURE S.</div>', mar: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', mer: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '-', ven: '<div class="edt-matiere">HISTOIRE-GÉOGRAPHIE</div><div class="edt-salle">CLAVÉ S.</div>', lunC: 'mat-snt', marC: 'mat-maths', merC: 'mat-ang', jeuC: '', venC: 'mat-hg' },
+            { time: "09h00 - 10h15", lun: '<div class="edt-matiere">HISTOIRE-GÉOGRAPHIE</div><div class="edt-salle">CLAVÉ S.</div>', mar: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', mer: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S.</div>', ven: '<div class="edt-matiere">HISTOIRE-GÉOGRAPHIE</div><div class="edt-salle">CLAVÉ S.</div>', lunC: 'mat-hg', marC: 'mat-maths', merC: 'mat-ang', jeuC: 'mat-pc', venC: 'mat-hg' },
+            { time: "10h15 - 11h15", lun: '<div class="edt-matiere">EPS</div><div class="edt-salle">BAUDRY A.</div>', mar: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S.</div>', mer: '-', jeu: '<div class="edt-matiere">SVT</div><div class="edt-salle">FERRE-AOUSTIN C.</div>', ven: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', lunC: 'mat-eps', marC: 'mat-pc', merC: '', jeuC: 'mat-svt', venC: 'mat-maths' },
+            { time: "11h30 - 12h10", lun: '<div class="edt-matiere">EPS</div><div class="edt-salle">BAUDRY A.</div>', mar: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', mer: '<div class="edt-matiere">SNT</div><div class="edt-salle">FAURE S.</div>', jeu: '<div class="edt-matiere">SVT</div><div class="edt-salle">FERRE-AOUSTIN C.</div>', ven: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', lunC: 'mat-eps', marC: 'mat-esp', merC: 'mat-snt', jeuC: 'mat-svt', venC: 'mat-esp' },
+            { time: "12h10 - 13h00", lun: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S.</div>', mar: '-', mer: '-', jeu: '-', ven: '-', lunC: 'mat-pc', marC: '', merC: '', jeuC: '', venC: '' },
+            { time: "13h00 - 14h00", lun: '-', mar: '<div class="edt-matiere">HISTOIRE-GÉOGRAPHIE</div><div class="edt-salle">CLAVÉ S.</div>', mer: '-', jeu: '-', ven: '-', lunC: '', marC: 'mat-hg', merC: '', jeuC: '', venC: '' },
+            { time: "14h00 - 15h00", lun: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', mar: '<div class="edt-matiere">SES</div><div class="edt-salle">DELATTRE M.</div>', mer: '-', jeu: '<div class="edt-matiere">FRANÇAIS</div><div class="edt-salle">POYOL N.</div>', ven: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', lunC: 'mat-ang', marC: 'mat-ses', merC: '', jeuC: 'mat-fr', venC: 'mat-ang' },
+            { time: "15h05 - 16h05", lun: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', mar: '<div class="edt-matiere">EMC</div><div class="edt-salle">DELATTRE M.</div>', mer: '-', jeu: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', ven: '<div class="edt-matiere">FRANÇAIS</div><div class="edt-salle">POYOL N.</div>', lunC: 'mat-ang', marC: 'mat-emc', merC: '', jeuC: 'mat-maths', venC: 'mat-fr' },
+            { time: "16h05 - 17h05", lun: '-', mar: '<div class="edt-matiere">FRANÇAIS</div><div class="edt-salle">POYOL N.</div>', mer: '-', jeu: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', ven: '<div class="edt-matiere">FRANÇAIS</div><div class="edt-salle">POYOL N.</div>', lunC: '', marC: 'mat-fr', merC: '', jeuC: 'mat-ang', venC: 'mat-fr' }
         ]
     };
 
-    let currentWeek = "A";
+    let weekKeys = Object.keys(edtData);
+    let currentWeekIndex = 0;
 
     function renderEdt() {
         const body = document.getElementById("edt_body");
         const title = document.getElementById("week_title");
         if(!body || !title) return;
-        title.textContent = "Semaine " + currentWeek;
+        
+        let currentKey = weekKeys[currentWeekIndex];
+        title.textContent = currentKey;
         body.innerHTML = "";
 
-        (edtData[currentWeek] || []).forEach(row => {
+        (edtData[currentKey] || []).forEach(row => {
             const tr = document.createElement("tr");
             tr.innerHTML = `
                 <td class="heure-col">${row.time}</td>
@@ -1190,12 +1208,12 @@
     }
 
     document.getElementById("btn_prev_week").addEventListener("click", () => {
-        currentWeek = currentWeek === "A" ? "B" : "A";
+        currentWeekIndex = (currentWeekIndex - 1 + weekKeys.length) % weekKeys.length;
         renderEdt();
     });
 
     document.getElementById("btn_next_week").addEventListener("click", () => {
-        currentWeek = currentWeek === "A" ? "B" : "A";
+        currentWeekIndex = (currentWeekIndex + 1) % weekKeys.length;
         renderEdt();
     });
 
