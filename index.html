@@ -7,13 +7,13 @@
 
     <style>
         :root {
-            --bg-main: #fdf7f2;
-            --bg-card: #ffffff;
+            --bg-main: rgba(253, 247, 242, 0.92);
+            --bg-card: rgba(255, 255, 255, 0.95);
             --accent: #165b33;      /* vert sapin */
             --accent-red: #bb2528;  /* rouge Noël */
             --accent-gold: #e0a106; /* doré */
             --text-main: #222;
-            --text-muted: #666;
+            --text-muted: #555;
             --border-soft: #e3d7c8;
             --font-main: "Georgia", serif;
             --font-alt: "Inter", "Helvetica Neue", Arial, sans-serif;
@@ -26,10 +26,14 @@
         }
 
         body {
-            background: radial-gradient(circle at top, #ffe9e0 0, #fdf7f2 40%, #fdf7f2 100%);
+            /* Fond chalet de Noël en arrière-plan avec un voile sombre/chaleureux pour la lisibilité */
+            background: linear-gradient(rgba(10, 25, 15, 0.65), rgba(20, 10, 10, 0.75)), 
+                        url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2000&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
             color: var(--text-main);
             font-family: var(--font-alt);
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         /* VERROUILLAGE GENERAL */
@@ -39,7 +43,9 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: radial-gradient(circle at top, #ffe9e0 0, #fdf7f2 40%, #fdf7f2 100%);
+            background: linear-gradient(rgba(10, 25, 15, 0.75), rgba(20, 10, 10, 0.85)), 
+                        url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -53,7 +59,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.6);
             backdrop-filter: blur(5px);
             display: none;
             justify-content: center;
@@ -62,14 +68,14 @@
         }
 
         .auth-card {
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.95);
             border: 2px solid var(--border-soft);
             border-radius: 20px;
             padding: 40px 30px;
             max-width: 420px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
         }
 
         .auth-card h2 {
@@ -136,7 +142,7 @@
             justify-content: space-between;
             align-items: center;
             padding-bottom: 25px;
-            border-bottom: 1px solid var(--border-soft);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
             position: relative;
         }
 
@@ -145,19 +151,24 @@
             font-size: 2.4rem;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: var(--accent);
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         .brand p {
             font-size: 1rem;
-            color: var(--text-muted);
+            color: #f0f0f0;
             margin-top: 4px;
         }
 
         .user-tag {
             text-align: right;
             font-size: 0.9rem;
-            color: var(--text-muted);
+            color: #f0f0f0;
+            background: rgba(0,0,0,0.4);
+            padding: 8px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .xmas-deco-header {
@@ -179,20 +190,22 @@
         nav button {
             padding: 10px 18px;
             border-radius: 999px;
-            border: 1px solid var(--border-soft);
-            background: #fff;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.9);
             color: var(--accent);
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.12em;
             cursor: pointer;
             transition: 0.25s;
+            font-weight: bold;
         }
 
         nav button:hover,
         nav button.active {
             background: linear-gradient(135deg, var(--accent), var(--accent-red));
             color: #fff;
+            border-color: transparent;
         }
 
         /* SECTIONS */
@@ -205,7 +218,7 @@
             border-radius: 18px;
             border: 1px solid var(--border-soft);
             padding: 26px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
             margin-bottom: 28px;
             position: relative;
         }
@@ -300,7 +313,7 @@
             border: 1px solid var(--border-soft);
             border-radius: 16px;
             padding: 18px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             position: relative;
         }
 
@@ -413,6 +426,7 @@
             border-radius: 14px;
             font-weight: bold;
             font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         /* EMPLOI DU TEMPS */
@@ -581,7 +595,7 @@
             border-radius: 16px;
             border: 1px solid var(--border-soft);
             padding: 16px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             position: relative;
         }
 
@@ -607,27 +621,13 @@
         footer {
             margin-top: 40px;
             padding-top: 20px;
-            border-top: 1px solid var(--border-soft);
+            border-top: 1px solid rgba(255,255,255,0.2);
             font-size: 0.85rem;
-            color: var(--text-muted);
+            color: #f0f0f0;
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-        }
-
-        .xmas-bg-top {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            font-size: 1.6rem;
-            opacity: 0.6;
-        }
-        .xmas-bg-bottom {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            font-size: 1.6rem;
-            opacity: 0.6;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
     </style>
 </head>
@@ -656,9 +656,6 @@
     </div>
 </div>
 
-<div class="xmas-bg-top">🦌🎄</div>
-<div class="xmas-bg-bottom">🎅✨</div>
-
 <div class="page" id="main_app">
 
     <!-- HEADER -->
@@ -669,7 +666,7 @@
         </div>
         <div class="user-tag">
             <span>Monsieur Rojas (S11)</span><br>
-            <span>Life tracker — édition Noël</span>
+            <span>Life tracker — Édition Chalet de Noël</span>
         </div>
         <div class="xmas-deco-header">🎄✨🎅✨🎄</div>
     </header>
@@ -688,7 +685,7 @@
     <!-- ACCUEIL -->
     <section id="accueil" class="section active">
         <div class="card">
-            <div class="card-title"><span class="icon">🎄</span>Tableau de bord de Noël</div>
+            <div class="card-title"><span class="icon">🎄</span>Tableau de bord du Chalet</div>
             <p>Bon retour Monsieur Rojas ! Voici votre quartier général : vos finances, vos études, vos objectifs de vie et vos entraînements en un coup d'œil.</p>
         </div>
 
@@ -700,7 +697,7 @@
             🎁 Plus que <span id="xmas_countdown">--</span> jours avant Noël ! 🎅
         </div>
 
-        <h3 style="font-family: var(--font-main); color: var(--accent); margin-bottom: 12px;">📊 En un coup d'œil</h3>
+        <h3 style="font-family: var(--font-main); color: #fff; margin-bottom: 12px; text-shadow: 0 1px 3px rgba(0,0,0,0.5);">📊 En un coup d'œil</h3>
         <div class="grid-premium" style="margin-top: 0; margin-bottom: 28px;">
             <div class="summary-widget">
                 <div style="font-size: 0.85rem; color: var(--text-muted);">💎 Solde Actuel</div>
@@ -1010,7 +1007,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <span>Ma Vie En Une Appli — Monsieur Rojas — Édition Noël 🎄</span>
+        <span>Ma Vie En Une Appli — Monsieur Rojas — Édition Chalet de Noël 🎄</span>
         <span>Structuration et organisation quotidienne.</span>
     </footer>
 </div>
@@ -1155,7 +1152,7 @@
         });
     }
 
-    // EMPLOIS DU TEMPS (MIS À JOUR D'APRÈS TES CAPTURES D'ÉCRAN)
+    // EMPLOIS DU TEMPS
     const edtData = {
         "A (Semaine 2)": [
             { time: "08h05 - 09h00", lun: '<div class="edt-matiere">SNT</div><div class="edt-salle">FAURE S.</div>', mar: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', mer: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '-', ven: '<div class="edt-matiere">HISTOIRE-GÉOGRAPHIE</div><div class="edt-salle">CLAVÉ S.</div>', lunC: 'mat-snt', marC: 'mat-maths', merC: 'mat-ang', jeuC: '', venC: 'mat-hg' },
