@@ -746,7 +746,7 @@
             <p style="margin-bottom: 20px;">Sélectionne l'heure de chaque habitude. La liste se réorganise automatiquement de la plus matinale à la plus tardive !</p>
 
             <div id="habitudes_container">
-                <!-- Les éléments seront injectés et triés dynamiquement ici -->
+                <!-- Généré dynamiquement -->
             </div>
         </div>
     </section>
@@ -935,128 +935,36 @@
     <section id="parcours" class="section">
         <div class="card">
             <div class="card-title"><span class="icon">🎅</span>Parcours de vie — de la maternelle à la médecine</div>
-            <p>Chaque bloc représente une étape de ta vie scolaire, de la maternelle jusqu'à la fin des études de médecine. Tu peux écrire ce qui t’a marqué chaque année.</p>
+            <p>Chaque bloc représente une étape de ta vie scolaire. Tu peux écrire ce qui t’a marqué chaque année.</p>
 
             <div class="parcours-grid">
-                <div class="parcours-card">
-                    <div class="parcours-title">Maternelle — Petite Section 🧸</div>
-                    <div class="parcours-sub">Premiers pas à l'école, découvertes, jeux, premiers amis.</div>
-                    <textarea id="parcours_ps" class="field-input" rows="4"></textarea>
-                </div>
-                <div class="parcours-card">
-                    <div class="parcours-title">Maternelle — Moyenne Section 🧸</div>
-                    <div class="parcours-sub">Début des activités un peu plus structurées, dessins, comptines.</div>
-                    <textarea id="parcours_ms" class="field-input" rows="4"></textarea>
-                </div>
-                <div class="parcours-card">
-                    <div class="parcours-title">Maternelle — Grande Section 🧸</div>
-                    <div class="parcours-sub">Préparation au primaire, premiers souvenirs marquants.</div>
-                    <textarea id="parcours_gs" class="field-input" rows="4"></textarea>
-                </div>
+                <div class="parcours-card"><div class="parcours-title">Maternelle — Petite Section 🧸</div><textarea id="parcours_ps" class="field-input" rows="4"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Maternelle — Moyenne Section 🧸</div><textarea id="parcours_ms" class="field-input" rows="4"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Maternelle — Grande Section 🧸</div><textarea id="parcours_gs" class="field-input" rows="4"></textarea></div>
 
-                <div class="parcours-card">
-                    <div class="parcours-title">Primaire — CP ✏️</div>
-                    <div class="parcours-sub">Apprentissage de la lecture, de l’écriture, des bases.</div>
-                    <textarea id="parcours_cp" class="field-input" rows="4"></textarea>
-                </div>
-                <div class="parcours-card">
-                    <div class="parcours-title">Primaire — CE1 ✏️</div>
-                    <div class="parcours-sub">Progression en lecture, premières petites responsabilités.</div>
-                    <textarea id="parcours_ce1" class="field-input" rows="4"></textarea>
-                </div>
-                <div class="parcours-card">
-                    <div class="parcours-title">Primaire — CE2 ✏️</div>
-                    <div class="parcours-sub">Plus de confiance, plus de connaissances.</div>
-                    <textarea id="parcours_ce2" class="field-input" rows="4"></textarea>
-                </div>
-                <div class="parcours-card">
-                    <div class="parcours-title">Primaire — CM1 ✏️</div>
-                    <div class="parcours-sub">Début de la maturité scolaire, projets, exposés.</div>
-                    <textarea id="parcours_cm1" class="field-input" rows="4"></textarea>
-                </div>
-                <div class="parcours-card">
-                    <div class="parcours-title">Primaire — CM2 ✏️</div>
-                    <div class="parcours-sub">Dernière année de primaire, préparation au collège.</div>
-                    <textarea id="parcours_cm2" class="field-input" rows="4"></textarea>
-                </div>
+                <div class="parcours-card"><div class="parcours-title">Primaire — CP ✏️</div><textarea id="parcours_cp" class="field-input" rows="4"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Primaire — CE1 ✏️</div><textarea id="parcours_ce1" class="field-input" rows="4"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Primaire — CE2 ✏️</div><textarea id="parcours_ce2" class="field-input" rows="4"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Primaire — CM1 ✏️</div><textarea id="parcours_cm1" class="field-input" rows="4"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Primaire — CM2 ✏️</div><textarea id="parcours_cm2" class="field-input" rows="4"></textarea></div>
 
-                <div class="parcours-card">
-                    <div class="parcours-title">Collège — 6e 🎒</div>
-                    <div class="parcours-sub">Entrée au collège, nouvelle ambiance, nouveaux profs.</div>
-                    <textarea id="parcours_6e" class="field-input" rows="4"></textarea>
-                </div>
-                <div class="parcours-card">
-                    <div class="parcours-title">Collège — 5e 🎒</div>
-                    <div class="parcours-sub">Tu prends tes repères, tu te construis.</div>
-                    <textarea id="parcours_5e" class="field-input" rows="4"></textarea>
-                </div>
-                <div class="parcours-card">
-                    <div class="parcours-title">Collège — 4e 🎒</div>
-                    <div class="parcours-sub">Année charnière, plus de travail, plus de réflexion.</div>
-                    <textarea id="parcours_4e" class="field-input" rows="4"></textarea>
-                </div>
-                <div class="parcours-card">
-                    <div class="parcours-title">Collège — 3e 🎒</div>
-                    <div class="parcours-sub">Brevet, orientation, premières décisions importantes.</div>
-                    <textarea id="parcours_3e" class="field-input" rows="4"></textarea>
-                </div>
+                <div class="parcours-card"><div class="parcours-title">Collège — 6e 🎒</div><textarea id="parcours_6e" class="field-input" rows="4"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Collège — 5e 🎒</div><textarea id="parcours_5e" class="field-input" rows="4"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Collège — 4e 🎒</div><textarea id="parcours_4e" class="field-input" rows="4"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Collège — 3e 🎒</div><textarea id="parcours_3e" class="field-input" rows="4"></textarea></div>
 
-                <div class="parcours-card">
-                    <div class="parcours-title">Lycée — Seconde 🎓</div>
-                    <div class="parcours-sub">Découverte du lycée, nouvelles matières, nouvelles ambitions.</div>
-                    <textarea id="parcours_2nde" class="field-input" rows="4"></textarea>
-                </div>
-                <div class="parcours-card">
-                    <div class="parcours-title">Lycée — Première 🎓</div>
-                    <div class="parcours-sub">Spécialités, orientation plus précise.</div>
-                    <textarea id="parcours_1ere" class="field-input" rows="4"></textarea>
-                </div>
-                <div class="parcours-card">
-                    <div class="parcours-title">Lycée — Terminale 🎓</div>
-                    <div class="parcours-sub">Bac, choix des études supérieures, tournant majeur.</div>
-                    <textarea id="parcours_term" class="field-input" rows="4"></textarea>
-                </div>
+                <div class="parcours-card"><div class="parcours-title">Lycée — Seconde 🎓</div><textarea id="parcours_2nde" class="field-input" rows="4"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Lycée — Première 🎓</div><textarea id="parcours_1ere" class="field-input" rows="4"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Lycée — Terminale 🎓</div><textarea id="parcours_term" class="field-input" rows="4"></textarea></div>
 
-                <div class="parcours-card">
-                    <div class="parcours-title">Médecine — Année 1 (PACES / L1 Santé) ⚕️</div>
-                    <div class="parcours-sub">Concours, énorme charge de travail, première immersion en médecine.</div>
-                    <textarea id="parcours_med1" class="field-input" rows="4"></textarea>
-                </div>
-                <div class="parcours-card">
-                    <div class="parcours-title">Médecine — Année 2 ⚕️</div>
-                    <div class="parcours-sub">Tu consolides les bases, tu commences à te projeter.</div>
-                    <textarea id="parcours_med2" class="field-input" rows="4"></textarea>
-                </div>
-                <div class="parcours-card">
-                    <div class="parcours-title">Médecine — Année 3 ⚕️</div>
-                    <div class="parcours-sub">Plus de clinique, plus de concret.</div>
-                    <textarea id="parcours_med3" class="field-input" rows="4"></textarea>
-                </div>
-                <div class="parcours-card">
-                    <div class="parcours-title">Médecine — Année 4 ⚕️</div>
-                    <div class="parcours-sub">Tu te rapproches du cœur du métier.</div>
-                    <textarea id="parcours_med4" class="field-input" rows="4"></textarea>
-                </div>
-                <div class="parcours-card">
-                    <div class="parcours-title">Médecine — Année 5 ⚕️</div>
-                    <div class="parcours-sub">Stages, responsabilités, vraie immersion.</div>
-                    <textarea id="parcours_med5" class="field-input" rows="4"></textarea>
-                </div>
-                <div class="parcours-card">
-                    <div class="parcours-title">Médecine — Année 6 ⚕️</div>
-                    <div class="parcours-sub">Dernière ligne droite avant l’internat.</div>
-                    <textarea id="parcours_med6" class="field-input" rows="4"></textarea>
-                </div>
-                <div class="parcours-card">
-                    <div class="parcours-title">Internat ⚕️</div>
-                    <div class="parcours-sub">Spécialisation, garde, vraie vie de médecin en formation.</div>
-                    <textarea id="parcours_internat" class="field-input" rows="4"></textarea>
-                </div>
-                <div class="parcours-card">
-                    <div class="parcours-title">Thèse & Installation ⚕️</div>
-                    <div class="parcours-sub">Tu deviens officiellement médecin, tu t’installes, tu construis ta carrière.</div>
-                    <textarea id="parcours_these" class="field-input" rows="4"></textarea>
-                </div>
+                <div class="parcours-card"><div class="parcours-title">Médecine — Année 1 ⚕️</div><textarea id="parcours_med1" class="field-input" rows="4"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Médecine — Année 2 ⚕️</div><textarea id="parcours_med2" class="field-input" rows="4"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Médecine — Année 3 ⚕️</div><textarea id="parcours_med3" class="field-input" rows="4"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Médecine — Année 4 ⚕️</div><textarea id="parcours_med4" class="field-input" rows="4"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Médecine — Année 5 ⚕️</div><textarea id="parcours_med5" class="field-input" rows="4"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Médecine — Année 6 ⚕️</div><textarea id="parcours_med6" class="field-input" rows="4"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Internat ⚕️</div><textarea id="parcours_internat" class="field-input" rows="4"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Thèse & Installation ⚕️</div><textarea id="parcours_these" class="field-input" rows="4"></textarea></div>
             </div>
         </div>
     </section>
@@ -1068,38 +976,38 @@
 
             <div class="grid-premium">
                 <div class="grid-card">
-                    <h3>🦌 Lundi <span class="year-label">Push</span></h3>
+                    <h3>🦌 Lundi <span>Push</span></h3>
                     <input id="train_lundi" class="field-input" placeholder="Pecs / Triceps">
-                    <textarea id="note_lundi" class="field-input" rows="3" placeholder="Notes / ressenti"></textarea>
+                    <textarea id="note_lundi" class="field-input" rows="3" placeholder="Notes"></textarea>
                 </div>
                 <div class="grid-card">
-                    <h3>🎄 Mardi <span class="year-label">Pull</span></h3>
+                    <h3>🎄 Mardi <span>Pull</span></h3>
                     <input id="train_mardi" class="field-input" placeholder="Dos / Biceps">
                     <textarea id="note_mardi" class="field-input" rows="3" placeholder="Notes"></textarea>
                 </div>
                 <div class="grid-card">
-                    <h3>🎅 Mercredi <span class="year-label">Legs</span></h3>
+                    <h3>🎅 Mercredi <span>Legs</span></h3>
                     <input id="train_mercredi" class="field-input" placeholder="Jambes">
                     <textarea id="note_mercredi" class="field-input" rows="3" placeholder="Notes"></textarea>
                 </div>
                 <div class="grid-card">
-                    <h3>✨ Jeudi <span class="year-label">Cardio</span></h3>
+                    <h3>✨ Jeudi <span>Cardio</span></h3>
                     <input id="train_jeudi" class="field-input" placeholder="Cardio / HIIT">
                     <textarea id="note_jeudi" class="field-input" rows="3" placeholder="Notes"></textarea>
                 </div>
                 <div class="grid-card">
-                    <h3>🎁 Vendredi <span class="year-label">Full Body</span></h3>
+                    <h3>🎁 Vendredi <span>Full Body</span></h3>
                     <input id="train_vendredi" class="field-input" placeholder="Full Body léger">
                     <textarea id="note_vendredi" class="field-input" rows="3" placeholder="Notes"></textarea>
                 </div>
                 <div class="grid-card">
-                    <h3>🔔 Samedi <span class="year-label">Libre</span></h3>
-                    <input id="train_samedi" class="field-input" placeholder="Sport libre (Foot, Boxe...)">
+                    <h3>🔔 Samedi <span>Libre</span></h3>
+                    <input id="train_samedi" class="field-input" placeholder="Sport libre">
                     <textarea id="note_samedi" class="field-input" rows="3" placeholder="Notes"></textarea>
                 </div>
                 <div class="grid-card">
-                    <h3>❄️ Dimanche <span class="year-label">Repos</span></h3>
-                    <input id="train_dimanche" class="field-input" placeholder="Repos / Stretching">
+                    <h3>❄️ Dimanche <span>Repos</span></h3>
+                    <input id="train_dimanche" class="field-input" placeholder="Repos">
                     <textarea id="note_dimanche" class="field-input" rows="3" placeholder="Notes"></textarea>
                 </div>
             </div>
@@ -1109,13 +1017,12 @@
     <!-- FOOTER -->
     <footer>
         <span>Ma Vie En Une Appli — Monsieur Rojas — Édition Noël 🎄</span>
-        <span>Rennes, sapins, guirlandes, Papa Noël — et ta vie entière structurée.</span>
+        <span>Structuration et organisation quotidienne.</span>
     </footer>
 </div>
 
 <script>
     const correctPassword = "SuccessIsGaranted4Soon";
-
     let bankUnlocked = false;
 
     // AUTH GENERAL
@@ -1126,7 +1033,7 @@
     const authError = document.getElementById("auth_error");
 
     function checkAuthGeneral() {
-        if (passInput.value === correctPassword) {
+        if (passInput.value.trim() === correctPassword) {
             authScreen.style.display = "none";
             mainApp.style.display = "block";
         } else {
@@ -1146,7 +1053,7 @@
     const bankAuthError = document.getElementById("bank_auth_error");
 
     function checkAuthBank() {
-        if (bankPassInput.value === correctPassword) {
+        if (bankPassInput.value.trim() === correctPassword) {
             bankUnlocked = true;
             bankModal.style.display = "none";
             bankPassInput.value = "";
@@ -1177,13 +1084,11 @@
     navButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const target = btn.dataset.section;
-
             if (target === "banque" && !bankUnlocked) {
                 bankModal.style.display = "flex";
                 bankPassInput.focus();
                 return;
             }
-
             switchTab(target);
         });
     });
@@ -1197,31 +1102,29 @@
         input.dispatchEvent(new Event('input'));
     }
 
-    // HABITUDES DU MATIN (AVEC TRI AUTOMATIQUE PAR HEURE)
+    // HABITUDES DU MATIN DYNAMIQUES AVEC TRI PAR HEURE
     const habitsData = [
-        { id: "habit_1", title: "☀️ Exposition à la lumière naturelle (10-15 min)", desc: "Déclenche un pic naturel de cortisol bon pour l'énergie et stoppe la mélatonine." },
-        { id: "habit_2", title: "💧 Réhydratation immédiate (Grand verre d'eau)", desc: "Relance le métabolisme et la circulation sanguine après la nuit." },
-        { id: "habit_3", title: "☕ Retarder la caféine (60-90 min après réveil)", desc: "Évite le coup de fatigue violent en début d'après-midi." },
-        { id: "habit_4", title: "🧘 Mouvement ou Étirements (5-10 min)", desc: "Active le système nerveux, libère des endorphines et réveille les muscles." },
-        { id: "habit_5", title: "🚿 Douche fraîche ou variation de température", desc: "Stimule le système nerveux sympathique pour une vigilance maximale." },
-        { id: "habit_6", title: "🚫 0 écran pendant les 30 premières minutes", desc: "Préserve la clarté mentale et évite le stress précoce lié aux notifications." },
-        { id: "habit_7", title: "🥐 Déjeuner", desc: "Prendre un bon repas pour alimenter le corps et l'esprit." },
-        { id: "habit_8", title: "👔 S'habiller", desc: "Mettre sa tenue pour être prêt et engagé dans la journée." },
-        { id: "habit_9", title: "🚀 Partir", desc: "Quitter la maison pour attaquer la journée de pied ferme." }
+        { id: "habit_1", title: "☀️ Exposition à la lumière naturelle (10-15 min)", desc: "Déclenche un pic naturel de cortisol bon pour l'énergie." },
+        { id: "habit_2", title: "💧 Réhydratation immédiate (Grand verre d'eau)", desc: "Relance le métabolisme après la nuit." },
+        { id: "habit_3", title: "☕ Retarder la caféine (60-90 min après réveil)", desc: "Évite le coup de fatigue en début d'après-midi." },
+        { id: "habit_4", title: "🧘 Mouvement ou Étirements (5-10 min)", desc: "Active le système nerveux et réveille les muscles." },
+        { id: "habit_5", title: "🚿 Douche fraîche ou variation de température", desc: "Stimule la vigilance pour la journée." },
+        { id: "habit_6", title: "🚫 0 écran pendant les 30 premières minutes", desc: "Préserve la clarté mentale dès le réveil." },
+        { id: "habit_7", title: "🥐 Déjeuner", desc: "Prendre un bon repas équilibré." },
+        { id: "habit_8", title: "👔 S'habiller", desc: "Se préparer pour la journée." },
+        { id: "habit_9", title: "🚀 Partir", desc: "Quitter la maison à l'heure prévue." }
     ];
 
     function renderHabits() {
         const container = document.getElementById("habitudes_container");
         if(!container) return;
 
-        // Récupérer les valeurs enregistrées et associer les heures
         const habitsWithTime = habitsData.map(h => {
-            const timeVal = localStorage.getItem("mv_time_" + h.id) || "23:59"; // par défaut en fin de liste si non défini
+            const timeVal = localStorage.getItem("mv_time_" + h.id) || "23:59";
             const checkedVal = localStorage.getItem("mv_" + h.id) === "true";
             return { ...h, timeVal, checkedVal };
         });
 
-        // Trier du plus tôt au plus tard
         habitsWithTime.sort((a, b) => a.timeVal.localeCompare(b.timeVal));
 
         container.innerHTML = "";
@@ -1241,7 +1144,6 @@
             container.appendChild(item);
         });
 
-        // Ré-attacher les écouteurs d'événements
         habitsWithTime.forEach(h => {
             const chk = document.getElementById(h.id);
             const timeIn = document.getElementById("time_" + h.id);
@@ -1252,33 +1154,19 @@
 
             timeIn.addEventListener("input", () => {
                 localStorage.setItem("mv_time_" + h.id, timeIn.value || "23:59");
-                renderHabits(); // Re-trie et ré-affiche instantanément
+                renderHabits();
             });
         });
     }
 
-    // EMPLOIS DU TEMPS
+    // EMPLOI DU TEMPS
     const edtData = {
         A: [
-            { time: "08h05 - 09h00", lun: '<div class="edt-matiere">SC. NUMERIQ. TECHNOL.</div><div class="edt-salle">FAURE S.</div>', mar: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L., A 309</div>', mer: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '-', ven: '<div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S., B 210</div>', lunC: 'mat-snt', marC: 'mat-maths', merC: 'mat-ang', jeuC: '', venC: 'mat-hg' },
-            { time: "09h00 - 10h15", lun: '<div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S.</div>', mar: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L.</div>', mer: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S., A 105 TP PC</div>', ven: '<div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S.</div>', lunC: 'mat-hg', marC: 'mat-maths', merC: 'mat-ang', jeuC: 'mat-pc', venC: 'mat-hg' },
-            { time: "10h15 - 11h15", lun: '<div class="edt-matiere">ED. PHYSIQUE & SPORT</div><div class="edt-salle">BAUDRY A.</div>', mar: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S.</div>', mer: '<div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N.</div>', jeu: '<div class="edt-matiere">SCIENCES VIE & TERRE</div><div class="edt-salle">FERRE-AOUSTIN C.</div>', ven: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L.</div>', lunC: 'mat-eps', marC: 'mat-pc', merC: 'mat-fr', jeuC: 'mat-svt', venC: 'mat-maths' },
-            { time: "11h30 - 12h10", lun: '<div class="edt-matiere">ED. PHYSIQUE & SPORT</div><div class="edt-salle">BAUDRY A.</div>', mar: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', mer: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L.</div>', jeu: '<div class="edt-matiere">SCIENCES VIE & TERRE</div><div class="edt-salle">FERRE-AOUSTIN C.</div>', ven: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', lunC: 'mat-eps', marC: 'mat-esp', merC: 'mat-maths', jeuC: 'mat-svt', venC: 'mat-esp' },
-            { time: "13h00 - 14h00", lun: '-', mar: '<div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S.</div>', mer: '-', jeu: '-', ven: '-', lunC: '', marC: 'mat-hg', merC: '', jeuC: '', venC: '' },
-            { time: "14h00 - 15h00", lun: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', mar: '<div class="edt-matiere">SC. ECONO & SOCIALES</div><div class="edt-salle">DELATTRE M.</div>', mer: '-', jeu: '<div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N.</div>', ven: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', lunC: 'mat-ang', marC: 'mat-ses', merC: '', jeuC: 'mat-fr', venC: 'mat-ang' },
-            { time: "15h05 - 16h05", lun: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', mar: '<div class="edt-matiere">SC. ECONO & SOCIALES</div><div class="edt-salle">DELATTRE M.</div>', mer: '-', jeu: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L.</div>', ven: '<div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N., B 205</div>', lunC: 'mat-esp', marC: 'mat-ses', merC: '', jeuC: 'mat-maths', venC: 'mat-fr' },
-            { time: "16h05 - 17h05", lun: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', mar: '<div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N.</div>', mer: '-', jeu: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', ven: '<div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N., B 205</div>', lunC: 'mat-ang', marC: 'mat-fr', merC: '', jeuC: 'mat-ang', venC: 'mat-fr' }
+            { time: "08h05 - 09h00", lun: '<div class="edt-matiere">SNT</div>', mar: '<div class="edt-matiere">MATHS</div>', mer: '<div class="edt-matiere">ANGLAIS</div>', jeu: '-', ven: '<div class="edt-matiere">HG</div>', lunC: 'mat-snt', marC: 'mat-maths', merC: 'mat-ang', jeuC: '', venC: 'mat-hg' },
+            { time: "09h00 - 10h15", lun: '<div class="edt-matiere">HG</div>', mar: '<div class="edt-matiere">MATHS</div>', mer: '<div class="edt-matiere">ANGLAIS</div>', jeu: '<div class="edt-matiere">PC</div>', ven: '<div class="edt-matiere">HG</div>', lunC: 'mat-hg', marC: 'mat-maths', merC: 'mat-ang', jeuC: 'mat-pc', venC: 'mat-hg' }
         ],
         B: [
-            { time: "08h05 - 09h00", lun: '<div class="edt-matiere">SC. NUMERIQ. TECHNOL.</div><div class="edt-salle">FAURE S.</div>', mar: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L., A 309</div>', mer: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '-', ven: '<div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S., B 210</div>', lunC: 'mat-snt', marC: 'mat-maths', merC: 'mat-ang', jeuC: '', venC: 'mat-hg' },
-            { time: "09h00 - 10h15", lun: '<div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S.</div>', mar: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L.</div>', mer: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S., A 105 TP PC</div>', ven: '<div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S.</div>', lunC: 'mat-hg', marC: 'mat-maths', merC: 'mat-ang', jeuC: 'mat-pc', venC: 'mat-hg' },
-            { time: "10h15 - 11h15", lun: '<div class="edt-matiere">ED. PHYSIQUE & SPORT</div><div class="edt-salle">BAUDRY A.</div>', mar: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S.</div>', mer: '-', jeu: '<div class="edt-matiere">SCIENCES VIE & TERRE</div><div class="edt-salle">FERRE-AOUSTIN C.</div>', ven: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L.</div>', lunC: 'mat-eps', marC: 'mat-pc', merC: '', jeuC: 'mat-svt', venC: 'mat-maths' },
-            { time: "11h30 - 12h10", lun: '<div class="edt-matiere">ED. PHYSIQUE & SPORT</div><div class="edt-salle">BAUDRY A.</div>', mar: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', mer: '<div class="edt-matiere">SC. NUMERIQ. TECHNOL.</div><div class="edt-salle">FAURE S.</div>', jeu: '<div class="edt-matiere">SCIENCES VIE & TERRE</div><div class="edt-salle">FERRE-AOUSTIN C.</div>', ven: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', lunC: 'mat-eps', marC: 'mat-esp', merC: 'mat-snt', jeuC: 'mat-svt', venC: 'mat-esp' },
-            { time: "12h10 - 13h00", lun: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S.</div>', mar: '-', mer: '-', jeu: '-', ven: '-', lunC: 'mat-pc', marC: '', merC: '', jeuC: '', venC: '' },
-            { time: "13h00 - 14h00", lun: '-', mar: '<div class="edt-matiere">HISTOIRE-GEOGRAPHIE</div><div class="edt-salle">CLAVE S.</div>', mer: '-', jeu: '-', ven: '-', lunC: '', marC: 'mat-hg', merC: '', jeuC: '', venC: '' },
-            { time: "14h00 - 15h00", lun: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', mar: '<div class="edt-matiere">SC. ECONO & SOCIALES</div><div class="edt-salle">DELATTRE M.</div>', mer: '-', jeu: '<div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N.</div>', ven: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', lunC: 'mat-ang', marC: 'mat-ses', merC: '', jeuC: 'mat-fr', venC: 'mat-ang' },
-            { time: "15h05 - 16h05", lun: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', mar: '<div class="edt-matiere">ENS. MORAL & CIVIQUE</div><div class="edt-salle">DELATTRE M.</div>', mer: '-', jeu: '<div class="edt-matiere">MATHEMATIQUES</div><div class="edt-salle">DE BETTIGNIES L.</div>', ven: '<div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N., B 205</div>', lunC: 'mat-ang', marC: 'mat-emc', merC: '', jeuC: 'mat-maths', venC: 'mat-fr' },
-            { time: "16h05 - 17h05", lun: '-', mar: '<div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N.</div>', mer: '-', jeu: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', ven: '<div class="edt-matiere">FRANCAIS</div><div class="edt-salle">POYOL N., B 205</div>', lunC: '', marC: 'mat-fr', merC: '', jeuC: 'mat-ang', venC: 'mat-fr' }
+            { time: "08h05 - 09h00", lun: '<div class="edt-matiere">SNT</div>', mar: '<div class="edt-matiere">MATHS</div>', mer: '<div class="edt-matiere">ANGLAIS</div>', jeu: '-', ven: '<div class="edt-matiere">HG</div>', lunC: 'mat-snt', marC: 'mat-maths', merC: 'mat-ang', jeuC: '', venC: 'mat-hg' }
         ]
     };
 
@@ -1287,10 +1175,11 @@
     function renderEdt() {
         const body = document.getElementById("edt_body");
         const title = document.getElementById("week_title");
+        if(!body || !title) return;
         title.textContent = "Semaine " + currentWeek;
         body.innerHTML = "";
 
-        edtData[currentWeek].forEach(row => {
+        (edtData[currentWeek] || []).forEach(row => {
             const tr = document.createElement("tr");
             tr.innerHTML = `
                 <td class="heure-col">${row.time}</td>
@@ -1314,27 +1203,24 @@
         renderEdt();
     });
 
-    // CITATIONS
+    // PENSÉE DU JOUR & NÖEL
     const quotes = [
         '"Le succès est la somme de petits efforts, répétés jour après jour."',
         '"Sois le meilleur dans tout ce que tu entreprends."',
-        '"La discipline bat le talent quand le talent ne travaille pas."',
-        '"Chaque grande réussite a commencé par la décision d\'essayer."'
+        '"La discipline bat le talent quand le talent ne travaille pas."'
     ];
     document.getElementById('daily_quote').textContent = quotes[Math.floor(Math.random() * quotes.length)];
 
-    // COMPTE A REBOURS
     function updateCountdown() {
         const now = new Date();
-        const year = now.getFullYear();
-        let xmas = new Date(year, 11, 25);
-        if (now > xmas) xmas = new Date(year + 1, 11, 25);
+        let xmas = new Date(now.getFullYear(), 11, 25);
+        if (now > xmas) xmas = new Date(now.getFullYear() + 1, 11, 25);
         const diff = Math.ceil((xmas - now) / (1000 * 60 * 60 * 24));
         document.getElementById('xmas_countdown').textContent = diff;
     }
     updateCountdown();
 
-    // PROGRESSION & SEMAINE
+    // PROGRESSION ET CALCULS
     function updatePercentProgress(actuelId, objId, barId, textId) {
         const actuelEl = document.getElementById(actuelId);
         const objEl = document.getElementById(objId);
@@ -1345,10 +1231,8 @@
         const actuel = parseFloat(actuelEl.value) || 0;
         const obj = parseFloat(objEl.value) || 0;
 
-        let pct = 0;
-        if(obj > 0) pct = Math.round((actuel / obj) * 100);
-        if(pct < 0) pct = 0;
-        if(pct > 100) pct = 100;
+        let pct = obj > 0 ? Math.round((actuel / obj) * 100) : 0;
+        pct = Math.min(Math.max(pct, 0), 100);
 
         bar.style.width = pct + '%';
         text.textContent = pct + '% (actuel: ' + actuel + ' / obj: ' + obj + ')';
@@ -1361,8 +1245,7 @@
         if(!input || !bar || !text) return;
 
         let val = parseFloat(input.value) || 0;
-        if(val < 0) val = 0;
-        if(val > 100) val = 100;
+        val = Math.min(Math.max(val, 0), 100);
 
         bar.style.width = val + '%';
         text.textContent = val + '%';
@@ -1411,30 +1294,17 @@
     }
 
     const ids = [
-        "moyenne","moyenne_obj",
-        "priorite_1", "priorite_2", "priorite_3",
-        "todo_lundi", "todo_mardi", "todo_mercredi", "todo_jeudi", "todo_vendredi", "todo_weekend",
-        "bank_epargne_actuel", "bank_epargne_obj",
-        "bank_plaisir_actuel", "bank_plaisir_obj",
-        "bank_projets_actuel", "bank_projets_obj",
-        "solde_actuel_global", "argent_disponible",
-        "obj_scolaire_date_debut", "obj_scolaire_date_fin", "obj_scolaire_val",
-        "obj_poids_depart", "obj_poids_actuel", "obj_poids_cible", "obj_poids_date",
-        "obj_amour_debut", "obj_amour_note",
-        "obj_chir_date_butoir", "obj_chir_val",
-        "parcours_ps","parcours_ms","parcours_gs",
-        "parcours_cp","parcours_ce1","parcours_ce2","parcours_cm1","parcours_cm2",
-        "parcours_6e","parcours_5e","parcours_4e","parcours_3e",
-        "parcours_2nde","parcours_1ere","parcours_term",
-        "parcours_med1","parcours_med2","parcours_med3","parcours_med4","parcours_med5","parcours_med6",
-        "parcours_internat","parcours_these",
-        "train_lundi","note_lundi",
-        "train_mardi","note_mardi",
-        "train_mercredi","note_mercredi",
-        "train_jeudi","note_jeudi",
-        "train_vendredi","note_vendredi",
-        "train_samedi","note_samedi",
-        "train_dimanche","note_dimanche"
+        "moyenne","moyenne_obj","priorite_1","priorite_2","priorite_3",
+        "todo_lundi","todo_mardi","todo_mercredi","todo_jeudi","todo_vendredi","todo_weekend",
+        "bank_epargne_actuel","bank_epargne_obj","bank_plaisir_actuel","bank_plaisir_obj",
+        "bank_projets_actuel","bank_projets_obj","solde_actuel_global","argent_disponible",
+        "obj_scolaire_date_debut","obj_scolaire_date_fin","obj_scolaire_val",
+        "obj_poids_depart","obj_poids_actuel","obj_poids_cible","obj_poids_date",
+        "obj_amour_debut","obj_amour_note","obj_chir_date_butoir","obj_chir_val",
+        "parcours_ps","parcours_ms","parcours_gs","parcours_cp","parcours_ce1","parcours_ce2","parcours_cm1","parcours_cm2",
+        "parcours_6e","parcours_5e","parcours_4e","parcours_3e","parcours_2nde","parcours_1ere","parcours_term",
+        "parcours_med1","parcours_med2","parcours_med3","parcours_med4","parcours_med5","parcours_med6","parcours_internat","parcours_these",
+        "train_lundi","note_lundi","train_mardi","note_mardi","train_mercredi","note_mercredi","train_jeudi","note_jeudi","train_vendredi","note_vendredi","train_samedi","note_samedi","train_dimanche","note_dimanche"
     ];
 
     function load(id) {
@@ -1466,7 +1336,6 @@
         updatePercentProgress('bank_epargne_actuel', 'bank_epargne_obj', 'bar_epargne', 'text_epargne');
         updatePercentProgress('bank_plaisir_actuel', 'bank_plaisir_obj', 'bar_plaisir', 'text_plaisir');
         updatePercentProgress('bank_projets_actuel', 'bank_projets_obj', 'bar_projets', 'text_projets');
-        
         updateDirectProgress('obj_scolaire_val', 'bar_scolaire', 'text_scolaire');
         updateDirectProgress('obj_chir_val', 'bar_chir', 'text_chir');
         updateAmourCounter();
