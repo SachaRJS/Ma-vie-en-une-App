@@ -736,8 +736,8 @@
     <!-- HABITUDES DU MATIN -->
     <section id="habitudes" class="section">
         <div class="card">
-            <div class="card-title"><span class="icon">☀️</span>Habitudes du matin — Routine personnalisée</div>
-            <p style="margin-bottom: 20px;">Sélectionne l'heure de chaque habitude. La liste se réorganise automatiquement de la plus matinale à la plus tardive !</p>
+            <div class="card-title"><span class="icon">☀️</span>Habitudes du matin — Routine triée par heure</div>
+            <p style="margin-bottom: 20px;">Modifie les heures de chaque étape ci-dessous. La liste se réorganise automatiquement de la plus matinale à la plus tardive !</p>
 
             <div id="habitudes_container">
                 <!-- Généré dynamiquement -->
@@ -1096,17 +1096,17 @@
         input.dispatchEvent(new Event('input'));
     }
 
-    // LISTE DES HABITUDES ET TÂCHES DU MATIN AVEC TES HEURES DE RÉFÉRENCE
+    // LISTE DES HABITUDES ET TÂCHES DU MATIN AVEC TES HEURES PRÉ-REMPLIES
     const habitsData = [
         { id: "habit_reveil", title: "⏰ Réveil", desc: "Début de la journée.", defaultTime: "06:00" },
-        { id: "habit_douche", title: "🚿 Douche", desc: "Douche fraîche ou tiède pour relancer la circulation.", defaultTime: "06:05" },
-        { id: "habit_habiller", title: "👔 S'habiller", desc: "Tenue prête pour démarrer efficacement.", defaultTime: "06:11" },
+        { id: "habit_douche", title: "🚿 Douche", desc: "Douche fraîche ou tiède.", defaultTime: "06:05" },
+        { id: "habit_habiller", title: "👔 S'habiller", desc: "Mettre sa tenue pour être prêt.", defaultTime: "06:11" },
         { id: "habit_dejeuner", title: "🥐 Déjeuner", desc: "Prendre un bon repas énergétique.", defaultTime: "06:15" },
-        { id: "habit_partir", title: "🚀 Partir", desc: "Départ vers la destination de la journée.", defaultTime: "06:55" },
+        { id: "habit_partir", title: "🚀 Partir", desc: "Quitter la maison pour attaquer la journée.", defaultTime: "06:55" },
         { id: "habit_1", title: "☀️ Exposition lumière naturelle (10-15 min)", desc: "Pic de cortisol naturel pour l'énergie.", defaultTime: "06:25" },
         { id: "habit_2", title: "💧 Réhydratation (Grand verre d'eau)", desc: "Relance le métabolisme.", defaultTime: "06:02" },
-        { id: "habit_3", title: "☕ Retarder la caféine (60-90 min)", desc: "Évite le coup de fatigue du début d'après-midi.", defaultTime: "07:15" },
-        { id: "habit_4", title: "🧘 Mouvement / Étirements (5-10 min)", desc: "Réveille le corps et active les muscles.", defaultTime: "06:35" },
+        { id: "habit_3", title: "☕ Retarder la caféine (60-90 min)", desc: "Évite le coup de fatigue de l'après-midi.", defaultTime: "07:15" },
+        { id: "habit_4", title: "🧘 Mouvement / Étirements (5-10 min)", desc: "Réveille le corps.", defaultTime: "06:35" },
         { id: "habit_6", title: "🚫 0 écran (30 premières min)", desc: "Garde la clarté mentale intacte.", defaultTime: "06:00" }
     ];
 
@@ -1120,6 +1120,7 @@
             return { ...h, timeVal, checkedVal };
         });
 
+        // Tri automatique du plus tôt au plus tard
         habitsWithTime.sort((a, b) => a.timeVal.localeCompare(b.timeVal));
 
         container.innerHTML = "";
@@ -1149,7 +1150,7 @@
 
             timeIn.addEventListener("input", () => {
                 localStorage.setItem("mv_time_" + h.id, timeIn.value || "23:59");
-                renderHabits();
+                renderHabits(); // Ré-exécute et trie instantanément à chaque changement d'heure !
             });
         });
     }
