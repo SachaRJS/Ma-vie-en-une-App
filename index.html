@@ -604,12 +604,6 @@
             gap: 6px;
         }
 
-        .parcours-sub {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-
         footer {
             margin-top: 40px;
             padding-top: 20px;
@@ -742,7 +736,7 @@
     <!-- HABITUDES DU MATIN -->
     <section id="habitudes" class="section">
         <div class="card">
-            <div class="card-title"><span class="icon">☀️</span>Habitudes du matin — Validées par la Science</div>
+            <div class="card-title"><span class="icon">☀️</span>Habitudes du matin — Routine personnalisée</div>
             <p style="margin-bottom: 20px;">Sélectionne l'heure de chaque habitude. La liste se réorganise automatiquement de la plus matinale à la plus tardive !</p>
 
             <div id="habitudes_container">
@@ -1102,17 +1096,18 @@
         input.dispatchEvent(new Event('input'));
     }
 
-    // HABITUDES DU MATIN DYNAMIQUES AVEC TRI PAR HEURE
+    // LISTE DES HABITUDES ET TÂCHES DU MATIN AVEC TES HEURES DE RÉFÉRENCE
     const habitsData = [
-        { id: "habit_1", title: "☀️ Exposition à la lumière naturelle (10-15 min)", desc: "Déclenche un pic naturel de cortisol bon pour l'énergie." },
-        { id: "habit_2", title: "💧 Réhydratation immédiate (Grand verre d'eau)", desc: "Relance le métabolisme après la nuit." },
-        { id: "habit_3", title: "☕ Retarder la caféine (60-90 min après réveil)", desc: "Évite le coup de fatigue en début d'après-midi." },
-        { id: "habit_4", title: "🧘 Mouvement ou Étirements (5-10 min)", desc: "Active le système nerveux et réveille les muscles." },
-        { id: "habit_5", title: "🚿 Douche fraîche ou variation de température", desc: "Stimule la vigilance pour la journée." },
-        { id: "habit_6", title: "🚫 0 écran pendant les 30 premières minutes", desc: "Préserve la clarté mentale dès le réveil." },
-        { id: "habit_7", title: "🥐 Déjeuner", desc: "Prendre un bon repas équilibré." },
-        { id: "habit_8", title: "👔 S'habiller", desc: "Se préparer pour la journée." },
-        { id: "habit_9", title: "🚀 Partir", desc: "Quitter la maison à l'heure prévue." }
+        { id: "habit_reveil", title: "⏰ Réveil", desc: "Début de la journée.", defaultTime: "06:00" },
+        { id: "habit_douche", title: "🚿 Douche", desc: "Douche fraîche ou tiède pour relancer la circulation.", defaultTime: "06:05" },
+        { id: "habit_habiller", title: "👔 S'habiller", desc: "Tenue prête pour démarrer efficacement.", defaultTime: "06:11" },
+        { id: "habit_dejeuner", title: "🥐 Déjeuner", desc: "Prendre un bon repas énergétique.", defaultTime: "06:15" },
+        { id: "habit_partir", title: "🚀 Partir", desc: "Départ vers la destination de la journée.", defaultTime: "06:55" },
+        { id: "habit_1", title: "☀️ Exposition lumière naturelle (10-15 min)", desc: "Pic de cortisol naturel pour l'énergie.", defaultTime: "06:25" },
+        { id: "habit_2", title: "💧 Réhydratation (Grand verre d'eau)", desc: "Relance le métabolisme.", defaultTime: "06:02" },
+        { id: "habit_3", title: "☕ Retarder la caféine (60-90 min)", desc: "Évite le coup de fatigue du début d'après-midi.", defaultTime: "07:15" },
+        { id: "habit_4", title: "🧘 Mouvement / Étirements (5-10 min)", desc: "Réveille le corps et active les muscles.", defaultTime: "06:35" },
+        { id: "habit_6", title: "🚫 0 écran (30 premières min)", desc: "Garde la clarté mentale intacte.", defaultTime: "06:00" }
     ];
 
     function renderHabits() {
@@ -1120,7 +1115,7 @@
         if(!container) return;
 
         const habitsWithTime = habitsData.map(h => {
-            const timeVal = localStorage.getItem("mv_time_" + h.id) || "23:59";
+            const timeVal = localStorage.getItem("mv_time_" + h.id) || h.defaultTime;
             const checkedVal = localStorage.getItem("mv_" + h.id) === "true";
             return { ...h, timeVal, checkedVal };
         });
@@ -1139,7 +1134,7 @@
                         <p>${h.desc}</p>
                     </div>
                 </div>
-                <input type="time" class="habit-time-input" id="time_${h.id}" value="${h.timeVal === "23:59" ? "" : h.timeVal}">
+                <input type="time" class="habit-time-input" id="time_${h.id}" value="${h.timeVal}">
             `;
             container.appendChild(item);
         });
