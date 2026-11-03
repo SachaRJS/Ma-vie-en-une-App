@@ -26,7 +26,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* FOND UNIFORME PARTOUT AVEC LE MÊME ROUGE PROFOND + CHALET */
+        /* FOND UNIFORME PARTOUT (corps de page) */
         body {
             background-color: var(--bg-main);
             background-image: linear-gradient(rgba(128, 14, 19, 0.85), rgba(128, 14, 19, 0.90)), 
@@ -46,7 +46,7 @@
             padding-right: env(safe-area-inset-right);
         }
 
-        /* VERROUILLAGE GENERAL AVEC LE MÊME ROUGE */
+        /* ECRAN DE VERROUILLAGE GENERAL AVEC LE MÊME ROUGE */
         #auth_screen {
             position: fixed;
             top: 0;
@@ -54,9 +54,9 @@
             width: 100vw;
             height: 100vh;
             height: -webkit-fill-available;
-            background-color: var(--bg-main);
-            background-image: linear-gradient(rgba(128, 14, 19, 0.90), rgba(128, 14, 19, 0.95)), 
-                              url('chalet.jpg');
+            background-color: var(--bg-main) !important;
+            background-image: linear-gradient(rgba(128, 14, 19, 0.85), rgba(128, 14, 19, 0.90)), 
+                              url('chalet.jpg') !important;
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
