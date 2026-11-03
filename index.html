@@ -7,7 +7,7 @@
 
     <style>
         :root {
-            --bg-main: #800e13;      /* Rouge Noël profond */
+            --bg-main: #800e13;      /* Rouge Noël profond unique */
             --bg-card: rgba(255, 248, 240, 0.96);
             --accent: #165b33;      /* Vert sapin */
             --accent-red: #d90429;  /* Rouge vif */
@@ -26,10 +26,14 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        /* FOND UNIFORME PARTOUT AVEC LE MÊME ROUGE PROFOND + CHALET */
         body {
-            /* FOND AVEC CHALET.JPG */
-            background: linear-gradient(rgba(10, 20, 15, 0.55), rgba(15, 10, 10, 0.65)), 
-                        url('chalet.jpg') no-repeat center center fixed;
+            background-color: var(--bg-main);
+            background-image: linear-gradient(rgba(128, 14, 19, 0.85), rgba(128, 14, 19, 0.90)), 
+                              url('chalet.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
             background-size: cover;
             color: var(--text-main);
             font-family: var(--font-alt);
@@ -42,7 +46,7 @@
             padding-right: env(safe-area-inset-right);
         }
 
-        /* VERROUILLAGE GENERAL */
+        /* VERROUILLAGE GENERAL AVEC LE MÊME ROUGE */
         #auth_screen {
             position: fixed;
             top: 0;
@@ -50,7 +54,12 @@
             width: 100vw;
             height: 100vh;
             height: -webkit-fill-available;
-            background: linear-gradient(135deg, #38040e, #ad2831, #165b33);
+            background-color: var(--bg-main);
+            background-image: linear-gradient(rgba(128, 14, 19, 0.90), rgba(128, 14, 19, 0.95)), 
+                              url('chalet.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -58,7 +67,7 @@
             padding: 20px;
         }
 
-        /* MODAL VERROUILLAGE BANQUE */
+        /* MODAL VERROUILLAGE BANQUE AVEC LE MÊME ROUGE */
         #bank_auth_modal {
             position: fixed;
             top: 0;
@@ -66,7 +75,7 @@
             width: 100vw;
             height: 100vh;
             height: -webkit-fill-available;
-            background: rgba(20, 5, 5, 0.85);
+            background-color: rgba(128, 14, 19, 0.90);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             display: none;
