@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Ma Vie En Une Appli - Monsieur Rojas</title>
-    <!-- Vue adaptée à l'écran Retina et à la Dynamic Island -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
     <style>
         :root {
-            --bg-main: #800e13;
+            --bg-main: #800e13;      /* Rouge Noël profond */
             --bg-card: rgba(255, 248, 240, 0.96);
-            --accent: #165b33;
-            --accent-red: #d90429;
-            --accent-gold: #ffb703;
+            --accent: #165b33;      /* Vert sapin */
+            --accent-red: #d90429;  /* Rouge vif */
+            --accent-gold: #ffb703; /* Or éclatant */
             --text-main: #2b1e16;
             --text-muted: #6b5c52;
             --border-soft: #e0a96d;
@@ -24,18 +23,19 @@
             box-sizing: border-box; 
             margin: 0; 
             padding: 0; 
-            -webkit-tap-highlight-color: transparent; /* Supprime le rectangle gris au toucher */
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
+            /* FOND AVEC CHALET.JPG */
             background: linear-gradient(rgba(10, 20, 15, 0.55), rgba(15, 10, 10, 0.65)), 
                         url('chalet.jpg') no-repeat center center fixed;
             background-size: cover;
             color: var(--text-main);
             font-family: var(--font-alt);
+            line-height: 1.6;
             min-height: 100vh;
             min-height: -webkit-fill-available;
-            /* Marges de sécurité pour la Dynamic Island et le bas de l'écran */
             padding-top: env(safe-area-inset-top);
             padding-bottom: env(safe-area-inset-bottom);
             padding-left: env(safe-area-inset-left);
@@ -43,13 +43,14 @@
         }
 
         /* VERROUILLAGE GENERAL */
-        #auth_screen, #bank_auth_modal {
+        #auth_screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             height: -webkit-fill-available;
+            background: linear-gradient(135deg, #38040e, #ad2831, #165b33);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -57,16 +58,22 @@
             padding: 20px;
         }
 
-        #auth_screen {
-            background: linear-gradient(135deg, #38040e, #ad2831, #165b33);
-        }
-
+        /* MODAL VERROUILLAGE BANQUE */
         #bank_auth_modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            height: -webkit-fill-available;
             background: rgba(20, 5, 5, 0.85);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             display: none;
+            justify-content: center;
+            align-items: center;
             z-index: 8888;
+            padding: 20px;
         }
 
         .auth-card {
@@ -93,7 +100,7 @@
             margin-bottom: 20px;
         }
 
-        /* Anti-Zoom 16px pour les champs de texte */
+        /* Anti-zoom 16px sur Safari iOS */
         .auth-card input, .field-input, .habit-time-input {
             width: 100%;
             padding: 12px;
@@ -105,19 +112,19 @@
             margin-bottom: 15px;
         }
 
-        .auth-card button, .btn-link, .btn-add-money {
+        .auth-card button {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             border-radius: 999px;
             background: linear-gradient(135deg, var(--accent), var(--accent-red));
             color: #fff;
             border: 2px solid var(--accent-gold);
             font-size: 0.95rem;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.12em;
             cursor: pointer;
             font-weight: bold;
-            transition: transform 0.1s ease;
+            transition: 0.25s;
         }
 
         .auth-card button:active {
@@ -144,7 +151,8 @@
         header {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            align-items: center;
+            gap: 10px;
             padding-bottom: 20px;
             border-bottom: 2px dashed var(--accent-gold);
             position: relative;
@@ -154,7 +162,7 @@
         .brand h1 {
             font-family: var(--font-main);
             font-size: 1.8rem;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
             color: var(--accent-gold);
             text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
@@ -164,20 +172,25 @@
             font-size: 1rem;
             color: #ffe6a7;
             margin-top: 4px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
         }
 
         .user-tag {
+            text-align: center;
             font-size: 0.85rem;
             color: #fff;
             background: rgba(22, 91, 51, 0.85);
             padding: 8px 14px;
             border-radius: 12px;
-            border: 1px solid var(--accent-gold);
-            display: inline-block;
-            margin: 0 auto;
+            border: 1.5px solid var(--accent-gold);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
-        /* NAVIGATION ADAPTÉE SMARTPHONE */
+        .xmas-deco-header {
+            font-size: 1.4rem;
+        }
+
+        /* NAVIGATION BAR SCROLLABLE SUR MOBILE */
         nav {
             margin: 20px 0;
             display: flex;
@@ -187,57 +200,76 @@
             padding-bottom: 8px;
         }
 
-        nav::-webkit-scrollbar {
-            display: none;
-        }
+        nav::-webkit-scrollbar { display: none; }
 
         nav button {
             padding: 10px 16px;
             border-radius: 999px;
-            border: 1.5px solid var(--accent-gold);
+            border: 2px solid var(--accent-gold);
             background: #fffaf0;
             color: var(--accent);
             font-size: 0.85rem;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: 0.25s;
+            font-weight: bold;
             white-space: nowrap;
             flex-shrink: 0;
-            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
+        nav button:hover,
         nav button.active {
             background: linear-gradient(135deg, var(--accent), var(--accent-red));
             color: #fff;
+            border-color: #fff;
+            box-shadow: 0 0 15px var(--accent-gold);
         }
 
-        /* SECTIONS & CARTE */
+        /* SECTIONS */
         .section { display: none; }
         .section.active { display: block; }
 
+        /* CARTE DE BASE */
         .card {
             background: var(--bg-card);
-            border-radius: 18px;
+            border-radius: 20px;
             border: 2px solid var(--accent-gold);
             padding: 20px 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-            margin-bottom: 20px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+            margin-bottom: 24px;
             position: relative;
+        }
+
+        .card::before {
+            content: "🎅✨";
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            font-size: 1.2rem;
         }
 
         .card-title {
             font-family: var(--font-main);
-            font-size: 1.2rem;
+            font-size: 1.25rem;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
             color: var(--accent);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
+        .card-title span.icon {
+            font-size: 1.3rem;
+        }
+
         label {
             font-size: 0.85rem;
             color: var(--text-muted);
-            margin-top: 10px;
+            margin-top: 12px;
             display: block;
             font-weight: bold;
         }
@@ -247,15 +279,49 @@
             text-align: left;
         }
 
+        .btn-link {
+            display: inline-block;
+            padding: 11px 18px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-red));
+            color: #fff;
+            border: 1px solid var(--accent-gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-top: 18px;
+            font-size: 0.85rem;
+            transition: 0.25s;
+            font-weight: bold;
+        }
+
+        .btn-add-money {
+            margin-top: 10px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: var(--accent);
+            color: white;
+            border: 1px solid var(--accent-gold);
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 100%;
+        }
+
+        .btn-add-money:active {
+            background: var(--accent-red);
+        }
+
         /* GRID RESPONSIVE */
         .grid-premium {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 15px;
-            margin-top: 15px;
+            gap: 16px;
+            margin-top: 16px;
         }
 
-        @media (min-width: 600px) {
+        @media (min-width: 650px) {
             .grid-premium {
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             }
@@ -263,17 +329,29 @@
 
         .grid-card {
             background: #ffffff;
-            border: 1px solid var(--border-soft);
+            border: 2px solid var(--border-soft);
             border-radius: 16px;
-            padding: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .grid-card::before {
+            content: "🎁";
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            font-size: 1.1rem;
         }
 
         .grid-card h3 {
             font-family: var(--font-main);
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: var(--accent);
             margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         /* HABITUDES DU MATIN */
@@ -281,6 +359,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            margin-top: 15px;
         }
 
         .habit-item {
@@ -296,7 +375,7 @@
 
         .habit-left {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 10px;
         }
 
@@ -304,15 +383,18 @@
             width: 24px;
             height: 24px;
             accent-color: var(--accent);
+            cursor: pointer;
+            margin-top: 2px;
         }
 
         .habit-details h4 {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--accent);
+            margin-bottom: 2px;
         }
 
         .habit-details p {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
         }
 
@@ -320,22 +402,91 @@
             width: auto !important;
             padding: 6px 8px;
             margin-bottom: 0;
+            font-weight: bold;
+        }
+
+        /* ACCUEIL */
+        .quote-box {
+            background: linear-gradient(135deg, #fffaf0, #ffe6a7);
+            border-left: 5px solid var(--accent-red);
+            padding: 14px;
+            border-radius: 12px;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #444;
+            font-size: 0.9rem;
+        }
+
+        .summary-widget {
+            background: #fff;
+            border: 2px solid var(--accent-gold);
+            border-radius: 14px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .summary-val {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin-top: 4px;
+        }
+
+        .countdown-box {
+            background: linear-gradient(135deg, var(--accent), var(--accent-red));
+            color: white;
+            text-align: center;
+            padding: 14px;
+            border-radius: 16px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border: 2px solid var(--accent-gold);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
 
         /* EMPLOI DU TEMPS TACTILE */
+        .week-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0 10px;
+        }
+
+        .week-nav button {
+            background: var(--accent);
+            color: #fff;
+            border: 1px solid var(--accent-gold);
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .week-title {
+            font-family: var(--font-main);
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--accent);
+            min-width: 140px;
+            text-align: center;
+        }
+
         .edt-table-container {
             width: 100%;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             margin-top: 15px;
-            border-radius: 10px;
-            border: 1px solid var(--border-soft);
+            margin-bottom: 20px;
+            border-radius: 12px;
+            border: 1.5px solid var(--border-soft);
         }
 
         .edt-table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 650px;
+            min-width: 750px;
             background: #fff;
         }
 
@@ -343,22 +494,81 @@
             border: 1px solid var(--border-soft);
             padding: 8px 4px;
             text-align: center;
-            font-size: 0.75rem;
+            font-size: 0.78rem;
+            vertical-align: middle;
         }
 
         .edt-table th {
             background: var(--accent);
             color: #fff;
+            font-family: var(--font-main);
         }
 
-        /* PROGRESS BARS */
+        .edt-table td.heure-col {
+            font-weight: bold;
+            background: #fffaf0;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .edt-matiere {
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        .edt-salle {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Couleurs des cours */
+        .mat-snt { background-color: #b2eaf2; }
+        .mat-hg { background-color: #c7d2fe; }
+        .mat-eps { background-color: #a7f3d0; }
+        .mat-maths { background-color: #e0f2fe; }
+        .mat-pc { background-color: #fca5a5; }
+        .mat-esp { background-color: #fef08a; }
+        .mat-ses { background-color: #f0abfc; }
+        .mat-fr { background-color: #fef08a; }
+        .mat-ang { background-color: #fbcfe8; }
+        .mat-svt { background-color: #bbf7d0; }
+        .mat-emc { background-color: #f472b6; }
+
+        /* Banque Cards */
+        .bank-card-mega {
+            background: linear-gradient(135deg, #e8f5e9, #fff);
+            border: 2px solid var(--accent);
+        }
+        .bank-card-mega h3 {
+            font-size: 1.3rem;
+            color: var(--accent-red);
+        }
+        .bank-card-mega .field-input {
+            font-size: 1.3rem !important;
+            font-weight: bold;
+            color: var(--accent);
+            text-align: center;
+        }
+
+        .bank-card-submega {
+            background: linear-gradient(135deg, #fffde7, #fff);
+            border: 2px solid var(--accent-gold);
+        }
+        .bank-card-submega h3 {
+            font-size: 1.1rem;
+            color: var(--accent-gold);
+        }
+
+        /* Progress bars */
         .progress-bar-container {
             background: #eee;
             border-radius: 999px;
-            height: 10px;
+            height: 12px;
             width: 100%;
             overflow: hidden;
-            margin-top: 8px;
+            margin-top: 10px;
+            border: 1px solid var(--border-soft);
         }
 
         .progress-bar-fill {
@@ -369,19 +579,62 @@
         }
 
         .progress-text {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             margin-top: 4px;
             text-align: right;
         }
 
+        /* Parcours */
+        .parcours-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        @media (min-width: 600px) {
+            .parcours-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        }
+
+        .parcours-card {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 2px solid var(--border-soft);
+            padding: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .parcours-card::before {
+            content: "🎄";
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            font-size: 1.2rem;
+        }
+
+        .parcours-title {
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            color: var(--accent);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
         footer {
             margin-top: 30px;
             padding-top: 15px;
-            border-top: 1px dashed var(--accent-gold);
-            font-size: 0.8rem;
+            border-top: 2px dashed var(--accent-gold);
+            font-size: 0.85rem;
             color: #ffe6a7;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
             text-align: center;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
         }
     </style>
 </head>
@@ -392,10 +645,10 @@
 <div id="auth_screen">
     <div class="auth-card">
         <h2>🎄 Bon retour Monsieur Rojas 🎅</h2>
-        <p>Entrez votre code pour accéder à l'appli.</p>
+        <p>Entrez le mot de passe pour accéder à votre espace personnalisé.</p>
         <input type="password" id="password_input" placeholder="Mot de passe">
         <button id="btn_login">Déverrouiller ✨</button>
-        <div id="auth_error" class="auth-error">Code incorrect !</div>
+        <div id="auth_error" class="auth-error">Mot de passe incorrect. Réessayez !</div>
     </div>
 </div>
 
@@ -403,10 +656,10 @@
 <div id="bank_auth_modal">
     <div class="auth-card">
         <h2>🔒 Sécurité Banque 🎁</h2>
-        <p>Code secret requis pour les finances.</p>
+        <p>Entrez le code secret pour déverrouiller la partie Banque.</p>
         <input type="password" id="bank_password_input" placeholder="Code Banque">
-        <button id="btn_bank_login">Accéder ✨</button>
-        <div id="bank_auth_error" class="auth-error">Code incorrect !</div>
+        <button id="btn_bank_login">Accéder aux Finances ✨</button>
+        <div id="bank_auth_error" class="auth-error">Code incorrect. Réessayez !</div>
     </div>
 </div>
 
@@ -416,14 +669,16 @@
     <header>
         <div class="brand">
             <h1>Ma Vie En Une Appli</h1>
-            <p>Monsieur Rojas 🎅✨</p>
+            <p>Bon retour Monsieur Rojas 🎅✨</p>
         </div>
         <div class="user-tag">
-            <span>Life tracker — Édition Noël 🎄</span>
+            <span>Monsieur Rojas (S11)</span><br>
+            <span>Life tracker — Élixir de Noël 🎄</span>
         </div>
+        <div class="xmas-deco-header">🎄✨🎅✨🎄</div>
     </header>
 
-    <!-- NAVIGATION BAR SCROLLABLE -->
+    <!-- NAVIGATION -->
     <nav>
         <button data-section="accueil" class="active">Accueil 🎁</button>
         <button data-section="habitudes">Habitudes ☀️</button>
@@ -431,33 +686,63 @@
         <button data-section="banque">Banque 🔒</button>
         <button data-section="objectifs">Objectifs ⭐</button>
         <button data-section="parcours">Parcours 🎅</button>
-        <button data-section="entrainement">Sport 🏋️‍♂️</button>
+        <button data-section="entrainement">Entraînement 🏋️‍♂️</button>
     </nav>
 
     <!-- ACCUEIL -->
     <section id="accueil" class="section active">
         <div class="card">
-            <div class="card-title"><span class="icon">🎄</span>Tableau de bord</div>
-            <p style="font-size:0.9rem;">Bienvenue sur ton espace personnel.</p>
+            <div class="card-title"><span class="icon">🎄</span>Tableau de bord de Noël</div>
+            <p style="font-size: 0.9rem;">Bon retour Monsieur Rojas ! Voici votre quartier général : vos finances, vos études, vos objectifs de vie et vos entraînements en un coup d'œil.</p>
+        </div>
+
+        <div class="quote-box">
+            💬 <strong>Pensée du jour :</strong> <span id="daily_quote">"Le succès est la somme de petits efforts, répétés jour après jour."</span>
+        </div>
+
+        <div class="countdown-box" style="margin-bottom: 20px;">
+            🎁 Plus que <span id="xmas_countdown">--</span> jours avant Noël ! 🎅✨
+        </div>
+
+        <h3 style="font-family: var(--font-main); color: var(--accent-gold); margin-bottom: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.6);">📊 En un coup d'œil</h3>
+        <div class="grid-premium" style="margin-top: 0; margin-bottom: 20px;">
+            <div class="summary-widget">
+                <div style="font-size: 0.8rem; color: var(--text-muted);">💎 Solde Actuel</div>
+                <div id="home_solde" class="summary-val">0 €</div>
+            </div>
+            <div class="summary-widget">
+                <div style="font-size: 0.8rem; color: var(--text-muted);">✨ Argent Disponible</div>
+                <div id="home_dispo" class="summary-val" style="color: var(--accent-gold);">0 €</div>
+            </div>
+            <div class="summary-widget">
+                <div style="font-size: 0.8rem; color: var(--text-muted);">📚 Moyenne Actuelle</div>
+                <div id="home_moyenne" class="summary-val" style="color: var(--accent-red);">-- / 20</div>
+            </div>
+            <div class="summary-widget">
+                <div style="font-size: 0.8rem; color: var(--text-muted);">❤️ Amour avec ta chérie</div>
+                <div id="home_amour" class="summary-val" style="font-size: 0.95rem; color: var(--accent-red); font-weight: normal; margin-top: 6px;">Non défini</div>
+            </div>
         </div>
 
         <div class="card">
-            <div class="card-title"><span class="icon">🎯</span>Priorités du jour</div>
+            <div class="card-title"><span class="icon">🎯</span>Objectifs & Priorités d'Aujourd'hui</div>
             <label for="priorite_1">1. Priorité N°1</label>
-            <input id="priorite_1" class="field-input" type="text" placeholder="Ex: Réviser les Maths">
+            <input id="priorite_1" class="field-input" type="text" placeholder="Ex: Réviser le contrôle de Maths">
 
             <label for="priorite_2">2. Priorité N°2</label>
-            <input id="priorite_2" class="field-input" type="text" placeholder="Ex: Séance de Sport">
+            <input id="priorite_2" class="field-input" type="text" placeholder="Ex: Séance de sport Push">
 
             <label for="priorite_3">3. Priorité N°3</label>
-            <input id="priorite_3" class="field-input" type="text" placeholder="Ex: Remplir la banque">
+            <input id="priorite_3" class="field-input" type="text" placeholder="Ex: Préparer les cadeaux de Noël">
         </div>
     </section>
 
-    <!-- HABITUDES -->
+    <!-- HABITUDES DU MATIN -->
     <section id="habitudes" class="section">
         <div class="card">
-            <div class="card-title"><span class="icon">☀️</span>Routine Matinale</div>
+            <div class="card-title"><span class="icon">☀️</span>Habitudes du matin — Routine triée par heure</div>
+            <p style="margin-bottom: 15px; font-size: 0.85rem;">Modifie les heures de chaque étape ci-dessous. La liste se réorganise automatiquement de la plus matinale à la plus tardive !</p>
+
             <div id="habitudes_container"></div>
         </div>
     </section>
@@ -465,24 +750,69 @@
     <!-- ÉTUDES -->
     <section id="etudes" class="section">
         <div class="card">
-            <div class="card-title"><span class="icon">📚</span>Moyennes & Emploi du Temps</div>
-            <label for="moyenne">Moyenne Actuelle</label>
-            <input id="moyenne" class="field-input" type="number" step="0.1">
+            <div class="card-title"><span class="icon">📚</span>Études — Emploi du temps & À faire</div>
 
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
+                <div style="flex: 1; min-width: 140px;">
+                    <label for="moyenne">Moyenne actuelle</label>
+                    <input id="moyenne" class="field-input" type="number" step="0.1">
+                </div>
+                <div style="flex: 1; min-width: 140px;">
+                    <label for="moyenne_obj">Objectif de moyenne</label>
+                    <input id="moyenne_obj" class="field-input" type="number" step="0.1">
+                </div>
+            </div>
+
+            <a class="btn-link" href="https://atrium-sud.fr" target="_blank" rel="noopener noreferrer">Accéder à Atrium Sud 🎄</a>
+
+            <div class="week-nav">
+                <button id="btn_prev_week">◄</button>
+                <div id="week_title" class="week-title">Semaine A</div>
+                <button id="btn_next_week">►</button>
+            </div>
+            
             <div class="edt-table-container">
                 <table class="edt-table">
                     <thead>
                         <tr>
-                            <th>Heure</th>
-                            <th>Lun</th>
-                            <th>Mar</th>
-                            <th>Mer</th>
-                            <th>Jeu</th>
-                            <th>Ven</th>
+                            <th>Horaires</th>
+                            <th>Lundi</th>
+                            <th>Mardi</th>
+                            <th>Mercredi</th>
+                            <th>Jeudi</th>
+                            <th>Vendredi</th>
                         </tr>
                     </thead>
                     <tbody id="edt_body"></tbody>
                 </table>
+            </div>
+
+            <h3 style="font-family: var(--font-main); color: var(--accent); margin-top: 20px; margin-bottom: 10px;">✍️ Notes de fin de journée / Ce que je dois faire</h3>
+            <div class="grid-premium">
+                <div class="grid-card">
+                    <h3>🦌 Lundi — À faire</h3>
+                    <textarea id="todo_lundi" class="field-input" rows="3" placeholder="Devoirs, révisions..."></textarea>
+                </div>
+                <div class="grid-card">
+                    <h3>🎄 Mardi — À faire</h3>
+                    <textarea id="todo_mardi" class="field-input" rows="3" placeholder="Devoirs, révisions..."></textarea>
+                </div>
+                <div class="grid-card">
+                    <h3>🎅 Mercredi — À faire</h3>
+                    <textarea id="todo_mercredi" class="field-input" rows="3" placeholder="Devoirs, révisions..."></textarea>
+                </div>
+                <div class="grid-card">
+                    <h3>✨ Jeudi — À faire</h3>
+                    <textarea id="todo_jeudi" class="field-input" rows="3" placeholder="Devoirs, révisions..."></textarea>
+                </div>
+                <div class="grid-card">
+                    <h3>🎁 Vendredi — À faire</h3>
+                    <textarea id="todo_vendredi" class="field-input" rows="3" placeholder="Devoirs, révisions..."></textarea>
+                </div>
+                <div class="grid-card">
+                    <h3>🔔 Week-end — À faire</h3>
+                    <textarea id="todo_weekend" class="field-input" rows="3" placeholder="Devoirs pour la semaine prochaine..."></textarea>
+                </div>
             </div>
         </div>
     </section>
@@ -490,15 +820,55 @@
     <!-- BANQUE -->
     <section id="banque" class="section">
         <div class="card">
-            <div class="card-title"><span class="icon">💰</span>Comptes & Épargne</div>
+            <div class="card-title"><span class="icon">💰</span>Banque & Finances</div>
+            <p style="font-size: 0.85rem;">Gère tes comptes, tes répartitions d'argent et suis tes objectifs financiers.</p>
+
             <div class="grid-premium">
                 <div class="grid-card">
-                    <h3>🏦 Épargne</h3>
-                    <input id="bank_epargne_actuel" class="field-input" type="number" placeholder="Montant (€)">
+                    <h3>🏦 Épargne long terme</h3>
+                    <label for="bank_epargne_actuel">Montant actuel (€)</label>
+                    <input id="bank_epargne_actuel" class="field-input" type="number" step="1">
+                    <button class="btn-add-money" onclick="addMoney('bank_epargne_actuel', 25)">+ 25 €</button>
+                    <label for="bank_epargne_obj">Objectif (€)</label>
+                    <input id="bank_epargne_obj" class="field-input" type="number" step="1">
+                    <div class="progress-bar-container"><div id="bar_epargne" class="progress-bar-fill"></div></div>
+                    <div id="text_epargne" class="progress-text">0%</div>
                 </div>
+
                 <div class="grid-card">
                     <h3>🎁 Plaisir</h3>
-                    <input id="bank_plaisir_actuel" class="field-input" type="number" placeholder="Montant (€)">
+                    <label for="bank_plaisir_actuel">Montant actuel (€)</label>
+                    <input id="bank_plaisir_actuel" class="field-input" type="number" step="1">
+                    <button class="btn-add-money" onclick="addMoney('bank_plaisir_actuel', 10)">+ 10 €</button>
+                    <label for="bank_plaisir_obj">Objectif (€)</label>
+                    <input id="bank_plaisir_obj" class="field-input" type="number" step="1">
+                    <div class="progress-bar-container"><div id="bar_plaisir" class="progress-bar-fill"></div></div>
+                    <div id="text_plaisir" class="progress-text">0%</div>
+                </div>
+
+                <div class="grid-card">
+                    <h3>🚀 Projets et Études</h3>
+                    <label for="bank_projets_actuel">Montant actuel (€)</label>
+                    <input id="bank_projets_actuel" class="field-input" type="number" step="1">
+                    <button class="btn-add-money" onclick="addMoney('bank_projets_actuel', 10)">+ 10 €</button>
+                    <label for="bank_projets_obj">Objectif (€)</label>
+                    <input id="bank_projets_obj" class="field-input" type="number" step="1">
+                    <div class="progress-bar-container"><div id="bar_projets" class="progress-bar-fill"></div></div>
+                    <div id="text_projets" class="progress-text">0%</div>
+                </div>
+
+                <div class="grid-card bank-card-mega">
+                    <h3>💎 Solde Actuel</h3>
+                    <label for="solde_actuel_global">Montant total global (€)</label>
+                    <input id="solde_actuel_global" class="field-input" type="number" step="1" placeholder="0">
+                    <button class="btn-add-money" onclick="addMoney('solde_actuel_global', 50)">+ 50 €</button>
+                </div>
+
+                <div class="grid-card bank-card-submega">
+                    <h3>✨ Argent Disponible</h3>
+                    <label for="argent_disponible">Montant libre d'utilisation (€)</label>
+                    <input id="argent_disponible" class="field-input" type="number" step="1" placeholder="0">
+                    <button class="btn-add-money" onclick="addMoney('argent_disponible', 5)">+ 5 €</button>
                 </div>
             </div>
         </div>
@@ -507,13 +877,51 @@
     <!-- OBJECTIFS -->
     <section id="objectifs" class="section">
         <div class="card">
-            <div class="card-title"><span class="icon">⭐</span>Objectifs de Vie</div>
+            <div class="card-title"><span class="icon">⭐</span>Objectifs de vie & Courbes de progression</div>
+            <p style="font-size:0.85rem;">Suis tes grands objectifs de vie. Modifie les dates et les curseurs de progression à ta guise.</p>
+
             <div class="grid-premium">
                 <div class="grid-card">
-                    <h3>❤️ Relation</h3>
-                    <label for="obj_amour_debut">Date de début</label>
+                    <h3>📖 Année scolaire</h3>
+                    <label for="obj_scolaire_date_debut">Date de début</label>
+                    <input id="obj_scolaire_date_debut" class="field-input" type="date">
+                    <label for="obj_scolaire_date_fin">Date de fin (Objectif)</label>
+                    <input id="obj_scolaire_date_fin" class="field-input" type="date">
+                    <label for="obj_scolaire_val">Progression (%)</label>
+                    <input id="obj_scolaire_val" class="field-input" type="number" min="0" max="100" placeholder="Ex: 50">
+                    <div class="progress-bar-container"><div id="bar_scolaire" class="progress-bar-fill"></div></div>
+                    <div id="text_scolaire" class="progress-text">0%</div>
+                </div>
+
+                <div class="grid-card">
+                    <h3>⚖️ Poids</h3>
+                    <label for="obj_poids_depart">Poids de départ (kg)</label>
+                    <input id="obj_poids_depart" class="field-input" type="number" step="0.1">
+                    <label for="obj_poids_actuel">Poids actuel (kg)</label>
+                    <input id="obj_poids_actuel" class="field-input" type="number" step="0.1">
+                    <label for="obj_poids_cible">Poids cible (kg)</label>
+                    <input id="obj_poids_cible" class="field-input" type="number" step="0.1">
+                    <label for="obj_poids_date">Date limite</label>
+                    <input id="obj_poids_date" class="field-input" type="date">
+                </div>
+
+                <div class="grid-card">
+                    <h3>❤️ Amour avec ma chérie</h3>
+                    <label for="obj_amour_debut">Date de début de relation</label>
                     <input id="obj_amour_debut" class="field-input" type="date">
-                    <div id="text_amour_compteur" class="progress-text" style="text-align:left; font-weight:bold; color:var(--accent-red); margin-top:8px;"></div>
+                    <label for="obj_amour_note">Jalon / Prochain objectif</label>
+                    <input id="obj_amour_note" class="field-input" type="text" placeholder="Ex: 2 ans de relation">
+                    <div id="text_amour_compteur" class="progress-text" style="text-align: left; margin-top: 12px; font-weight: bold; color: var(--accent-red);"></div>
+                </div>
+
+                <div class="grid-card">
+                    <h3>⚕️ Être le meilleur chirurgien</h3>
+                    <label for="obj_chir_date_butoir">Date d'installation / Thèse visée</label>
+                    <input id="obj_chir_date_butoir" class="field-input" type="date">
+                    <label for="obj_chir_val">Niveau d'avancement (%)</label>
+                    <input id="obj_chir_val" class="field-input" type="number" min="0" max="100" placeholder="Ex: 15">
+                    <div class="progress-bar-container"><div id="bar_chir" class="progress-bar-fill"></div></div>
+                    <div id="text_chir" class="progress-text">0%</div>
                 </div>
             </div>
         </div>
@@ -522,10 +930,37 @@
     <!-- PARCOURS -->
     <section id="parcours" class="section">
         <div class="card">
-            <div class="card-title"><span class="icon">🎅</span>Mon Parcours</div>
-            <div class="grid-card">
-                <h3>Médecine / Études</h3>
-                <textarea id="parcours_med1" class="field-input" rows="4" placeholder="Notes sur ton année..."></textarea>
+            <div class="card-title"><span class="icon">🎅</span>Parcours de vie — de la maternelle à la médecine</div>
+            <p style="font-size: 0.85rem;">Chaque bloc représente une étape de ta vie scolaire. Tu peux écrire ce qui t’a marqué chaque année.</p>
+
+            <div class="parcours-grid">
+                <div class="parcours-card"><div class="parcours-title">Maternelle — Petite Section 🧸</div><textarea id="parcours_ps" class="field-input" rows="3"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Maternelle — Moyenne Section 🧸</div><textarea id="parcours_ms" class="field-input" rows="3"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Maternelle — Grande Section 🧸</div><textarea id="parcours_gs" class="field-input" rows="3"></textarea></div>
+
+                <div class="parcours-card"><div class="parcours-title">Primaire — CP ✏️</div><textarea id="parcours_cp" class="field-input" rows="3"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Primaire — CE1 ✏️</div><textarea id="parcours_ce1" class="field-input" rows="3"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Primaire — CE2 ✏️</div><textarea id="parcours_ce2" class="field-input" rows="3"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Primaire — CM1 ✏️</div><textarea id="parcours_cm1" class="field-input" rows="3"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Primaire — CM2 ✏️</div><textarea id="parcours_cm2" class="field-input" rows="3"></textarea></div>
+
+                <div class="parcours-card"><div class="parcours-title">Collège — 6e 🎒</div><textarea id="parcours_6e" class="field-input" rows="3"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Collège — 5e 🎒</div><textarea id="parcours_5e" class="field-input" rows="3"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Collège — 4e 🎒</div><textarea id="parcours_4e" class="field-input" rows="3"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Collège — 3e 🎒</div><textarea id="parcours_3e" class="field-input" rows="3"></textarea></div>
+
+                <div class="parcours-card"><div class="parcours-title">Lycée — Seconde 🎓</div><textarea id="parcours_2nde" class="field-input" rows="3"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Lycée — Première 🎓</div><textarea id="parcours_1ere" class="field-input" rows="3"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Lycée — Terminale 🎓</div><textarea id="parcours_term" class="field-input" rows="3"></textarea></div>
+
+                <div class="parcours-card"><div class="parcours-title">Médecine — Année 1 ⚕️</div><textarea id="parcours_med1" class="field-input" rows="3"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Médecine — Année 2 ⚕️</div><textarea id="parcours_med2" class="field-input" rows="3"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Médecine — Année 3 ⚕️</div><textarea id="parcours_med3" class="field-input" rows="3"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Médecine — Année 4 ⚕️</div><textarea id="parcours_med4" class="field-input" rows="3"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Médecine — Année 5 ⚕️</div><textarea id="parcours_med5" class="field-input" rows="3"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Médecine — Année 6 ⚕️</div><textarea id="parcours_med6" class="field-input" rows="3"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Internat ⚕️</div><textarea id="parcours_internat" class="field-input" rows="3"></textarea></div>
+                <div class="parcours-card"><div class="parcours-title">Thèse & Installation ⚕️</div><textarea id="parcours_these" class="field-input" rows="3"></textarea></div>
             </div>
         </div>
     </section>
@@ -533,42 +968,392 @@
     <!-- ENTRAÎNEMENT -->
     <section id="entrainement" class="section">
         <div class="card">
-            <div class="card-title"><span class="icon">🏋️‍♂️</span>Programme Sport</div>
+            <div class="card-title"><span class="icon">🏋️‍♂️</span>Programme d'entraînement — Semaine de Noël</div>
+
             <div class="grid-premium">
                 <div class="grid-card">
-                    <h3>Lundi — Push</h3>
-                    <input id="train_lundi" class="field-input" placeholder="Séance">
+                    <h3>🦌 Lundi <span>Push</span></h3>
+                    <input id="train_lundi" class="field-input" placeholder="Pecs / Triceps">
+                    <textarea id="note_lundi" class="field-input" rows="2" placeholder="Notes"></textarea>
+                </div>
+                <div class="grid-card">
+                    <h3>🎄 Mardi <span>Pull</span></h3>
+                    <input id="train_mardi" class="field-input" placeholder="Dos / Biceps">
+                    <textarea id="note_mardi" class="field-input" rows="2" placeholder="Notes"></textarea>
+                </div>
+                <div class="grid-card">
+                    <h3>🎅 Mercredi <span>Legs</span></h3>
+                    <input id="train_mercredi" class="field-input" placeholder="Jambes">
+                    <textarea id="note_mercredi" class="field-input" rows="2" placeholder="Notes"></textarea>
+                </div>
+                <div class="grid-card">
+                    <h3>✨ Jeudi <span>Cardio</span></h3>
+                    <input id="train_jeudi" class="field-input" placeholder="Cardio / HIIT">
+                    <textarea id="note_jeudi" class="field-input" rows="2" placeholder="Notes"></textarea>
+                </div>
+                <div class="grid-card">
+                    <h3>🎁 Vendredi <span>Full Body</span></h3>
+                    <input id="train_vendredi" class="field-input" placeholder="Full Body léger">
+                    <textarea id="note_vendredi" class="field-input" rows="2" placeholder="Notes"></textarea>
+                </div>
+                <div class="grid-card">
+                    <h3>🔔 Samedi <span>Libre</span></h3>
+                    <input id="train_samedi" class="field-input" placeholder="Sport libre">
+                    <textarea id="note_samedi" class="field-input" rows="2" placeholder="Notes"></textarea>
+                </div>
+                <div class="grid-card">
+                    <h3>❄️ Dimanche <span>Repos</span></h3>
+                    <input id="train_dimanche" class="field-input" placeholder="Repos">
+                    <textarea id="note_dimanche" class="field-input" rows="2" placeholder="Notes"></textarea>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
-        <p>Ma Vie En Une Appli — Monsieur Rojas 🎄</p>
+        <span>Ma Vie En Une Appli — Monsieur Rojas — Édition Noël 🎄✨</span>
+        <span>Structuration et organisation quotidienne.</span>
     </footer>
 </div>
 
 <script>
-    // JS minimaliste optimisé pour iOS Safari
+    const correctPassword = "SuccessIsGaranted4Soon";
+    let bankUnlocked = false;
+
+    // AUTH GENERAL
+    const authScreen = document.getElementById("auth_screen");
+    const mainApp = document.getElementById("main_app");
+    const passInput = document.getElementById("password_input");
+    const btnLogin = document.getElementById("btn_login");
+    const authError = document.getElementById("auth_error");
+
+    function checkAuthGeneral() {
+        if (passInput.value.trim() === correctPassword) {
+            authScreen.style.display = "none";
+            mainApp.style.display = "block";
+        } else {
+            authError.style.display = "block";
+        }
+    }
+
+    btnLogin.addEventListener("click", checkAuthGeneral);
+    passInput.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") checkAuthGeneral();
+    });
+
+    // AUTH BANQUE
+    const bankModal = document.getElementById("bank_auth_modal");
+    const bankPassInput = document.getElementById("bank_password_input");
+    const btnBankLogin = document.getElementById("btn_bank_login");
+    const bankAuthError = document.getElementById("bank_auth_error");
+
+    function checkAuthBank() {
+        if (bankPassInput.value.trim() === correctPassword) {
+            bankUnlocked = true;
+            bankModal.style.display = "none";
+            bankPassInput.value = "";
+            bankAuthError.style.display = "none";
+            switchTab("banque");
+        } else {
+            bankAuthError.style.display = "block";
+        }
+    }
+
+    btnBankLogin.addEventListener("click", checkAuthBank);
+    bankPassInput.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") checkAuthBank();
+    });
+
+    // NAVIGATION
     const navButtons = document.querySelectorAll('nav button');
     const sections = document.querySelectorAll('.section');
 
+    function switchTab(target) {
+        navButtons.forEach(b => b.classList.remove('active'));
+        const targetBtn = document.querySelector(`nav button[data-section="${target}"]`);
+        if(targetBtn) targetBtn.classList.add('active');
+
+        sections.forEach(sec => sec.classList.toggle('active', sec.id === target));
+    }
+
     navButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            navButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
             const target = btn.dataset.section;
-            sections.forEach(sec => {
-                sec.classList.toggle('active', sec.id === target);
-            });
+            if (target === "banque" && !bankUnlocked) {
+                bankModal.style.display = "flex";
+                bankPassInput.focus();
+                return;
+            }
+            switchTab(target);
         });
     });
 
-    // Déverrouillage simple
-    document.getElementById('btn_login').addEventListener('click', () => {
-        document.getElementById('auth_screen').style.display = 'none';
-        document.getElementById('main_app').style.display = 'block';
+    // AJOUT D'ARGENT
+    function addMoney(inputId, amount) {
+        const input = document.getElementById(inputId);
+        if(!input) return;
+        let current = parseFloat(input.value) || 0;
+        input.value = current + amount;
+        input.dispatchEvent(new Event('input'));
+    }
+
+    // LISTE DES HABITUDES DU MATIN
+    const habitsData = [
+        { id: "habit_reveil", title: "⏰ Réveil", desc: "Début de la journée.", defaultTime: "06:00" },
+        { id: "habit_douche", title: "🚿 Douche", desc: "Douche fraîche ou tiède.", defaultTime: "06:05" },
+        { id: "habit_habiller", title: "👔 S'habiller", desc: "Mettre sa tenue pour être prêt.", defaultTime: "06:11" },
+        { id: "habit_dejeuner", title: "🥐 Déjeuner", desc: "Prendre un bon repas énergétique.", defaultTime: "06:15" },
+        { id: "habit_partir", title: "🚀 Partir", desc: "Quitter la maison pour attaquer la journée.", defaultTime: "06:55" },
+        { id: "habit_1", title: "☀️ Exposition lumière naturelle (10-15 min)", desc: "Pic de cortisol naturel pour l'énergie.", defaultTime: "06:25" },
+        { id: "habit_2", title: "💧 Réhydratation (Grand verre d'eau)", desc: "Relance le métabolisme.", defaultTime: "06:02" },
+        { id: "habit_3", title: "☕ Retarder la caféine (60-90 min)", desc: "Évite le coup de fatigue de l'après-midi.", defaultTime: "07:15" },
+        { id: "habit_4", title: "🧘 Mouvement / Étirements (5-10 min)", desc: "Réveille le corps.", defaultTime: "06:35" },
+        { id: "habit_6", title: "🚫 0 écran (30 premières min)", desc: "Garde la clarté mentale intacte.", defaultTime: "06:00" }
+    ];
+
+    function renderHabits() {
+        const container = document.getElementById("habitudes_container");
+        if(!container) return;
+
+        const habitsWithTime = habitsData.map(h => {
+            const timeVal = localStorage.getItem("mv_time_" + h.id) || h.defaultTime;
+            const checkedVal = localStorage.getItem("mv_" + h.id) === "true";
+            return { ...h, timeVal, checkedVal };
+        });
+
+        habitsWithTime.sort((a, b) => a.timeVal.localeCompare(b.timeVal));
+
+        container.innerHTML = "";
+        habitsWithTime.forEach(h => {
+            const item = document.createElement("div");
+            item.className = "habit-item";
+            item.innerHTML = `
+                <div class="habit-left">
+                    <input type="checkbox" id="${h.id}" ${h.checkedVal ? "checked" : ""}>
+                    <div class="habit-details">
+                        <h4>${h.title}</h4>
+                        <p>${h.desc}</p>
+                    </div>
+                </div>
+                <input type="time" class="habit-time-input" id="time_${h.id}" value="${h.timeVal}">
+            `;
+            container.appendChild(item);
+        });
+
+        habitsWithTime.forEach(h => {
+            const chk = document.getElementById(h.id);
+            const timeIn = document.getElementById("time_" + h.id);
+
+            chk.addEventListener("change", () => {
+                localStorage.setItem("mv_" + h.id, chk.checked);
+            });
+
+            timeIn.addEventListener("input", () => {
+                localStorage.setItem("mv_time_" + h.id, timeIn.value || "23:59");
+                renderHabits();
+            });
+        });
+    }
+
+    // EMPLOIS DU TEMPS
+    const edtData = {
+        "A (Semaine 2)": [
+            { time: "08h05 - 09h00", lun: '<div class="edt-matiere">SNT</div><div class="edt-salle">FAURE S.</div>', mar: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', mer: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '-', ven: '<div class="edt-matiere">HISTOIRE-GÉOGRAPHIE</div><div class="edt-salle">CLAVÉ S.</div>', lunC: 'mat-snt', marC: 'mat-maths', merC: 'mat-ang', jeuC: '', venC: 'mat-hg' },
+            { time: "09h00 - 10h15", lun: '<div class="edt-matiere">HISTOIRE-GÉOGRAPHIE</div><div class="edt-salle">CLAVÉ S.</div>', mar: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', mer: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S.</div>', ven: '<div class="edt-matiere">HISTOIRE-GÉOGRAPHIE</div><div class="edt-salle">CLAVÉ S.</div>', lunC: 'mat-hg', marC: 'mat-maths', merC: 'mat-ang', jeuC: 'mat-pc', venC: 'mat-hg' },
+            { time: "10h15 - 11h15", lun: '<div class="edt-matiere">EPS</div><div class="edt-salle">BAUDRY A.</div>', mar: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S.</div>', mer: '<div class="edt-matiere">FRANÇAIS</div><div class="edt-salle">POYOL N.</div>', jeu: '<div class="edt-matiere">SVT</div><div class="edt-salle">FERRE-AOUSTIN C.</div>', ven: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', lunC: 'mat-eps', marC: 'mat-pc', merC: 'mat-fr', jeuC: 'mat-svt', venC: 'mat-maths' },
+            { time: "11h30 - 12h10", lun: '<div class="edt-matiere">EPS</div><div class="edt-salle">BAUDRY A.</div>', mar: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', mer: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', jeu: '<div class="edt-matiere">SVT</div><div class="edt-salle">FERRE-AOUSTIN C.</div>', ven: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', lunC: 'mat-eps', marC: 'mat-esp', merC: 'mat-maths', jeuC: 'mat-svt', venC: 'mat-esp' },
+            { time: "13h00 - 14h00", lun: '-', mar: '<div class="edt-matiere">HISTOIRE-GÉOGRAPHIE</div><div class="edt-salle">CLAVÉ S.</div>', mer: '-', jeu: '-', ven: '-', lunC: '', marC: 'mat-hg', merC: '', jeuC: '', venC: '' },
+            { time: "14h00 - 15h00", lun: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', mar: '<div class="edt-matiere">SES</div><div class="edt-salle">DELATTRE M.</div>', mer: '-', jeu: '<div class="edt-matiere">FRANÇAIS</div><div class="edt-salle">POYOL N.</div>', ven: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', lunC: 'mat-ang', marC: 'mat-ses', merC: '', jeuC: 'mat-fr', venC: 'mat-ang' },
+            { time: "15h05 - 16h05", lun: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', mar: '<div class="edt-matiere">SES</div><div class="edt-salle">DELATTRE M.</div>', mer: '-', jeu: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', ven: '<div class="edt-matiere">FRANÇAIS</div><div class="edt-salle">POYOL N.</div>', lunC: 'mat-esp', marC: 'mat-ses', merC: '', jeuC: 'mat-maths', venC: 'mat-fr' },
+            { time: "16h05 - 17h05", lun: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', mar: '<div class="edt-matiere">FRANÇAIS</div><div class="edt-salle">POYOL N.</div>', mer: '-', jeu: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', ven: '<div class="edt-matiere">FRANÇAIS</div><div class="edt-salle">POYOL N.</div>', lunC: 'mat-ang', marC: 'mat-fr', merC: '', jeuC: 'mat-ang', venC: 'mat-fr' }
+        ],
+        "B (Semaine 1)": [
+            { time: "08h05 - 09h00", lun: '<div class="edt-matiere">SNT</div><div class="edt-salle">FAURE S.</div>', mar: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', mer: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '-', ven: '<div class="edt-matiere">HISTOIRE-GÉOGRAPHIE</div><div class="edt-salle">CLAVÉ S.</div>', lunC: 'mat-snt', marC: 'mat-maths', merC: 'mat-ang', jeuC: '', venC: 'mat-hg' },
+            { time: "09h00 - 10h15", lun: '<div class="edt-matiere">HISTOIRE-GÉOGRAPHIE</div><div class="edt-salle">CLAVÉ S.</div>', mar: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', mer: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', jeu: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S.</div>', ven: '<div class="edt-matiere">HISTOIRE-GÉOGRAPHIE</div><div class="edt-salle">CLAVÉ S.</div>', lunC: 'mat-hg', marC: 'mat-maths', merC: 'mat-ang', jeuC: 'mat-pc', venC: 'mat-hg' },
+            { time: "10h15 - 11h15", lun: '<div class="edt-matiere">EPS</div><div class="edt-salle">BAUDRY A.</div>', mar: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S.</div>', mer: '-', jeu: '<div class="edt-matiere">SVT</div><div class="edt-salle">FERRE-AOUSTIN C.</div>', ven: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', lunC: 'mat-eps', marC: 'mat-pc', merC: '', jeuC: 'mat-svt', venC: 'mat-maths' },
+            { time: "11h30 - 12h10", lun: '<div class="edt-matiere">EPS</div><div class="edt-salle">BAUDRY A.</div>', mar: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', mer: '<div class="edt-matiere">SNT</div><div class="edt-salle">FAURE S.</div>', jeu: '<div class="edt-matiere">SVT</div><div class="edt-salle">FERRE-AOUSTIN C.</div>', ven: '<div class="edt-matiere">ESPAGNOL LV2</div><div class="edt-salle">BOUSSARD L.</div>', lunC: 'mat-eps', marC: 'mat-esp', merC: 'mat-snt', jeuC: 'mat-svt', venC: 'mat-esp' },
+            { time: "12h10 - 13h00", lun: '<div class="edt-matiere">PHYSIQUE-CHIMIE</div><div class="edt-salle">PEYRADE S.</div>', mar: '-', mer: '-', jeu: '-', ven: '-', lunC: 'mat-pc', marC: '', merC: '', jeuC: '', venC: '' },
+            { time: "13h00 - 14h00", lun: '-', mar: '<div class="edt-matiere">HISTOIRE-GÉOGRAPHIE</div><div class="edt-salle">CLAVÉ S.</div>', mer: '-', jeu: '-', ven: '-', lunC: '', marC: 'mat-hg', merC: '', jeuC: '', venC: '' },
+            { time: "14h00 - 15h00", lun: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', mar: '<div class="edt-matiere">SES</div><div class="edt-salle">DELATTRE M.</div>', mer: '-', jeu: '<div class="edt-matiere">FRANÇAIS</div><div class="edt-salle">POYOL N.</div>', ven: '<div class="edt-matiere">ANGLAIS LV1</div><div class="edt-salle">BARBERI MOINE M.</div>', lunC: 'mat-ang', marC: 'mat-ses', merC: '', jeuC: 'mat-fr', venC: 'mat-ang' },
+            { time: "15h05 - 16h05", lun: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', mar: '<div class="edt-matiere">EMC</div><div class="edt-salle">DELATTRE M.</div>', mer: '-', jeu: '<div class="edt-matiere">MATHS</div><div class="edt-salle">DE BETTIGNIES L.</div>', ven: '<div class="edt-matiere">FRANÇAIS</div><div class="edt-salle">POYOL N.</div>', lunC: 'mat-ang', marC: 'mat-emc', merC: '', jeuC: 'mat-maths', venC: 'mat-fr' },
+            { time: "16h05 - 17h05", lun: '-', mar: '<div class="edt-matiere">FRANÇAIS</div><div class="edt-salle">POYOL N.</div>', mer: '-', jeu: '<div class="edt-matiere">ANGLAIS LV SECTION</div><div class="edt-salle">BARBERI MOINE M.</div>', ven: '<div class="edt-matiere">FRANÇAIS</div><div class="edt-salle">POYOL N.</div>', lunC: '', marC: 'mat-fr', merC: '', jeuC: 'mat-ang', venC: 'mat-fr' }
+        ]
+    };
+
+    let weekKeys = Object.keys(edtData);
+    let currentWeekIndex = 0;
+
+    function renderEdt() {
+        const body = document.getElementById("edt_body");
+        const title = document.getElementById("week_title");
+        if(!body || !title) return;
+        
+        let currentKey = weekKeys[currentWeekIndex];
+        title.textContent = currentKey;
+        body.innerHTML = "";
+
+        (edtData[currentKey] || []).forEach(row => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td class="heure-col">${row.time}</td>
+                <td class="${row.lunC}">${row.lun}</td>
+                <td class="${row.marC}">${row.mar}</td>
+                <td class="${row.merC}">${row.mer}</td>
+                <td class="${row.jeuC}">${row.jeu}</td>
+                <td class="${row.venC}">${row.ven}</td>
+            `;
+            body.appendChild(tr);
+        });
+    }
+
+    document.getElementById("btn_prev_week").addEventListener("click", () => {
+        currentWeekIndex = (currentWeekIndex - 1 + weekKeys.length) % weekKeys.length;
+        renderEdt();
+    });
+
+    document.getElementById("btn_next_week").addEventListener("click", () => {
+        currentWeekIndex = (currentWeekIndex + 1) % weekKeys.length;
+        renderEdt();
+    });
+
+    // PENSÉE DU JOUR & NÖEL
+    const quotes = [
+        '"Le succès est la somme de petits efforts, répétés jour après jour."',
+        '"Sois le meilleur dans tout ce que tu entreprends."',
+        '"La discipline bat le talent quand le talent ne travaille pas."'
+    ];
+    document.getElementById('daily_quote').textContent = quotes[Math.floor(Math.random() * quotes.length)];
+
+    function updateCountdown() {
+        const now = new Date();
+        let xmas = new Date(now.getFullYear(), 11, 25);
+        if (now > xmas) xmas = new Date(now.getFullYear() + 1, 11, 25);
+        const diff = Math.ceil((xmas - now) / (1000 * 60 * 60 * 24));
+        document.getElementById('xmas_countdown').textContent = diff;
+    }
+    updateCountdown();
+
+    // PROGRESSION ET CALCULS
+    function updatePercentProgress(actuelId, objId, barId, textId) {
+        const actuelEl = document.getElementById(actuelId);
+        const objEl = document.getElementById(objId);
+        const bar = document.getElementById(barId);
+        const text = document.getElementById(textId);
+        if(!actuelEl || !objEl || !bar || !text) return;
+
+        const actuel = parseFloat(actuelEl.value) || 0;
+        const obj = parseFloat(objEl.value) || 0;
+
+        let pct = obj > 0 ? Math.round((actuel / obj) * 100) : 0;
+        pct = Math.min(Math.max(pct, 0), 100);
+
+        bar.style.width = pct + '%';
+        text.textContent = pct + '% (actuel: ' + actuel + ' / obj: ' + obj + ')';
+    }
+
+    function updateDirectProgress(inputId, barId, textId) {
+        const input = document.getElementById(inputId);
+        const bar = document.getElementById(barId);
+        const text = document.getElementById(textId);
+        if(!input || !bar || !text) return;
+
+        let val = parseFloat(input.value) || 0;
+        val = Math.min(Math.max(val, 0), 100);
+
+        bar.style.width = val + '%';
+        text.textContent = val + '%';
+    }
+
+    function updateAmourCounter() {
+        const debutInput = document.getElementById('obj_amour_debut');
+        const counterText = document.getElementById('text_amour_compteur');
+        const homeAmourText = document.getElementById('home_amour');
+        if(!debutInput || !counterText) return;
+
+        if(!debutInput.value) {
+            counterText.textContent = "Définis une date de début ❤️";
+            if(homeAmourText) homeAmourText.textContent = "Non défini";
+            return;
+        }
+
+        const debut = new Date(debutInput.value);
+        const maintenant = new Date();
+        const diffTime = maintenant - debut;
+
+        if(diffTime < 0) {
+            counterText.textContent = "La date est dans le futur !";
+            if(homeAmourText) homeAmourText.textContent = "Futur";
+            return;
+        }
+
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const ans = Math.floor(diffDays / 365);
+        const mois = Math.floor((diffDays % 365) / 30);
+        const jours = (diffDays % 365) % 30;
+
+        const resStr = `${ans} an(s), ${mois} m, ${jours} j`;
+        counterText.textContent = `Ensemble depuis : ${resStr} (${diffDays} jours) 💕`;
+        if(homeAmourText) homeAmourText.textContent = resStr;
+    }
+
+    function updateHomeSummary() {
+        const solde = document.getElementById('solde_actuel_global').value;
+        const dispo = document.getElementById('argent_disponible').value;
+        const moy = document.getElementById('moyenne').value;
+
+        document.getElementById('home_solde').textContent = (solde !== "" ? solde : "0") + " €";
+        document.getElementById('home_dispo').textContent = (dispo !== "" ? dispo : "0") + " €";
+        document.getElementById('home_moyenne').textContent = (moy !== "" ? moy : "--") + " / 20";
+    }
+
+    const ids = [
+        "moyenne","moyenne_obj","priorite_1","priorite_2","priorite_3",
+        "todo_lundi","todo_mardi","todo_mercredi","todo_jeudi","todo_vendredi","todo_weekend",
+        "bank_epargne_actuel","bank_epargne_obj","bank_plaisir_actuel","bank_plaisir_obj",
+        "bank_projets_actuel","bank_projets_obj","solde_actuel_global","argent_disponible",
+        "obj_scolaire_date_debut","obj_scolaire_date_fin","obj_scolaire_val",
+        "obj_poids_depart","obj_poids_actuel","obj_poids_cible","obj_poids_date",
+        "obj_amour_debut","obj_amour_note","obj_chir_date_butoir","obj_chir_val",
+        "parcours_ps","parcours_ms","parcours_gs","parcours_cp","parcours_ce1","parcours_ce2","parcours_cm1","parcours_cm2",
+        "parcours_6e","parcours_5e","parcours_4e","parcours_3e","parcours_2nde","parcours_1ere","parcours_term",
+        "parcours_med1","parcours_med2","parcours_med3","parcours_med4","parcours_med5","parcours_med6","parcours_internat","parcours_these",
+        "train_lundi","note_lundi","train_mardi","note_mardi","train_mercredi","note_mercredi","train_jeudi","note_jeudi","train_vendredi","note_vendredi","train_samedi","note_samedi","train_dimanche","note_dimanche"
+    ];
+
+    function load(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const v = localStorage.getItem("mv_" + id);
+        if (v !== null) el.value = v;
+
+        el.addEventListener("input", () => {
+            localStorage.setItem("mv_" + id, el.value);
+
+            if(id === "bank_epargne_actuel" || id === "bank_epargne_obj") updatePercentProgress('bank_epargne_actuel', 'bank_epargne_obj', 'bar_epargne', 'text_epargne');
+            if(id === "bank_plaisir_actuel" || id === "bank_plaisir_obj") updatePercentProgress('bank_plaisir_actuel', 'bank_plaisir_obj', 'bar_plaisir', 'text_plaisir');
+            if(id === "bank_projets_actuel" || id === "bank_projets_obj") updatePercentProgress('bank_projets_actuel', 'bank_projets_obj', 'bar_projets', 'text_projets');
+            
+            if(id === "obj_scolaire_val") updateDirectProgress('obj_scolaire_val', 'bar_scolaire', 'text_scolaire');
+            if(id === "obj_chir_val") updateDirectProgress('obj_chir_val', 'bar_chir', 'text_chir');
+            if(id === "obj_amour_debut") updateAmourCounter();
+
+            updateHomeSummary();
+        });
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+        renderEdt();
+        renderHabits();
+        ids.forEach(load);
+
+        updatePercentProgress('bank_epargne_actuel', 'bank_epargne_obj', 'bar_epargne', 'text_epargne');
+        updatePercentProgress('bank_plaisir_actuel', 'bank_plaisir_obj', 'bar_plaisir', 'text_plaisir');
+        updatePercentProgress('bank_projets_actuel', 'bank_projets_obj', 'bar_projets', 'text_projets');
+        updateDirectProgress('obj_scolaire_val', 'bar_scolaire', 'text_scolaire');
+        updateDirectProgress('obj_chir_val', 'bar_chir', 'text_chir');
+        updateAmourCounter();
+        updateHomeSummary();
     });
 </script>
 
