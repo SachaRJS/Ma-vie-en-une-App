@@ -7,14 +7,14 @@
 
     <style>
         :root {
-            --bg-main: rgba(253, 247, 242, 0.92);
-            --bg-card: rgba(255, 255, 255, 0.95);
-            --accent: #165b33;      /* vert sapin */
-            --accent-red: #bb2528;  /* rouge Noël */
-            --accent-gold: #e0a106; /* doré */
-            --text-main: #222;
-            --text-muted: #555;
-            --border-soft: #e3d7c8;
+            --bg-main: #800e13;      /* Rouge Noël profond */
+            --bg-card: rgba(255, 248, 240, 0.96);
+            --accent: #165b33;      /* Vert sapin */
+            --accent-red: #d90429;  /* Rouge vif */
+            --accent-gold: #ffb703; /* Or éclatant */
+            --text-main: #2b1e16;
+            --text-muted: #6b5c52;
+            --border-soft: #e0a96d;
             --font-main: "Georgia", serif;
             --font-alt: "Inter", "Helvetica Neue", Arial, sans-serif;
         }
@@ -26,14 +26,20 @@
         }
 
         body {
-            
-    background: linear-gradient(rgba(10, 20, 15, 0.4), rgba(15, 10, 10, 0.5)), 
-                url('chalet.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: var(--text-main);
-    font-family: var(--font-alt);
-    min-height: 100vh;
-}        
+            /* FOND NOËL MAXIMALISTE : DÉGRADÉ ROUGE CHALEUREUX + FLOCONS */
+            background-color: var(--bg-main);
+            background-image: 
+                radial-gradient(circle, rgba(255, 215, 0, 0.15) 15%, transparent 20%),
+                radial-gradient(circle, rgba(255, 255, 255, 0.2) 10%, transparent 15%),
+                radial-gradient(circle, rgba(22, 91, 51, 0.3) 25%, transparent 30%),
+                linear-gradient(135deg, #38040e 0%, #640d14 35%, #ad2831 70%, #38040e 100%);
+            background-size: 80px 80px, 120px 120px, 200px 200px, 100% 100%;
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: var(--font-alt);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
 
         /* VERROUILLAGE GENERAL */
         #auth_screen {
@@ -42,9 +48,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: linear-gradient(rgba(10, 20, 15, 0.65), rgba(15, 10, 10, 0.8)), 
-                        url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4QBgRXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAAExAAIAAAARAAAATgAAAAAAAABIAAAAAQAAAEgAAAABcGFpbnQubmV0IDQuMy.hhdAABAAEAMwIBAAIhEwAAQAAAAAEAAgAA...') no-repeat center center;
-            background-size: cover;
+            background: linear-gradient(135deg, #38040e, #ad2831, #165b33);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -58,8 +62,8 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0,0,0,0.65);
-            backdrop-filter: blur(6px);
+            background: rgba(20, 5, 5, 0.85);
+            backdrop-filter: blur(8px);
             display: none;
             justify-content: center;
             align-items: center;
@@ -67,14 +71,14 @@
         }
 
         .auth-card {
-            background: rgba(255, 255, 255, 0.95);
-            border: 2px solid var(--border-soft);
-            border-radius: 20px;
+            background: #fffaf0;
+            border: 3px solid var(--accent-gold);
+            border-radius: 24px;
             padding: 40px 30px;
             max-width: 420px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            box-shadow: 0 0 35px rgba(255, 183, 3, 0.4);
         }
 
         .auth-card h2 {
@@ -93,9 +97,9 @@
         .auth-card input {
             width: 100%;
             padding: 12px;
-            border-radius: 10px;
-            border: 1px solid var(--border-soft);
-            background: #fffaf3;
+            border-radius: 12px;
+            border: 2px solid var(--border-soft);
+            background: #fff;
             font-size: 1rem;
             text-align: center;
             margin-bottom: 15px;
@@ -107,16 +111,18 @@
             border-radius: 999px;
             background: linear-gradient(135deg, var(--accent), var(--accent-red));
             color: #fff;
-            border: none;
+            border: 2px solid var(--accent-gold);
             font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 0.12em;
             cursor: pointer;
+            font-weight: bold;
             transition: 0.25s;
         }
 
         .auth-card button:hover {
-            opacity: 0.9;
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(255, 183, 3, 0.5);
         }
 
         .auth-error {
@@ -141,43 +147,43 @@
             justify-content: space-between;
             align-items: center;
             padding-bottom: 25px;
-            border-bottom: 1px solid rgba(255,255,255,0.25);
+            border-bottom: 2px dashed var(--accent-gold);
             position: relative;
         }
 
         .brand h1 {
             font-family: var(--font-main);
-            font-size: 2.4rem;
+            font-size: 2.5rem;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: #fff;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+            color: var(--accent-gold);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
         }
 
         .brand p {
-            font-size: 1rem;
-            color: #f0f0f0;
+            font-size: 1.1rem;
+            color: #ffe6a7;
             margin-top: 4px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
         }
 
         .user-tag {
             text-align: right;
             font-size: 0.9rem;
             color: #fff;
-            background: rgba(0,0,0,0.45);
-            backdrop-filter: blur(4px);
-            padding: 8px 14px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(22, 91, 51, 0.85);
+            padding: 10px 16px;
+            border-radius: 16px;
+            border: 2px solid var(--accent-gold);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
         .xmas-deco-header {
             position: absolute;
-            top: -10px;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 1.4rem;
+            font-size: 1.8rem;
         }
 
         /* NAVIGATION */
@@ -189,10 +195,10 @@
         }
 
         nav button {
-            padding: 10px 18px;
+            padding: 12px 20px;
             border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.3);
-            background: rgba(255, 255, 255, 0.92);
+            border: 2px solid var(--accent-gold);
+            background: #fffaf0;
             color: var(--accent);
             font-size: 0.9rem;
             text-transform: uppercase;
@@ -200,14 +206,15 @@
             cursor: pointer;
             transition: 0.25s;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         nav button:hover,
         nav button.active {
             background: linear-gradient(135deg, var(--accent), var(--accent-red));
             color: #fff;
-            border-color: transparent;
+            border-color: #fff;
+            box-shadow: 0 0 15px var(--accent-gold);
         }
 
         /* SECTIONS */
@@ -217,21 +224,20 @@
         /* CARTE DE BASE */
         .card {
             background: var(--bg-card);
-            border-radius: 18px;
-            border: 1px solid var(--border-soft);
-            padding: 26px;
+            border-radius: 20px;
+            border: 2px solid var(--accent-gold);
+            padding: 28px;
             box-shadow: 0 12px 30px rgba(0,0,0,0.3);
             margin-bottom: 28px;
             position: relative;
         }
 
         .card::before {
-            content: "✨";
+            content: "🎅✨";
             position: absolute;
-            top: 12px;
+            top: 14px;
             right: 18px;
-            font-size: 1.2rem;
-            opacity: 0.7;
+            font-size: 1.3rem;
         }
 
         .card-title {
@@ -255,6 +261,7 @@
             color: var(--text-muted);
             margin-top: 12px;
             display: block;
+            font-weight: bold;
         }
 
         .field-input {
@@ -262,7 +269,7 @@
             padding: 10px;
             border-radius: 10px;
             border: 1px solid var(--border-soft);
-            background: #fffaf3;
+            background: #ffffff;
             margin-top: 6px;
             font-size: 0.95rem;
         }
@@ -277,12 +284,14 @@
             border-radius: 999px;
             background: linear-gradient(135deg, var(--accent), var(--accent-red));
             color: #fff;
+            border: 1px solid var(--accent-gold);
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.12em;
             margin-top: 18px;
             font-size: 0.85rem;
             transition: 0.25s;
+            font-weight: bold;
         }
 
         .btn-add-money {
@@ -291,7 +300,7 @@
             border-radius: 999px;
             background: var(--accent);
             color: white;
-            border: none;
+            border: 1px solid var(--accent-gold);
             font-size: 0.8rem;
             font-weight: bold;
             cursor: pointer;
@@ -312,10 +321,10 @@
 
         .grid-card {
             background: #ffffff;
-            border: 1px solid var(--border-soft);
+            border: 2px solid var(--border-soft);
             border-radius: 16px;
             padding: 18px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             position: relative;
         }
 
@@ -325,7 +334,6 @@
             top: 10px;
             right: 12px;
             font-size: 1.2rem;
-            opacity: 0.8;
         }
 
         .grid-card h3 {
@@ -354,7 +362,7 @@
             padding: 14px 18px;
             border: 1px solid var(--border-soft);
             border-radius: 12px;
-            background: #fffaf3;
+            background: #ffffff;
         }
 
         .habit-left {
@@ -386,7 +394,7 @@
             padding: 8px 10px;
             border-radius: 8px;
             border: 1px solid var(--border-soft);
-            background: #fff;
+            background: #fffaf0;
             font-size: 0.95rem;
             font-family: var(--font-alt);
             color: var(--accent);
@@ -396,8 +404,8 @@
 
         /* ACCUEIL */
         .quote-box {
-            background: linear-gradient(135deg, #fffaf3, #fff3e6);
-            border-left: 4px solid var(--accent-red);
+            background: linear-gradient(135deg, #fffaf0, #ffe6a7);
+            border-left: 5px solid var(--accent-red);
             padding: 16px;
             border-radius: 12px;
             font-style: italic;
@@ -407,7 +415,7 @@
 
         .summary-widget {
             background: #fff;
-            border: 1px solid var(--border-soft);
+            border: 2px solid var(--accent-gold);
             border-radius: 14px;
             padding: 16px;
             text-align: center;
@@ -424,11 +432,12 @@
             background: linear-gradient(135deg, var(--accent), var(--accent-red));
             color: white;
             text-align: center;
-            padding: 15px;
-            border-radius: 14px;
+            padding: 16px;
+            border-radius: 16px;
             font-weight: bold;
-            font-size: 1.1rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-size: 1.2rem;
+            border: 2px solid var(--accent-gold);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
 
         /* EMPLOI DU TEMPS */
@@ -443,10 +452,10 @@
         .week-nav button {
             background: var(--accent);
             color: #fff;
-            border: none;
+            border: 1px solid var(--accent-gold);
             border-radius: 50%;
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             font-size: 1.1rem;
             cursor: pointer;
             transition: 0.2s;
@@ -479,7 +488,7 @@
             background: #fff;
             border-radius: 10px;
             overflow: hidden;
-            border: 1px solid var(--border-soft);
+            border: 2px solid var(--border-soft);
         }
 
         .edt-table th, .edt-table td {
@@ -499,7 +508,7 @@
 
         .edt-table td.heure-col {
             font-weight: bold;
-            background: #f7f2eb;
+            background: #fffaf0;
             color: var(--accent);
             white-space: nowrap;
         }
@@ -530,7 +539,7 @@
 
         /* Banque Cards */
         .bank-card-mega {
-            background: linear-gradient(135deg, #f3f9f5, #fff);
+            background: linear-gradient(135deg, #e8f5e9, #fff);
             border: 2px solid var(--accent);
         }
         .bank-card-mega h3 {
@@ -545,7 +554,7 @@
         }
 
         .bank-card-submega {
-            background: linear-gradient(135deg, #fffdf7, #fff);
+            background: linear-gradient(135deg, #fffde7, #fff);
             border: 2px solid var(--accent-gold);
         }
         .bank-card-submega h3 {
@@ -595,9 +604,9 @@
         .parcours-card {
             background: #ffffff;
             border-radius: 16px;
-            border: 1px solid var(--border-soft);
+            border: 2px solid var(--border-soft);
             padding: 16px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
             position: relative;
         }
 
@@ -607,7 +616,6 @@
             top: 8px;
             right: 12px;
             font-size: 1.2rem;
-            opacity: 0.8;
         }
 
         .parcours-title {
@@ -623,13 +631,13 @@
         footer {
             margin-top: 40px;
             padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.25);
-            font-size: 0.85rem;
-            color: #fff;
+            border-top: 2px dashed var(--accent-gold);
+            font-size: 0.9rem;
+            color: #ffe6a7;
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
         }
     </style>
 </head>
@@ -639,10 +647,10 @@
 <!-- AUTH GÉNÉRALE -->
 <div id="auth_screen">
     <div class="auth-card">
-        <h2>🎄 Bon retour Monsieur Rojas</h2>
+        <h2>🎄 Bon retour Monsieur Rojas 🎅</h2>
         <p>Entrez le mot de passe pour accéder à votre espace personnalisé.</p>
         <input type="password" id="password_input" placeholder="Mot de passe">
-        <button id="btn_login">Déverrouiller</button>
+        <button id="btn_login">Déverrouiller ✨</button>
         <div id="auth_error" class="auth-error">Mot de passe incorrect. Réessayez !</div>
     </div>
 </div>
@@ -650,10 +658,10 @@
 <!-- AUTH BANQUE -->
 <div id="bank_auth_modal">
     <div class="auth-card">
-        <h2>🔒 Sécurité Banque</h2>
+        <h2>🔒 Sécurité Banque 🎁</h2>
         <p>Entrez le code secret pour déverrouiller la partie Banque.</p>
         <input type="password" id="bank_password_input" placeholder="Code Banque">
-        <button id="btn_bank_login">Accéder aux Finances</button>
+        <button id="btn_bank_login">Accéder aux Finances ✨</button>
         <div id="bank_auth_error" class="auth-error">Code incorrect. Réessayez !</div>
     </div>
 </div>
@@ -664,30 +672,30 @@
     <header>
         <div class="brand">
             <h1>Ma Vie En Une Appli</h1>
-            <p>Bon retour Monsieur Rojas 🎄</p>
+            <p>Bon retour Monsieur Rojas 🎅✨</p>
         </div>
         <div class="user-tag">
             <span>Monsieur Rojas (S11)</span><br>
-            <span>Life tracker — Édition Chalet de Noël</span>
+            <span>Life tracker — Élixir de Noël 🎄</span>
         </div>
         <div class="xmas-deco-header">🎄✨🎅✨🎄</div>
     </header>
 
     <!-- NAVIGATION -->
     <nav>
-        <button data-section="accueil" class="active">Accueil</button>
-        <button data-section="habitudes">Habitudes du matin</button>
-        <button data-section="etudes">Études</button>
+        <button data-section="accueil" class="active">Accueil 🎁</button>
+        <button data-section="habitudes">Habitudes ☀️</button>
+        <button data-section="etudes">Études 📚</button>
         <button data-section="banque">Banque 🔒</button>
-        <button data-section="objectifs">Objectifs</button>
-        <button data-section="parcours">Parcours</button>
-        <button data-section="entrainement">Entraînement</button>
+        <button data-section="objectifs">Objectifs ⭐</button>
+        <button data-section="parcours">Parcours 🎅</button>
+        <button data-section="entrainement">Entraînement 🏋️‍♂️</button>
     </nav>
 
     <!-- ACCUEIL -->
     <section id="accueil" class="section active">
         <div class="card">
-            <div class="card-title"><span class="icon">🎄</span>Tableau de bord du Chalet</div>
+            <div class="card-title"><span class="icon">🎄</span>Tableau de bord de Noël</div>
             <p>Bon retour Monsieur Rojas ! Voici votre quartier général : vos finances, vos études, vos objectifs de vie et vos entraînements en un coup d'œil.</p>
         </div>
 
@@ -696,10 +704,10 @@
         </div>
 
         <div class="countdown-box" style="margin-bottom: 25px;">
-            🎁 Plus que <span id="xmas_countdown">--</span> jours avant Noël ! 🎅
+            🎁 Plus que <span id="xmas_countdown">--</span> jours avant Noël ! 🎅✨
         </div>
 
-        <h3 style="font-family: var(--font-main); color: #fff; margin-bottom: 12px; text-shadow: 0 1px 3px rgba(0,0,0,0.6);">📊 En un coup d'œil</h3>
+        <h3 style="font-family: var(--font-main); color: var(--accent-gold); margin-bottom: 12px; text-shadow: 1px 1px 3px rgba(0,0,0,0.6);">📊 En un coup d'œil</h3>
         <div class="grid-premium" style="margin-top: 0; margin-bottom: 28px;">
             <div class="summary-widget">
                 <div style="font-size: 0.85rem; color: var(--text-muted);">💎 Solde Actuel</div>
@@ -1009,7 +1017,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <span>Ma Vie En Une Appli — Monsieur Rojas — Édition Chalet de Noël 🎄</span>
+        <span>Ma Vie En Une Appli — Monsieur Rojas — Édition Noël 🎄✨</span>
         <span>Structuration et organisation quotidienne.</span>
     </footer>
 </div>
@@ -1119,7 +1127,6 @@
             return { ...h, timeVal, checkedVal };
         });
 
-        // Tri automatique du plus tôt au plus tard
         habitsWithTime.sort((a, b) => a.timeVal.localeCompare(b.timeVal));
 
         container.innerHTML = "";
